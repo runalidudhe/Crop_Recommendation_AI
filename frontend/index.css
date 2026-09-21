@@ -1,0 +1,5479 @@
+/* =========================================================
+   AGROAI - SMART AGRICULTURE
+   INDEX.CSS
+   Green + Cream Professional Theme
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
+   ========================================================= */
+
+:root {
+    --forest: #16452f;
+    --forest-dark: #0d3523;
+    --green: #347b4e;
+    --green-light: #5f9d68;
+
+    --sage: #dcebdc;
+    --sage-light: #edf5ea;
+
+    --cream: #f8f6ee;
+    --cream-dark: #eeeadd;
+
+    --gold: #4f8f62;
+    --gold-light: #dcebdc;
+
+    --ink: #17372a;
+    --muted: #66766d;
+
+    --white: #ffffff;
+
+    --border: rgba(30, 76, 49, 0.13);
+
+    --shadow: 0 12px 34px rgba(22, 65, 42, 0.08);
+    --shadow-hover: 0 20px 48px rgba(22, 65, 42, 0.14);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =========================================================
+   COMMON CONTAINER
+   ========================================================= */
+
+.section-container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(13, 53, 35, 0.90);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-container {
+    width: min(1240px, calc(100% - 40px));
+    min-height: 74px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--white);
+    font-family: "Manrope", sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.logo-mark {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 12px;
+}
+
+.logo > span:last-child > span {
+    color: #a9d88f;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: rgba(255, 255, 255, 0.84);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    padding: 8px 0;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--gold);
+
+    border-radius: 10px;
+
+    transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.login-btn {
+    padding: 10px 18px;
+
+    color: var(--forest);
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.icon-nav-btn {
+    width: 38px;
+    height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.icon-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+}
+
+.mobile-menu {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+
+    font-size: 21px;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 700px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    /*
+       IMPORTANT:
+       farm-landscape.jpg must be inside frontend/
+       beside index.html.
+    */
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.88) 0%,
+            rgba(255, 255, 255, 0.68) 30%,
+            rgba(255, 255, 255, 0.30) 58%,
+            rgba(255, 255, 255, 0.05) 100%
+        ),
+        url("farm-landscape.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-pattern {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 82% 20%,
+            rgba(95, 157, 104, 0.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 12% 82%,
+            rgba(79, 143, 98, 0.10),
+            transparent 28%
+        );
+}
+
+.hero-glow {
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    pointer-events: none;
+}
+
+.glow-one {
+    top: 8%;
+    right: 8%;
+
+    background: rgba(95, 157, 104, 0.16);
+}
+
+.glow-two {
+    bottom: 5%;
+    left: 4%;
+
+    background: rgba(79, 143, 98, 0.12);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(1180px, calc(100% - 40px));
+
+    margin: 0 auto;
+    padding-top: 90px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+
+    align-items: center;
+    gap: 70px;
+}
+
+.hero-content-left {
+    max-width: 690px;
+}
+
+.hero-badge {
+    width: fit-content;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 13px;
+
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(52, 123, 78, 0.18);
+
+    border-radius: 30px;
+
+    color: var(--forest);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+
+    box-shadow: 0 8px 24px rgba(22, 65, 42, 0.07);
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow: 0 0 0 5px rgba(52, 123, 78, 0.12);
+}
+
+.hero h1 {
+    margin-top: 22px;
+
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+
+    max-width: 760px;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--green);
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin-top: 22px;
+
+    color: #496056;
+
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 13px;
+
+    margin-top: 30px;
+}
+
+.primary-btn,
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 50px;
+
+    padding: 12px 19px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.primary-btn {
+    color: #ffffff;
+    background: var(--forest);
+
+    box-shadow: 0 12px 28px rgba(22, 69, 47, 0.22);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 34px rgba(22, 69, 47, 0.28);
+}
+
+.secondary-btn {
+    color: var(--forest);
+    background: rgba(255, 255, 255, 0.84);
+
+    border: 1px solid rgba(52, 123, 78, 0.20);
+}
+
+.secondary-btn:hover {
+    transform: translateY(-3px);
+    background: #ffffff;
+    box-shadow: var(--shadow);
+}
+
+.hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+
+    margin-top: 22px;
+
+    color: var(--forest);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    margin-top: 34px;
+}
+
+.trust-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.trust-item strong {
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 22px;
+    line-height: 1.1;
+}
+
+.trust-item span {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.trust-divider {
+    width: 1px;
+    height: 34px;
+
+    background: rgba(30, 76, 49, 0.20);
+}
+
+
+/* =========================================================
+   HERO INTELLIGENCE CARDS
+   ========================================================= */
+
+.hero-intelligence {
+    display: grid;
+    gap: 12px;
+}
+
+.intelligence-card {
+    display: grid;
+    grid-template-columns: 46px 1fr 20px;
+    align-items: center;
+    gap: 12px;
+
+    min-height: 76px;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(52, 123, 78, 0.16);
+
+    border-radius: 16px;
+
+    box-shadow: 0 12px 30px rgba(22, 65, 42, 0.09);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.intelligence-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.intel-icon {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: var(--sage-light);
+
+    font-size: 22px;
+}
+
+.intelligence-card strong {
+    display: block;
+
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+}
+
+.intelligence-card span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.intelligence-card > b {
+    color: var(--green);
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   COMMON SECTION HEADING
+   ========================================================= */
+
+.section-label {
+    display: inline-block;
+
+    color: var(--green);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+.section-label.light {
+    color: #d9edd5;
+}
+
+.section-heading h2,
+.about-content h2,
+.analysis-header h2,
+.decision-content h2,
+.final-cta h2 {
+    margin-top: 10px;
+
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.12;
+
+    letter-spacing: -0.035em;
+}
+
+.section-heading h2 span,
+.about-content h2 span,
+.analysis-header h2 span,
+.decision-content h2 span {
+    color: var(--green);
+}
+
+.section-heading p {
+    max-width: 680px;
+
+    margin: 15px auto 0;
+
+    color: var(--muted);
+
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.section-heading.center {
+    text-align: center;
+}
+
+
+/* =========================================================
+   ABOUT SECTION
+   ========================================================= */
+
+.about-section {
+    padding: 105px 0;
+
+    background: var(--cream);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+.about-image-wrap {
+    position: relative;
+
+    border-radius: var(--radius-lg);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+}
+
+.about-image-wrap::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        135deg,
+        rgba(22, 69, 47, 0.08),
+        transparent 55%
+    );
+
+    pointer-events: none;
+}
+
+.about-image-wrap img {
+    width: 100%;
+    height: 470px;
+
+    object-fit: cover;
+}
+
+.about-content p {
+    margin-top: 18px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.about-points {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.about-points div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--forest);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.about-points span {
+    color: var(--green);
+}
+
+
+/* =========================================================
+   INTELLIGENCE SECTION
+   ========================================================= */
+
+.intelligence-section {
+    padding: 105px 0;
+
+    background: #ffffff;
+}
+
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-top: 48px;
+}
+
+.module-card {
+    position: relative;
+
+    padding: 25px;
+
+    background: var(--cream);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(22, 65, 42, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.module-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.module-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.module-icon {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: var(--sage);
+
+    font-size: 22px;
+}
+
+.module-number {
+    color: rgba(52, 123, 78, 0.45);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.module-card h3 {
+    margin-top: 23px;
+
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 18px;
+}
+
+.module-card p {
+    min-height: 105px;
+
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.module-card a {
+    display: inline-block;
+
+    margin-top: 14px;
+
+    color: var(--green);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   ANALYSIS SECTION
+   ========================================================= */
+
+.analysis-section {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 110px 0;
+
+    background: var(--sage-light);
+}
+
+.analysis-bg-shape {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.analysis-shape-one {
+    width: 360px;
+    height: 360px;
+
+    top: -180px;
+    right: -100px;
+
+    background: rgba(95, 157, 104, 0.10);
+}
+
+.analysis-shape-two {
+    width: 280px;
+    height: 280px;
+
+    bottom: -130px;
+    left: -80px;
+
+    background: rgba(212, 168, 79, 0.08);
+}
+
+.analysis-header {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+
+    align-items: end;
+
+    gap: 50px;
+}
+
+.analysis-header > p {
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.analysis-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 17px;
+
+    margin-top: 42px;
+}
+
+.analysis-feature-card {
+    grid-column: span 2;
+
+    min-height: 285px;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 20px;
+
+    padding: 27px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+}
+
+.feature-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.analysis-icon {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--sage);
+
+    border-radius: 12px;
+
+    font-size: 21px;
+}
+
+.featured-icon {
+    background: #e5f0df;
+}
+
+.analysis-card-label {
+    margin-top: 16px;
+
+    color: var(--green);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+}
+
+.analysis-feature-card h3 {
+    margin-top: 7px;
+
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 23px;
+}
+
+.analysis-feature-card p {
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.parameter-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 15px;
+}
+
+.parameter-tags span {
+    padding: 6px 10px;
+
+    color: var(--forest);
+
+    background: var(--sage-light);
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.feature-visual {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.soil-ring {
+    width: 150px;
+    height: 150px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0 42%,
+            #e2f0df 43% 63%,
+            #b9d8b7 64% 70%,
+            transparent 71%
+        );
+
+    font-size: 42px;
+}
+
+.soil-mini-card {
+    position: absolute;
+
+    right: 2px;
+    bottom: 20px;
+
+    padding: 12px 14px;
+
+    background: var(--forest);
+
+    color: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 12px 25px rgba(22, 69, 47, 0.18);
+}
+
+.soil-mini-card strong {
+    display: block;
+
+    font-size: 11px;
+}
+
+.soil-mini-card small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #c9dfc7;
+
+    font-size: 9px;
+}
+
+.analysis-card {
+    min-height: 285px;
+
+    padding: 23px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 24px rgba(22, 65, 42, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.analysis-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.analysis-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.analysis-index {
+    color: rgba(52, 123, 78, 0.42);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.analysis-card h3 {
+    margin-top: 20px;
+
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 18px;
+}
+
+.analysis-card p {
+    margin-top: 9px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.analysis-progress {
+    height: 6px;
+
+    margin-top: 25px;
+
+    background: var(--sage-light);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.analysis-progress span {
+    display: block;
+
+    width: 68%;
+    height: 100%;
+
+    background: var(--green);
+
+    border-radius: inherit;
+}
+
+.analysis-card small {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #819087;
+
+    font-size: 10px;
+}
+
+.location-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-top: 24px;
+    padding: 7px 10px;
+
+    background: var(--sage-light);
+
+    border-radius: 8px;
+
+    color: var(--forest);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.location-chip span {
+    color: var(--green);
+}
+
+.analysis-flow {
+    margin-top: 25px;
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+.flow-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.flow-title span {
+    color: var(--green);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.flow-title strong {
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 14px;
+}
+
+.flow-steps {
+    display: flex;
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+.flow-step {
+    position: relative;
+
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    transition: background 0.25s ease;
+}
+
+.flow-step:hover,
+.flow-step:focus {
+    background: var(--sage-light);
+    outline: none;
+}
+
+.flow-number {
+    width: 34px;
+    height: 34px;
+
+    flex: 0 0 auto;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--forest);
+
+    color: #ffffff;
+
+    border-radius: 10px;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.flow-step strong {
+    display: block;
+
+    color: var(--forest-dark);
+
+    font-size: 12px;
+}
+
+.flow-step small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+.flow-hover {
+    position: absolute;
+
+    left: 12px;
+    bottom: -30px;
+
+    padding: 5px 8px;
+
+    color: #ffffff;
+    background: var(--green);
+
+    border-radius: 6px;
+
+    font-size: 9px;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.2s ease;
+}
+
+.flow-step:hover .flow-hover,
+.flow-step:focus .flow-hover {
+    opacity: 1;
+}
+
+.flow-arrow {
+    color: var(--green);
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   DECISION SECTION
+   ========================================================= */
+
+.decision-section {
+    padding: 110px 0;
+
+    background: #ffffff;
+}
+
+.decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+.decision-content > p {
+    max-width: 600px;
+
+    margin-top: 17px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.decision-list {
+    display: grid;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.decision-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    background: var(--cream);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+}
+
+.decision-number {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--forest);
+
+    color: #ffffff;
+
+    border-radius: 11px;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.decision-item h3 {
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 16px;
+}
+
+.decision-item p {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.decision-image {
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow);
+}
+
+.decision-image img {
+    width: 100%;
+    height: 470px;
+
+    object-fit: cover;
+
+    transition: transform 0.6s ease;
+}
+
+.decision-image:hover img {
+    transform: scale(1.035);
+}
+
+
+/* =========================================================
+   BENEFITS SECTION
+   ========================================================= */
+
+.benefits-section {
+    padding: 105px 0;
+
+    background: var(--cream);
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 17px;
+
+    margin-top: 45px;
+}
+
+.benefit-card {
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 24px rgba(22, 65, 42, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.benefit-icon {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--sage);
+
+    border-radius: 13px;
+
+    font-size: 22px;
+}
+
+.benefit-card h3 {
+    margin-top: 20px;
+
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 17px;
+}
+
+.benefit-card p {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CROPS SECTION
+   ========================================================= */
+
+.crops-section {
+    padding: 105px 0;
+
+    background: #ffffff;
+}
+
+.crop-library-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.featured-crops {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 13px;
+
+    margin-top: 35px;
+}
+
+.crop-card {
+    display: grid;
+    grid-template-columns: 42px 1fr 18px;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-height: 82px;
+
+    padding: 12px 14px;
+
+    background: var(--cream);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.crop-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(52, 123, 78, 0.25);
+
+    box-shadow: var(--shadow);
+}
+
+.crop-card-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--sage-light);
+
+    border-radius: 11px;
+
+    font-size: 20px;
+}
+
+.crop-card h3 {
+    color: var(--forest-dark);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.crop-card p {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.crop-card > span {
+    color: var(--green);
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.more-crops-btn {
+    display: block;
+
+    margin: 24px auto 0;
+
+    padding: 10px 18px;
+
+    color: var(--forest);
+
+    background: var(--sage-light);
+
+    border: 1px solid rgba(52, 123, 78, 0.18);
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.more-crops-btn:hover {
+    background: var(--sage);
+    transform: translateY(-2px);
+}
+
+.extra-crops-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 13px;
+
+    margin-top: 18px;
+}
+
+.extra-crop {
+    display: none;
+}
+
+.extra-crop.show {
+    display: grid;
+}
+
+.crop-library-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 30px;
+
+    color: var(--muted);
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+.crop-library-note span {
+    color: var(--gold);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.final-cta {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 90px 20px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(95, 157, 104, 0.25),
+            transparent 30%
+        ),
+        var(--forest-dark);
+
+    text-align: center;
+}
+
+.cta-pattern {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    pointer-events: none;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 760px;
+
+    margin: auto;
+}
+
+.final-cta h2 {
+    color: #ffffff;
+}
+
+.final-cta h2 span {
+    display: block;
+
+    color: #b8dc9e;
+}
+
+.final-cta p {
+    max-width: 650px;
+
+    margin: 18px auto 0;
+
+    color: rgba(255, 255, 255, 0.74);
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+.cta-primary,
+.cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 12px 18px;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.cta-primary {
+    background: #ffffff;
+    color: var(--forest);
+}
+
+.cta-secondary {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.cta-primary:hover,
+.cta-secondary:hover {
+    transform: translateY(-3px);
+}
+
+.cta-primary:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    padding: 35px 20px;
+
+    background: #0a2b1d;
+
+    color: #ffffff;
+
+    text-align: center;
+}
+
+.footer-content {
+    width: min(900px, 100%);
+
+    margin: auto;
+}
+
+.footer-logo {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.footer p {
+    margin-top: 5px;
+
+    color: rgba(255, 255, 255, 0.66);
+
+    font-size: 12px;
+}
+
+.footer-line {
+    width: 100%;
+    height: 1px;
+
+    margin: 22px 0;
+
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.footer small {
+    color: rgba(255, 255, 255, 0.50);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .module-grid,
+    .benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .featured-crops,
+    .extra-crops-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .analysis-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .analysis-feature-card {
+        grid-column: span 2;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .hero-intelligence {
+        max-width: 650px;
+    }
+
+    .about-grid,
+    .decision-grid,
+    .analysis-header {
+        grid-template-columns: 1fr;
+    }
+
+    .decision-image {
+        order: -1;
+    }
+
+    .flow-steps {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .flow-arrow {
+        display: none;
+    }
+
+    .flow-step {
+        min-width: 45%;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .section-container,
+    .nav-container,
+    .hero-container {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .navbar {
+        position: fixed;
+    }
+
+    .nav-container {
+        min-height: 66px;
+    }
+
+    .nav-links {
+        position: absolute;
+
+        top: 66px;
+        left: 14px;
+        right: 14px;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 15px;
+
+        background: rgba(13, 53, 35, 0.97);
+
+        border: 1px solid rgba(255, 255, 255, 0.10);
+
+        border-radius: 16px;
+
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+    }
+
+    .nav-links.mobile-open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px 8px;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    .mobile-menu {
+        display: inline-grid;
+        place-items: center;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding: 100px 0 65px;
+
+        background-position: center;
+    }
+
+    .hero-container {
+        padding-top: 25px;
+    }
+
+    .hero h1 {
+        font-size: clamp(39px, 12vw, 58px);
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+    }
+
+    .hero-trust {
+        gap: 12px;
+        justify-content: space-between;
+    }
+
+    .trust-item strong {
+        font-size: 18px;
+    }
+
+    .trust-item span {
+        font-size: 9px;
+    }
+
+    .module-grid,
+    .benefit-grid,
+    .featured-crops,
+    .extra-crops-grid,
+    .analysis-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-feature-card {
+        grid-column: span 1;
+
+        grid-template-columns: 1fr;
+    }
+
+    .feature-visual {
+        min-height: 180px;
+    }
+
+    .about-section,
+    .intelligence-section,
+    .analysis-section,
+    .decision-section,
+    .benefits-section,
+    .crops-section {
+        padding: 75px 0;
+    }
+
+    .about-image-wrap img,
+    .decision-image img {
+        height: 320px;
+    }
+
+    .about-points {
+        grid-template-columns: 1fr;
+    }
+
+    .flow-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .flow-step {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .crop-card {
+        min-height: 74px;
+    }
+
+    .final-cta {
+        padding: 70px 18px;
+    }
+
+    .footer {
+        padding: 28px 15px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .logo-mark {
+        width: 34px;
+        height: 34px;
+    }
+
+    .icon-nav-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .hero-highlights {
+        gap: 9px;
+    }
+
+    .hero-trust {
+        gap: 8px;
+    }
+
+    .hero-trust .trust-divider {
+        height: 28px;
+    }
+
+    .section-heading h2,
+    .about-content h2,
+    .analysis-header h2,
+    .decision-content h2,
+    .final-cta h2 {
+        font-size: 31px;
+    }
+
+    .analysis-feature-card,
+    .analysis-card,
+    .module-card,
+    .benefit-card {
+        padding: 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   AGROAI FINAL SAFE VISUAL PATCH
+   IMPORTANT:
+   - HTML STRUCTURE IS NOT CHANGED
+   - EXISTING SECTIONS / CARDS / CONTENT STAY IN PLACE
+   - ONLY REQUESTED VISUAL CHANGES ARE OVERRIDDEN
+========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL COLOR BALANCE
+   Less white, more agriculture green / cream / sage
+========================================================= */
+
+body {
+    background: #f3f0e6;
+}
+
+.intelligence-section,
+.decision-section,
+.crops-section {
+    background: #f7f4eb;
+}
+
+.about-section,
+.benefits-section {
+    background:
+        linear-gradient(
+            135deg,
+            #f7f4eb 0%,
+            #e8f0e3 100%
+        );
+}
+
+.analysis-section {
+    background:
+        linear-gradient(
+            135deg,
+            #e2efdf 0%,
+            #f3f0e6 52%,
+            #e7efe1 100%
+        );
+}
+
+
+/* =========================================================
+   2. NAVBAR — ICONS CLEARLY VISIBLE
+========================================================= */
+
+.navbar {
+    background: rgba(10, 53, 34, 0.96);
+    border-bottom-color: rgba(212, 168, 79, 0.20);
+}
+
+.logo-mark {
+    background: rgba(220, 235, 220, 0.14);
+    border-color: rgba(220, 235, 220, 0.28);
+}
+
+.icon-nav-btn {
+    width: 40px;
+    height: 40px;
+
+    color: #16452f;
+    background: #dcebdc;
+
+    border: 1px solid #b9d8b7;
+    border-radius: 11px;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+}
+
+.icon-nav-btn:hover {
+    color: #ffffff;
+    background: #347b4e;
+    border-color: #5f9d68;
+}
+
+.login-btn {
+    color: #16452f;
+    background: #f8f6ee;
+    border: 1px solid #dcebdc;
+}
+
+.login-btn:hover {
+    color: #16452f;
+    background: #dcebdc;
+}
+
+
+/* =========================================================
+   3. HERO — CLEAR IMAGE + GREEN/CREAM BALANCE
+========================================================= */
+
+.hero {
+    min-height: 730px;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(14, 64, 40, 0.72) 0%,
+            rgba(25, 91, 53, 0.50) 34%,
+            rgba(35, 94, 57, 0.20) 66%,
+            rgba(20, 63, 39, 0.06) 100%
+        ),
+        url("farm-landscape.jpg");
+
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hero-pattern {
+    background:
+        radial-gradient(
+            circle at 84% 18%,
+            rgba(212, 168, 79, 0.16),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 12% 80%,
+            rgba(95, 157, 104, 0.16),
+            transparent 30%
+        );
+}
+
+.hero-content-left {
+    max-width: 650px;
+}
+
+.hero h1 {
+    color: #ffffff;
+}
+
+.hero h1 span {
+    color: #cbe7b6;
+}
+
+.hero p {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.hero-badge {
+    color: #16452f;
+    background: rgba(248, 246, 238, 0.94);
+    border-color: rgba(212, 168, 79, 0.38);
+}
+
+.hero-highlights {
+    color: #f3f7ee;
+}
+
+.hero-trust {
+    color: #ffffff;
+}
+
+.trust-item strong {
+    color: #ffffff;
+}
+
+.trust-item span {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.trust-divider {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+
+/* =========================================================
+   4. HERO INTELLIGENCE CARDS
+   SMALLER + RIGHT SIDE + NO OVERLAP
+========================================================= */
+
+.hero-container {
+    grid-template-columns:
+        minmax(0, 1fr)
+        315px;
+
+    gap: 42px;
+}
+
+.hero-intelligence {
+    width: 315px;
+    max-width: 315px;
+
+    margin-left: auto;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    align-self: center;
+}
+
+.intelligence-card {
+    width: 100%;
+    min-height: 67px;
+
+    padding: 9px 11px;
+
+    grid-template-columns: 36px 1fr 16px;
+    gap: 9px;
+
+    background:
+        rgba(7, 48, 29, 0.78);
+
+    border:
+        1px solid rgba(220, 235, 220, 0.24);
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 9px 22px rgba(0, 0, 0, 0.13);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.intelligence-card:hover {
+    transform: translateX(-3px);
+    background:
+        rgba(19, 77, 46, 0.88);
+    border-color:
+        rgba(220, 235, 220, 0.40);
+}
+
+.intel-icon {
+    width: 36px;
+    height: 36px;
+
+    font-size: 17px;
+
+    border-radius: 10px;
+
+    background: #dcebdc;
+}
+
+.intelligence-card strong {
+    color: #ffffff;
+    font-size: 10.5px;
+    line-height: 1.2;
+}
+
+.intelligence-card span {
+    margin-top: 2px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 8px;
+    line-height: 1.25;
+}
+
+.intelligence-card > b {
+    color: #dcebdc;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   5. NATURE / SECOND IMAGE — SAME FLOATING EFFECT
+========================================================= */
+
+.about-image-wrap,
+.decision-image {
+    overflow: hidden;
+}
+
+.about-image-wrap img,
+.decision-image img {
+    animation:
+        agroImageFloat
+        7s
+        ease-in-out
+        infinite alternate;
+
+    transform-origin: center center;
+    will-change: transform;
+}
+
+@keyframes agroImageFloat {
+    0% {
+        transform:
+            scale(1.02)
+            translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform:
+            scale(1.045)
+            translate3d(-5px, -4px, 0);
+    }
+
+    100% {
+        transform:
+            scale(1.065)
+            translate3d(5px, 2px, 0);
+    }
+}
+
+.decision-image:hover img {
+    transform: scale(1.07);
+}
+
+
+/* =========================================================
+   6. FARM DATA INTELLIGENCE — PROPER CARD BALANCE
+========================================================= */
+
+.analysis-header {
+    position: relative;
+    z-index: 2;
+}
+
+.analysis-header > p {
+    color: #53675c;
+}
+
+.analysis-feature-grid {
+    position: relative;
+    z-index: 2;
+}
+
+.analysis-feature-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #edf5e9 100%
+        );
+
+    border-color:
+        rgba(52, 123, 78, 0.18);
+
+    box-shadow:
+        0 16px 36px rgba(36, 83, 48, 0.10);
+}
+
+.analysis-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f2f5e9
+        );
+
+    border-color:
+        rgba(52, 123, 78, 0.15);
+
+    box-shadow:
+        0 10px 26px rgba(36, 83, 48, 0.07);
+}
+
+.analysis-card:hover {
+    border-color:
+        rgba(52, 123, 78, 0.26);
+
+    box-shadow:
+        0 16px 34px rgba(36, 83, 48, 0.12);
+}
+
+.analysis-flow {
+    position: relative;
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #edf5e9
+        );
+
+    border-color:
+        rgba(52, 123, 78, 0.15);
+}
+
+.parameter-tags span {
+    background: #e2efdf;
+}
+
+.location-chip {
+    background: #e2efdf;
+}
+
+.soil-mini-card {
+    background:
+        linear-gradient(
+            135deg,
+            #16452f,
+            #347b4e
+        );
+}
+
+
+/* =========================================================
+   7. OTHER WHITE AREAS — SOFT AGRICULTURE TONE
+========================================================= */
+
+.module-card,
+.benefit-card,
+.crop-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f3f5eb
+        );
+
+    border-color:
+        rgba(52, 123, 78, 0.14);
+}
+
+.module-card:hover,
+.benefit-card:hover,
+.crop-card:hover {
+    border-color:
+        rgba(52, 123, 78, 0.24);
+}
+
+
+/* =========================================================
+   8. FINAL CTA — MATCH THE GREEN THEME
+========================================================= */
+
+.final-cta {
+    background:
+        radial-gradient(
+            circle at 82% 20%,
+            rgba(95, 157, 104, 0.24),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #0d3523,
+            #16452f
+        );
+}
+
+.footer {
+    background:
+        #0a2b1d;
+}
+
+
+/* =========================================================
+   9. DESKTOP — KEEP CARDS ON RIGHT
+========================================================= */
+
+@media (min-width: 1051px) {
+
+    .hero-container {
+        grid-template-columns:
+            minmax(0, 1fr)
+            315px;
+    }
+
+    .hero-intelligence {
+        width: 315px;
+        max-width: 315px;
+
+        margin-left: auto;
+    }
+}
+
+
+/* =========================================================
+   10. TABLET
+   Keep structure stable, only stack when screen is narrow
+========================================================= */
+
+@media (max-width: 1050px) and (min-width: 761px) {
+
+    .hero-container {
+        grid-template-columns: 1fr 285px;
+        gap: 28px;
+    }
+
+    .hero-intelligence {
+        width: 285px;
+        max-width: 285px;
+    }
+
+    .intelligence-card {
+        min-height: 64px;
+    }
+}
+
+
+/* =========================================================
+   11. MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .hero {
+        min-height: auto;
+
+        background-image:
+            linear-gradient(
+                180deg,
+                rgba(11, 58, 36, 0.76),
+                rgba(19, 77, 46, 0.62)
+            ),
+            url("farm-landscape.jpg");
+
+        background-position: center;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .hero-intelligence {
+        width: 100%;
+        max-width: 100%;
+
+        margin-left: 0;
+    }
+
+    .intelligence-card {
+        min-height: 68px;
+    }
+
+    .hero h1 {
+        color: #ffffff;
+    }
+
+    .hero p {
+        color: rgba(255, 255, 255, 0.84);
+    }
+
+    .about-image-wrap img,
+    .decision-image img {
+        animation-duration: 8s;
+    }
+}
+
+
+/* =========================================================
+   12. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .hero-intelligence {
+        gap: 8px;
+    }
+
+    .intelligence-card {
+        min-height: 64px;
+
+        padding: 8px 10px;
+
+        grid-template-columns: 34px 1fr 14px;
+        gap: 8px;
+    }
+
+    .intel-icon {
+        width: 34px;
+        height: 34px;
+
+        min-width: 34px;
+        font-size: 15px;
+    }
+
+    .intelligence-card strong {
+        font-size: 10px;
+    }
+
+    .intelligence-card span {
+        font-size: 7.7px;
+    }
+}
+
+
+/* =========================================================
+   13. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about-image-wrap img,
+    .decision-image img {
+        animation: none;
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   AGROAI REQUESTED FINAL CHANGES
+   - No HTML structure changes
+   - Hero content stays fully LEFT
+   - Intelligence cards stay fully RIGHT
+   - New AgroAI logo styling
+   - Decision cards get new content + hover effect
+   - Farm-data flow boxes get stronger hover effect
+========================================================= */
+
+/* ---------------------------------------------------------
+   1. HERO: CONTENT LEFT + INTELLIGENCE RIGHT
+--------------------------------------------------------- */
+@media (min-width: 1051px) {
+    .hero-container {
+        grid-template-columns: minmax(0, 1fr) 315px;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .hero-content-left {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center;
+        width: 100%;
+        max-width: 680px;
+        margin: 0;
+        text-align: left;
+    }
+
+    .hero-badge,
+    .hero-buttons,
+    .hero-highlights,
+    .hero-trust {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .hero-intelligence {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+        width: 315px;
+        max-width: 315px;
+        margin: 0;
+    }
+}
+
+/* ---------------------------------------------------------
+   2. NEW AGROAI LOGO — CSS ONLY
+--------------------------------------------------------- */
+.logo-mark {
+    position: relative;
+    overflow: hidden;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 13px;
+    background: linear-gradient(145deg, #e4f0dc, #9fc99c);
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.50);
+    font-size: 0;
+}
+
+.logo-mark::before {
+    content: "A";
+    position: absolute;
+    left: 8px;
+    bottom: 3px;
+    color: #16452f;
+    font-family: "Manrope", sans-serif;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 900;
+}
+
+.logo-mark::after {
+    content: "🌱";
+    position: absolute;
+    right: 3px;
+    top: 2px;
+    font-size: 15px;
+    line-height: 1;
+    filter: saturate(0.95);
+}
+
+.logo > span:last-child {
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+.logo > span:last-child > span {
+    color: #b9df9e;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.footer-logo::before {
+    content: "🌱";
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 10px;
+    background: #dcebdc;
+    color: #16452f;
+    font-size: 17px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------------------------------------------------
+   3. HERO INTELLIGENCE CARD HOVER
+--------------------------------------------------------- */
+.intelligence-card {
+    cursor: pointer;
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease,
+        border-color 0.28s ease;
+}
+
+.intelligence-card:hover {
+    transform: translateX(-7px) translateY(-2px);
+    background: rgba(19, 77, 46, 0.92);
+    border-color: rgba(220, 235, 220, 0.45);
+    box-shadow: 0 17px 34px rgba(0, 0, 0, 0.19);
+}
+
+.intelligence-card:hover .intel-icon {
+    transform: scale(1.06);
+    background: #edf5ea;
+}
+
+.intel-icon {
+    transition: transform 0.28s ease, background 0.28s ease;
+}
+
+/* ---------------------------------------------------------
+   4. FROM DATA TO DECISION — NEW TEXT + HOVER
+   The existing HTML remains unchanged.
+--------------------------------------------------------- */
+.decision-item {
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.97), rgba(232,240,227,0.97));
+    border: 1px solid rgba(52, 123, 78, 0.14);
+    box-shadow: 0 8px 24px rgba(22, 65, 42, 0.055);
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease;
+}
+
+.decision-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(#5f9d68, #4f8f62);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.28s ease;
+}
+
+.decision-item:hover {
+    transform: translateX(7px) translateY(-3px);
+    background:
+        linear-gradient(135deg, #ffffff, #e2efdf);
+    border-color: rgba(52, 123, 78, 0.28);
+    box-shadow: 0 18px 36px rgba(22, 65, 42, 0.13);
+}
+
+.decision-item:hover::before {
+    transform: scaleY(1);
+}
+
+.decision-number {
+    transition:
+        transform 0.28s ease,
+        background 0.28s ease;
+}
+
+.decision-item:hover .decision-number {
+    transform: scale(1.08);
+    background: linear-gradient(135deg, #16452f, #347b4e);
+}
+
+/* Replace the short original paragraph visually with richer content */
+.decision-item:nth-child(1) p {
+    font-size: 0;
+    line-height: 0;
+}
+
+.decision-item:nth-child(1) p::after {
+    content:
+        "Combine soil, weather, district and farm conditions into one clear view for better crop analysis.";
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+.decision-item:nth-child(2) p {
+    font-size: 0;
+    line-height: 0;
+}
+
+.decision-item:nth-child(2) p::after {
+    content:
+        "Turn raw farm data into simple crop, irrigation and practical farming insights that are easy to understand.";
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+.decision-item:nth-child(3) p {
+    font-size: 0;
+    line-height: 0;
+}
+
+.decision-item:nth-child(3) p::after {
+    content:
+        "Use AgroAI insights as decision support for planning, resource management and smarter field actions.";
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+/* ---------------------------------------------------------
+   5. HOW AGROAI USES FARM DATA — STRONGER HOVER
+--------------------------------------------------------- */
+.flow-step {
+    min-height: 76px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.42);
+    box-shadow: 0 5px 15px rgba(22, 65, 42, 0.025);
+    transition:
+        transform 0.28s ease,
+        background 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.flow-step:hover,
+.flow-step:focus {
+    transform: translateY(-6px);
+    background:
+        linear-gradient(135deg, #ffffff, #e2efdf);
+    border-color: rgba(52, 123, 78, 0.24);
+    box-shadow: 0 15px 28px rgba(22, 65, 42, 0.12);
+    outline: none;
+}
+
+.flow-step:hover .flow-number,
+.flow-step:focus .flow-number {
+    transform: scale(1.10);
+    background: linear-gradient(135deg, #16452f, #347b4e);
+}
+
+.flow-number {
+    transition:
+        transform 0.28s ease,
+        background 0.28s ease;
+}
+
+.flow-step:hover strong,
+.flow-step:focus strong {
+    color: #347b4e;
+}
+
+.flow-step:hover .flow-hover,
+.flow-step:focus .flow-hover {
+    opacity: 1;
+}
+
+.flow-arrow {
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+.flow-step:hover + .flow-arrow {
+    transform: translateX(3px);
+    color: #4f8f62;
+}
+
+/* ---------------------------------------------------------
+   6. FARM DATA / ANALYSIS CARDS — POLISHED HOVER
+--------------------------------------------------------- */
+.analysis-feature-card,
+.analysis-card {
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+}
+
+.analysis-feature-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(52, 123, 78, 0.27);
+    box-shadow: 0 20px 42px rgba(22, 65, 42, 0.13);
+}
+
+.analysis-card:hover {
+    transform: translateY(-7px) scale(1.01);
+    border-color: rgba(52, 123, 78, 0.24);
+    box-shadow: 0 18px 36px rgba(22, 65, 42, 0.12);
+}
+
+.analysis-feature-card:hover .analysis-icon,
+.analysis-card:hover .analysis-icon,
+.module-card:hover .module-icon,
+.benefit-card:hover .benefit-icon,
+.crop-card:hover .crop-card-icon {
+    transform: scale(1.08) rotate(-3deg);
+    background: #dcebdc;
+}
+
+.analysis-icon,
+.module-icon,
+.benefit-icon,
+.crop-card-icon {
+    transition:
+        transform 0.28s ease,
+        background 0.28s ease;
+}
+
+/* ---------------------------------------------------------
+   7. OTHER CARDS — CONSISTENT AGRICULTURE HOVER
+--------------------------------------------------------- */
+.module-card,
+.benefit-card,
+.crop-card {
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease;
+}
+
+.module-card:hover,
+.benefit-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(52, 123, 78, 0.25);
+    box-shadow: 0 18px 36px rgba(22, 65, 42, 0.12);
+}
+
+.crop-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(52, 123, 78, 0.26);
+    box-shadow: 0 14px 30px rgba(22, 65, 42, 0.10);
+}
+
+/* ---------------------------------------------------------
+   8. MOBILE / TABLET SAFETY
+--------------------------------------------------------- */
+@media (max-width: 1050px) {
+    .hero-content-left {
+        width: 100%;
+        max-width: 680px;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero-content-left {
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .hero-intelligence {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .decision-item:hover {
+        transform: translateY(-3px);
+    }
+
+    .flow-step:hover,
+    .flow-step:focus {
+        transform: translateY(-4px);
+    }
+}
+
+/* ---------------------------------------------------------
+   9. ACCESSIBILITY
+--------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .intelligence-card,
+    .decision-item,
+    .flow-step,
+    .analysis-feature-card,
+    .analysis-card,
+    .module-card,
+    .benefit-card,
+    .crop-card,
+    .logo-mark::before,
+    .logo-mark::after {
+        transition: none;
+    }
+
+    .intelligence-card:hover,
+    .decision-item:hover,
+    .flow-step:hover,
+    .flow-step:focus,
+    .analysis-feature-card:hover,
+    .analysis-card:hover,
+    .module-card:hover,
+    .benefit-card:hover,
+    .crop-card:hover {
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   AGROAI FINAL HOMEPAGE OVERRIDES
+   - Real uploaded AgroAI logo
+   - Hero content fully LEFT
+   - Four intelligence cards fully RIGHT
+   - New Smart Farming Ecosystem section
+========================================================= */
+
+/* REAL LOGO IMAGE */
+.logo-mark {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    padding: 0;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 13px;
+    box-shadow: 0 7px 18px rgba(0,0,0,.15);
+}
+
+.logo-mark::before,
+.logo-mark::after {
+    content: none !important;
+    display: none !important;
+}
+
+.logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 11px;
+    background: #ffffff;
+    box-shadow: 0 6px 16px rgba(0,0,0,.14);
+}
+
+.footer-logo span {
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+/* HERO: everything on the left, intelligence cards on the right */
+@media (min-width: 1051px) {
+    .hero-container {
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 58px;
+        align-items: center;
+    }
+
+    .hero-content-left {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        width: 100%;
+        max-width: 700px;
+        margin: 0;
+        text-align: left;
+    }
+
+    .hero-intelligence {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        width: 320px;
+        max-width: 320px;
+        margin: 0;
+    }
+
+    .hero-intelligence .intelligence-card {
+        width: 100%;
+    }
+}
+
+/* Keep hero content visually anchored left */
+.hero-content-left .hero-badge,
+.hero-content-left .hero-buttons,
+.hero-content-left .hero-highlights,
+.hero-content-left .hero-trust {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* New ecosystem section */
+.ecosystem-section {
+    background:
+        linear-gradient(180deg, rgba(248,246,238,.96), rgba(237,242,228,.94));
+}
+
+.ecosystem-content {
+    width: 100%;
+}
+
+.ecosystem-content > p {
+    max-width: 820px;
+}
+
+.ecosystem-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 34px;
+}
+
+.ecosystem-card {
+    min-height: 235px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 23px;
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(30,76,49,.12);
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(22,65,42,.06);
+    transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .28s ease;
+}
+
+.ecosystem-card:hover {
+    transform: translateY(-8px);
+    background: #ffffff;
+    border-color: rgba(52,123,78,.28);
+    box-shadow: 0 20px 42px rgba(22,65,42,.13);
+}
+
+.ecosystem-card .decision-number {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #16452f, #347b4e);
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    transition: transform .28s ease;
+}
+
+.ecosystem-card:hover .decision-number {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.ecosystem-card h3 {
+    margin: 2px 0 8px;
+    color: #16452f;
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.ecosystem-card p {
+    color: #66766d;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.ecosystem-card a {
+    display: inline-block;
+    margin-top: 14px;
+    color: #347b4e;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+@media (max-width: 1050px) {
+    .ecosystem-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .ecosystem-list {
+        grid-template-columns: 1fr;
+    }
+
+    .ecosystem-card {
+        min-height: auto;
+    }
+}
+
+
+/* =========================================================
+   FINAL AGROAI HOMEPAGE OVERRIDES
+========================================================= */
+
+/* Logo is stored directly inside frontend/ */
+.logo-mark {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 7px 18px rgba(28, 72, 42, .14);
+}
+
+.logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 3px;
+}
+
+/* Hero: complete text block left, all four intelligence cards right */
+@media (min-width: 1051px) {
+    .hero-container {
+        grid-template-columns: minmax(0, 1fr) 330px !important;
+        gap: 55px !important;
+        align-items: center !important;
+    }
+
+    .hero-content-left {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        justify-self: start !important;
+        width: 100% !important;
+        max-width: 720px !important;
+        text-align: left !important;
+    }
+
+    .hero-intelligence {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        width: 330px !important;
+        max-width: 330px !important;
+        justify-self: end !important;
+    }
+}
+
+/* New non-duplicate advantage section */
+.ecosystem-section {
+    padding: 105px 0 !important;
+    background: linear-gradient(180deg, #f5f7ed 0%, #ffffff 100%) !important;
+}
+
+.ecosystem-heading {
+    max-width: 780px;
+    margin: 0 auto 45px;
+}
+
+.advantage-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    margin-top: 0 !important;
+}
+
+.ecosystem-card {
+    min-height: 285px !important;
+    display: block !important;
+    padding: 27px !important;
+    border-radius: 22px !important;
+    background: rgba(255,255,255,.88) !important;
+    border: 1px solid rgba(38, 86, 48, .13) !important;
+    box-shadow: 0 12px 32px rgba(30,70,38,.07) !important;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease !important;
+}
+
+.ecosystem-card:hover {
+    transform: translateY(-9px) !important;
+    border-color: rgba(52,123,78,.3) !important;
+    box-shadow: 0 22px 48px rgba(30,70,38,.14) !important;
+}
+
+.ecosystem-card .decision-number {
+    margin-bottom: 25px;
+}
+
+.ecosystem-card h3 {
+    margin-bottom: 12px;
+}
+
+.ecosystem-card p {
+    line-height: 1.7;
+}
+
+.ecosystem-tag {
+    display: inline-flex;
+    margin-top: 22px;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: #edf5e5;
+    color: #3f7440;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+@media (max-width: 1050px) {
+    .advantage-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 850px) {
+    .hero-container {
+        grid-template-columns: 1fr !important;
+        gap: 38px !important;
+    }
+
+    .hero-content-left {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        max-width: 100% !important;
+        text-align: left !important;
+    }
+
+    .hero-intelligence {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .advantage-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .ecosystem-section {
+        padding: 75px 0 !important;
+    }
+
+    .ecosystem-card {
+        min-height: auto !important;
+    }
+
+    .logo-mark {
+        width: 45px;
+        height: 45px;
+    }
+}
+/* =========================================================
+   FINAL HERO POSITION FIX
+   LEFT CONTENT = FULL LEFT
+   INTELLIGENCE CARDS = FULL RIGHT
+   ========================================================= */
+
+@media (min-width: 1051px) {
+
+    .hero-container {
+        width: calc(100% - 80px) !important;
+        max-width: none !important;
+
+        margin-left: 40px !important;
+        margin-right: 40px !important;
+
+        padding-top: 90px !important;
+
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 380px !important;
+
+        column-gap: 70px !important;
+        align-items: center !important;
+    }
+
+    /* =========================
+       LEFT SIDE
+       ========================= */
+
+    .hero-content-left {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+
+        justify-self: start !important;
+        align-self: center !important;
+
+        width: 100% !important;
+        max-width: 780px !important;
+
+        margin-left: 0 !important;
+        margin-right: auto !important;
+
+        text-align: left !important;
+    }
+
+    .hero-content-left .hero-badge {
+        margin-left: 0 !important;
+    }
+
+    .hero-content-left .hero-buttons {
+        justify-content: flex-start !important;
+    }
+
+    .hero-content-left .hero-highlights {
+        justify-content: flex-start !important;
+    }
+
+    .hero-content-left .hero-trust {
+        justify-content: flex-start !important;
+    }
+
+    /* =========================
+       RIGHT SIDE
+       ========================= */
+
+    .hero-intelligence {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+
+        width: 380px !important;
+        max-width: 380px !important;
+
+        justify-self: end !important;
+        align-self: center !important;
+
+        margin-left: auto !important;
+        margin-right: 0 !important;
+
+        display: grid !important;
+        gap: 14px !important;
+    }
+
+    .intelligence-card {
+        width: 100% !important;
+        min-height: 76px !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+/* =========================================================
+   AGROAI HOMEPAGE - PREMIUM COLOR COMBINATION
+   ========================================================= */
+
+/* Main page */
+body {
+    background: #f6f8f1 !important;
+    color: #173b2b !important;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.navbar,
+header,
+.site-header {
+    background: #0b3d2e !important;
+}
+
+.navbar a,
+header a,
+.site-header a {
+    color: #f5f7ed !important;
+}
+
+.navbar a:hover,
+header a:hover,
+.site-header a:hover {
+    color: #5b9b6d !important;
+}
+
+/* Active nav */
+.navbar a.active,
+header a.active {
+    color: #5b9b6d !important;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 48, 35, 0.78),
+            rgba(14, 63, 45, 0.52)
+        ) !important;
+}
+
+.hero::before {
+    background: rgba(8, 55, 39, 0.25) !important;
+}
+
+/* Hero badge */
+.hero-badge {
+    background: #f4f1df !important;
+    color: #164b35 !important;
+    border-color: rgba(224, 184, 79, 0.45) !important;
+}
+
+.badge-dot {
+    background: #4f8f62 !important;
+}
+
+/* Hero heading */
+.hero h1 {
+    color: #ffffff !important;
+}
+
+.hero h1 span {
+    color: #dce9c9 !important;
+}
+
+/* Hero paragraph */
+.hero p {
+    color: rgba(255,255,255,0.90) !important;
+}
+
+
+/* =========================
+   PRIMARY BUTTON
+   ========================= */
+
+.primary-btn {
+    background: #4f8f62 !important;
+    color: #173b2b !important;
+    border-color: #4f8f62 !important;
+    box-shadow: 0 10px 25px rgba(79,143,98,0.20) !important;
+}
+
+.primary-btn:hover {
+    background: #66a477 !important;
+    color: #123426 !important;
+}
+
+
+/* =========================
+   SECONDARY BUTTON
+   ========================= */
+
+.secondary-btn {
+    background: rgba(245,248,238,0.94) !important;
+    color: #174632 !important;
+    border-color: rgba(255,255,255,0.55) !important;
+}
+
+.secondary-btn:hover {
+    background: #ffffff !important;
+    color: #0b3d2e !important;
+}
+
+
+/* =========================
+   HERO HIGHLIGHTS
+   ========================= */
+
+.hero-highlights span {
+    color: #f2f5e8 !important;
+}
+
+
+/* =========================
+   HERO STATS
+   ========================= */
+
+.hero-trust strong {
+    color: #6aa978 !important;
+}
+
+.hero-trust span {
+    color: rgba(255,255,255,0.78) !important;
+}
+
+.trust-divider {
+    background: rgba(255,255,255,0.28) !important;
+}
+
+
+/* =========================
+   RIGHT INTELLIGENCE CARDS
+   ========================= */
+
+.intelligence-card {
+    background: rgba(9, 55, 40, 0.91) !important;
+    border: 1px solid rgba(79,143,98,0.18) !important;
+    color: #ffffff !important;
+
+    box-shadow:
+        0 12px 30px rgba(5,35,25,0.20) !important;
+}
+
+.intelligence-card:hover {
+    background: #174f38 !important;
+    border-color: rgba(79,143,98,0.42) !important;
+    transform: translateX(-6px) !important;
+}
+
+.intelligence-card h3,
+.intelligence-card strong {
+    color: #ffffff !important;
+}
+
+.intelligence-card p,
+.intelligence-card span {
+    color: rgba(231,239,222,0.76) !important;
+}
+
+.intelligence-card b {
+    color: #5b9b6d !important;
+}
+
+
+/* =========================
+   NORMAL SECTIONS
+   ========================= */
+
+.about-section,
+.intelligence-section,
+.benefits-section,
+.crops-section {
+    background: #f6f8f1 !important;
+}
+
+.section-label {
+    color: #3d774f !important;
+}
+
+.section-heading h2 {
+    color: #173b2b !important;
+}
+
+.section-heading h2 span {
+    color: #4d8754 !important;
+}
+
+.section-heading p {
+    color: #5c6f63 !important;
+}
+
+
+/* =========================
+   WHITE CARDS
+   ========================= */
+
+.about-card,
+.feature-card,
+.benefit-card,
+.crop-card,
+.decision-item {
+    background: #ffffff !important;
+    border-color: rgba(37,83,53,0.12) !important;
+
+    box-shadow:
+        0 12px 35px rgba(35,70,45,0.07) !important;
+}
+
+.about-card:hover,
+.feature-card:hover,
+.benefit-card:hover,
+.crop-card:hover {
+    border-color: rgba(77,135,84,0.30) !important;
+    box-shadow:
+        0 18px 40px rgba(35,70,45,0.12) !important;
+}
+
+
+/* =========================
+   NEW ADVANTAGE SECTION
+   ========================= */
+
+.ecosystem-section {
+    background:
+        linear-gradient(
+            180deg,
+            #edf3e6 0%,
+            #f8f8f2 100%
+        ) !important;
+}
+
+.ecosystem-card {
+    background: rgba(255,255,255,0.92) !important;
+    border-color: rgba(45,95,57,0.14) !important;
+}
+
+.ecosystem-card:hover {
+    border-color: rgba(79,143,98,0.35) !important;
+}
+
+.ecosystem-tag {
+    background: #e8f0df !important;
+    color: #3e7447 !important;
+}
+
+
+/* =========================
+   GOLD ACCENTS
+   ========================= */
+
+.decision-number {
+    color: #4f8f62 !important;
+}
+
+.section-label::before {
+    background: #4f8f62 !important;
+}
+
+
+/* =========================
+   CTA
+   ========================= */
+
+.cta-section {
+    background:
+        linear-gradient(
+            135deg,
+            #0b3d2e,
+            #174f38
+        ) !important;
+}
+
+.cta-section h2,
+.cta-section p {
+    color: #ffffff !important;
+}
+
+.cta-section span {
+    color: #5b9b6d !important;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    background: #082f24 !important;
+    color: #dce8dc !important;
+}
+
+footer a {
+    color: #c9d9ca !important;
+}
+
+footer a:hover {
+    color: #5b9b6d !important;
+}
+
+footer h3,
+footer h4 {
+    color: #ffffff !important;
+}
+
+
+/* =========================
+   SCROLLBAR
+   ========================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #edf1e8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3f7650;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f8f62;
+}
+
+/* =========================================================
+   AGROAI FINAL AI-PROFESSIONAL HOMEPAGE
+   Design direction: clean AI + real farming
+   No gold/yellow accents
+   ========================================================= */
+
+:root {
+    --ai-deep: #082f24;
+    --ai-green: #2f7d4a;
+    --ai-mint: #dcefe1;
+    --ai-soft: #eef5ef;
+    --ai-cream: #f7f8f3;
+    --ai-ink: #12382a;
+    --ai-muted: #607168;
+    --ai-white: #ffffff;
+}
+
+body {
+    background: var(--ai-cream) !important;
+    color: var(--ai-ink) !important;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    background: rgba(5, 42, 31, 0.94) !important;
+    border-bottom: 1px solid rgba(255,255,255,.09) !important;
+}
+
+.logo-mark {
+    width: 46px !important;
+    height: 46px !important;
+    padding: 5px !important;
+    background: rgba(255,255,255,.10) !important;
+    border: 1px solid rgba(255,255,255,.16) !important;
+}
+
+.logo-mark img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+.logo > span:last-child > span {
+    color: #8fcea0 !important;
+}
+
+.nav-links a::after {
+    background: #72b884 !important;
+}
+
+.login-btn {
+    background: #f4f7f1 !important;
+    color: var(--ai-deep) !important;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+    min-height: 720px !important;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(4, 38, 27, .92) 0%,
+            rgba(5, 48, 33, .78) 34%,
+            rgba(5, 48, 33, .45) 62%,
+            rgba(5, 48, 33, .12) 100%
+        ),
+        url("farm-landscape.jpg") !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.hero-pattern {
+    background:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px) !important;
+    background-size: 42px 42px !important;
+    opacity: .55 !important;
+}
+
+.hero-glow {
+    background: rgba(73, 154, 94, .16) !important;
+}
+
+.hero-badge {
+    background: rgba(240,248,242,.10) !important;
+    border: 1px solid rgba(179,225,190,.28) !important;
+    color: #dff1e3 !important;
+    box-shadow: none !important;
+}
+
+.badge-dot {
+    background: #78c28b !important;
+    box-shadow: 0 0 0 5px rgba(120,194,139,.13) !important;
+}
+
+.hero h1 {
+    color: #ffffff !important;
+    text-shadow: 0 4px 30px rgba(0,0,0,.16) !important;
+}
+
+.hero h1 span {
+    color: #a7d8b1 !important;
+}
+
+.hero p {
+    color: rgba(244,249,244,.88) !important;
+}
+
+.primary-btn {
+    background: #3d9257 !important;
+    color: #ffffff !important;
+    border: 1px solid #58a96e !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,.18) !important;
+}
+
+.primary-btn:hover {
+    background: #4da667 !important;
+}
+
+.secondary-btn {
+    background: rgba(255,255,255,.10) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+.secondary-btn:hover {
+    background: rgba(255,255,255,.17) !important;
+}
+
+.hero-highlights {
+    color: #dff1e3 !important;
+}
+
+.hero-trust strong {
+    color: #a9d9b2 !important;
+}
+
+.hero-trust span {
+    color: rgba(239,247,241,.72) !important;
+}
+
+.trust-divider {
+    background: rgba(255,255,255,.24) !important;
+}
+
+/* ---------- AI INTELLIGENCE CARDS ---------- */
+.hero-intelligence {
+    gap: 14px !important;
+}
+
+.intelligence-card {
+    background: rgba(248,252,249,.92) !important;
+    border: 1px solid rgba(181,215,189,.55) !important;
+    box-shadow: 0 18px 40px rgba(2,34,22,.22) !important;
+    backdrop-filter: blur(15px) !important;
+}
+
+.intelligence-card:hover {
+    transform: translateX(-7px) !important;
+    background: #ffffff !important;
+    border-color: #79b88a !important;
+}
+
+.intel-icon {
+    background: #e7f2e9 !important;
+}
+
+.intelligence-card strong {
+    color: #123c2a !important;
+}
+
+.intelligence-card span {
+    color: #64766c !important;
+}
+
+.intelligence-card > b {
+    color: #3b8b55 !important;
+}
+
+/* ---------- NORMAL SECTIONS ---------- */
+.about-section,
+.benefits-section,
+.crops-section {
+    background: #f7f8f3 !important;
+}
+
+.intelligence-section {
+    background: #ffffff !important;
+}
+
+.analysis-section {
+    background: #edf5ef !important;
+}
+
+.section-label {
+    color: #3d8654 !important;
+}
+
+.section-heading h2,
+.about-content h2,
+.analysis-header h2,
+.decision-content h2,
+.final-cta h2 {
+    color: #12382a !important;
+}
+
+.section-heading h2 span,
+.about-content h2 span,
+.analysis-header h2 span,
+.decision-content h2 span {
+    color: #3d8a55 !important;
+}
+
+.section-heading p,
+.about-content p,
+.analysis-header > p {
+    color: #63736b !important;
+}
+
+/* ---------- CARDS ---------- */
+.module-card,
+.analysis-card,
+.analysis-feature-card,
+.analysis-flow,
+.benefit-card,
+.crop-card,
+.ecosystem-card {
+    border-color: rgba(43,99,59,.12) !important;
+    box-shadow: 0 12px 32px rgba(21,62,36,.065) !important;
+}
+
+.module-card:hover,
+.analysis-card:hover,
+.benefit-card:hover,
+.crop-card:hover,
+.ecosystem-card:hover {
+    border-color: rgba(61,138,85,.28) !important;
+    box-shadow: 0 22px 45px rgba(21,62,36,.11) !important;
+}
+
+.module-icon,
+.analysis-icon,
+.intel-icon,
+.benefit-icon {
+    background: #e7f2e9 !important;
+}
+
+/* ---------- ADVANTAGE ---------- */
+.ecosystem-section {
+    background: linear-gradient(180deg,#edf5ef 0%,#f8f9f5 100%) !important;
+}
+
+.ecosystem-card {
+    background: rgba(255,255,255,.94) !important;
+}
+
+.ecosystem-tag {
+    background: #e7f2e9 !important;
+    color: #367b4b !important;
+}
+
+.decision-number {
+    color: #4a9360 !important;
+}
+
+/* ---------- CTA ---------- */
+.final-cta,
+.cta-section {
+    background:
+        linear-gradient(135deg,#082f24 0%,#0d4b31 52%,#174f38 100%) !important;
+}
+
+.final-cta h2,
+.cta-section h2 {
+    color: #ffffff !important;
+}
+
+.final-cta h2 span,
+.cta-section span {
+    color: #a9d9b2 !important;
+}
+
+/* ---------- FOOTER ---------- */
+.footer,
+footer {
+    background: #06291f !important;
+    color: #cfe1d3 !important;
+}
+
+.footer-logo img,
+footer img {
+    width: 48px !important;
+    height: 48px !important;
+    object-fit: contain !important;
+}
+
+.footer-logo span {
+    color: #ffffff !important;
+}
+
+footer a:hover {
+    color: #8dcc9c !important;
+}
+
+/* ---------- REMOVE YELLOW/GOLD VISUAL FEEL ---------- */
+.hero .glow-two,
+.analysis-shape-two {
+    background: rgba(67,142,84,.10) !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3f8053 !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #66a477 !important;
+}
+
+/* ---------- DESKTOP LEFT / RIGHT HERO ---------- */
+@media (min-width: 1051px) {
+    .hero-container {
+        width: calc(100% - 80px) !important;
+        max-width: none !important;
+        margin-left: 40px !important;
+        margin-right: 40px !important;
+        grid-template-columns: minmax(0,1fr) 380px !important;
+        gap: 70px !important;
+    }
+
+    .hero-content-left {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        justify-self: start !important;
+        width: 100% !important;
+        max-width: 780px !important;
+        margin: 0 !important;
+        text-align: left !important;
+    }
+
+    .hero-buttons,
+    .hero-highlights,
+    .hero-trust {
+        justify-content: flex-start !important;
+    }
+
+    .hero-intelligence {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        width: 380px !important;
+        max-width: 380px !important;
+        justify-self: end !important;
+        margin: 0 !important;
+    }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 850px) {
+    .hero {
+        min-height: auto !important;
+        padding-bottom: 65px !important;
+    }
+
+    .hero-container {
+        width: calc(100% - 32px) !important;
+        margin: 0 auto !important;
+        grid-template-columns: 1fr !important;
+        gap: 34px !important;
+    }
+
+    .hero-content-left {
+        max-width: 100% !important;
+    }
+
+    .hero-intelligence {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ===== USER FINAL CARD + FOOTER + HERO COMBINATION OVERRIDE ===== */
+
+/* ---------- HERO BACKGROUND: greener, cleaner AI + farming blend ---------- */
+.hero {
+    position: relative !important;
+    overflow: hidden !important;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(3, 43, 31, 0.94) 0%,
+            rgba(8, 69, 47, 0.84) 30%,
+            rgba(12, 78, 55, 0.62) 58%,
+            rgba(8, 49, 40, 0.42) 78%,
+            rgba(5, 34, 29, 0.48) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(8, 47, 36, 0.12),
+            rgba(4, 35, 28, 0.35)
+        ),
+        url("farm-landscape.jpg") !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.hero::before {
+    background:
+        radial-gradient(circle at 76% 28%, rgba(112, 210, 145, 0.18), transparent 28%),
+        radial-gradient(circle at 30% 78%, rgba(66, 156, 111, 0.12), transparent 30%) !important;
+    opacity: 1 !important;
+}
+
+.hero-content-left,
+.hero-intelligence {
+    position: relative !important;
+    z-index: 3 !important;
+}
+
+/* ---------- COLORED CARDS: no plain white-card look ---------- */
+.about-card,
+.feature-card,
+.benefit-card,
+.crop-card,
+.module-card,
+.analysis-card,
+.analysis-feature-card,
+.analysis-flow,
+.ecosystem-card,
+.decision-item {
+    background: linear-gradient(145deg, #f7fbf7 0%, #e6f3ea 100%) !important;
+    border: 1px solid rgba(47, 125, 74, 0.22) !important;
+    box-shadow: 0 14px 34px rgba(17, 67, 43, 0.09) !important;
+}
+
+.about-card:nth-child(even),
+.feature-card:nth-child(even),
+.benefit-card:nth-child(even),
+.crop-card:nth-child(even),
+.module-card:nth-child(even),
+.analysis-card:nth-child(even),
+.analysis-feature-card:nth-child(even),
+.ecosystem-card:nth-child(even) {
+    background: linear-gradient(145deg, #f2f8fc 0%, #e1eff0 100%) !important;
+    border-color: rgba(42, 112, 126, 0.20) !important;
+}
+
+.about-card:nth-child(3n),
+.feature-card:nth-child(3n),
+.benefit-card:nth-child(3n),
+.crop-card:nth-child(3n),
+.module-card:nth-child(3n),
+.analysis-card:nth-child(3n),
+.analysis-feature-card:nth-child(3n),
+.ecosystem-card:nth-child(3n) {
+    background: linear-gradient(145deg, #f8faf2 0%, #edf2d9 100%) !important;
+    border-color: rgba(111, 139, 49, 0.20) !important;
+}
+
+.about-card:hover,
+.feature-card:hover,
+.benefit-card:hover,
+.crop-card:hover,
+.module-card:hover,
+.analysis-card:hover,
+.analysis-feature-card:hover,
+.ecosystem-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(47, 125, 74, 0.42) !important;
+    box-shadow: 0 22px 46px rgba(17, 67, 43, 0.15) !important;
+}
+
+/* ---------- CARD ICONS ---------- */
+.module-icon,
+.analysis-icon,
+.intel-icon,
+.benefit-icon,
+.crop-card-icon {
+    background: linear-gradient(135deg, #dcefe1 0%, #c8e4d0 100%) !important;
+    border: 1px solid rgba(47, 125, 74, 0.18) !important;
+}
+
+.about-card:nth-child(even) .module-icon,
+.feature-card:nth-child(even) .module-icon,
+.benefit-card:nth-child(even) .benefit-icon,
+.module-card:nth-child(even) .module-icon,
+.analysis-card:nth-child(even) .analysis-icon {
+    background: linear-gradient(135deg, #dceef2 0%, #c8e1e5 100%) !important;
+}
+
+.about-card h3,
+.feature-card h3,
+.benefit-card h3,
+.crop-card h3,
+.module-card h3,
+.analysis-card h3,
+.analysis-feature-card h3,
+.ecosystem-card h3 {
+    color: #123d2d !important;
+}
+
+.about-card p,
+.feature-card p,
+.benefit-card p,
+.crop-card p,
+.module-card p,
+.analysis-card p,
+.analysis-feature-card p,
+.ecosystem-card p {
+    color: #5b6f65 !important;
+}
+
+/* ---------- HERO INTELLIGENCE CARDS ---------- */
+.intelligence-card {
+    background: linear-gradient(
+        135deg,
+        rgba(235, 248, 239, 0.96),
+        rgba(216, 239, 225, 0.91)
+    ) !important;
+    border: 1px solid rgba(155, 210, 170, 0.55) !important;
+    box-shadow: 0 18px 40px rgba(2, 34, 22, 0.25) !important;
+}
+
+.intelligence-card:nth-child(even) {
+    background: linear-gradient(
+        135deg,
+        rgba(232, 244, 248, 0.96),
+        rgba(211, 233, 238, 0.91)
+    ) !important;
+    border-color: rgba(119, 177, 190, 0.50) !important;
+}
+
+.intelligence-card:hover {
+    background: linear-gradient(135deg, #ffffff, #e9f6ed) !important;
+    border-color: #70b986 !important;
+}
+
+/* ---------- FOOTER: compact text-only brand; tree/logo image removed ---------- */
+.footer,
+footer {
+    min-height: auto !important;
+    padding: 28px 20px 22px !important;
+    background:
+        linear-gradient(
+            135deg,
+            #06291f 0%,
+            #0b4931 58%,
+            #0d5a3b 100%
+        ) !important;
+    color: #d8eadc !important;
+}
+
+.footer-content {
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+.footer-logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    margin-bottom: 7px !important;
+}
+
+.footer-brand-text {
+    color: #ffffff !important;
+    font-size: 30px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+}
+
+.footer-content > p {
+    margin: 0 0 12px !important;
+    color: rgba(225, 241, 228, 0.78) !important;
+    font-size: 14px !important;
+}
+
+.footer-line {
+    width: min(100%, 760px) !important;
+    height: 1px !important;
+    margin: 10px auto 12px !important;
+    background: rgba(190, 225, 199, 0.20) !important;
+}
+
+.footer small {
+    color: rgba(225, 241, 228, 0.62) !important;
+    font-size: 12px !important;
+}
+
+.footer img,
+footer img {
+    display: none !important;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 700px) {
+    .hero {
+        background-position: 58% center !important;
+        min-height: 690px !important;
+    }
+
+    .footer {
+        padding: 24px 16px 18px !important;
+    }
+
+    .footer-brand-text {
+        font-size: 26px !important;
+    }
+}
+/* =========================================================
+   AGROAI FINAL HOMEPAGE
+   NAVBAR + HERO CARDS + LOGIN PROTECTION UI
+========================================================= */
+
+
+/* =========================================================
+   MAIN COLORS
+========================================================= */
+
+:root {
+
+    --ai-dark:
+        #073b2c;
+
+    --ai-dark-2:
+        #0b4936;
+
+    --ai-green:
+        #3f8b59;
+
+    --ai-green-light:
+        #dcefe1;
+
+    --ai-sage:
+        #edf5e9;
+
+    --ai-blue:
+        #dceef2;
+
+    --ai-blue-border:
+        #75aebc;
+
+    --ai-text:
+        #123c2b;
+
+    --ai-muted:
+        #62756b;
+
+    --ai-white:
+        #ffffff;
+
+}
+
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar-ai {
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(4, 48, 35, 0.98),
+            rgba(5, 61, 43, 0.96)
+        ) !important;
+
+    border-bottom:
+        1px solid
+        rgba(201, 231, 207, 0.18) !important;
+
+    box-shadow:
+        0 8px 28px
+        rgba(0, 35, 24, 0.25) !important;
+
+    backdrop-filter:
+        blur(15px)
+        saturate(120%) !important;
+
+    -webkit-backdrop-filter:
+        blur(15px)
+        saturate(120%) !important;
+
+}
+
+
+
+/* Navbar container */
+
+.navbar-ai .nav-container {
+
+    min-height:
+        76px !important;
+
+}
+
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.navbar-ai .logo {
+
+    color:
+        #f5faf6 !important;
+
+}
+
+
+.navbar-ai .logo-mark {
+
+    width:
+        46px !important;
+
+    height:
+        46px !important;
+
+    min-width:
+        46px !important;
+
+    padding:
+        0 !important;
+
+    overflow:
+        hidden !important;
+
+    display:
+        flex !important;
+
+    align-items:
+        center !important;
+
+    justify-content:
+        center !important;
+
+    background:
+        #ffffff !important;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.28) !important;
+
+    border-radius:
+        13px !important;
+
+    box-shadow:
+        0 7px 18px
+        rgba(0,0,0,0.18) !important;
+
+}
+
+
+.navbar-ai .logo-mark img {
+
+    width:
+        100% !important;
+
+    height:
+        100% !important;
+
+    object-fit:
+        contain !important;
+
+    display:
+        block !important;
+
+}
+
+
+.navbar-ai .logo-mark::before,
+.navbar-ai .logo-mark::after {
+
+    display:
+        none !important;
+
+    content:
+        none !important;
+
+}
+
+
+.navbar-ai .logo > span:last-child {
+
+    color:
+        #ffffff !important;
+
+}
+
+
+.navbar-ai .logo > span:last-child > span {
+
+    color:
+        #9bd4a7 !important;
+
+}
+
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.navbar-ai .nav-links a {
+
+    color:
+        rgba(244, 250, 246, 0.84) !important;
+
+}
+
+
+.navbar-ai .nav-links a:hover,
+.navbar-ai .nav-links a.active {
+
+    color:
+        #ffffff !important;
+
+}
+
+
+.navbar-ai .nav-links a::after {
+
+    background:
+        linear-gradient(
+            90deg,
+            #64b77b,
+            #b1dfba
+        ) !important;
+
+}
+
+
+
+/* =========================================================
+   LOGIN / PROFILE / ADMIN / LOGOUT
+========================================================= */
+
+/*
+   IMPORTANT:
+   No white floating cards anymore.
+*/
+
+.navbar-ai .login-btn,
+.navbar-ai .icon-nav-btn {
+
+    background:
+        rgba(221, 241, 226, 0.13) !important;
+
+    color:
+        #f0f8f2 !important;
+
+    border:
+        1px solid
+        rgba(191, 225, 199, 0.30) !important;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0, 25, 17, 0.14) !important;
+
+    backdrop-filter:
+        blur(8px) !important;
+
+}
+
+
+.navbar-ai .login-btn:hover,
+.navbar-ai .icon-nav-btn:hover {
+
+    background:
+        rgba(222, 242, 227, 0.24) !important;
+
+    border-color:
+        rgba(194, 231, 202, 0.55) !important;
+
+    color:
+        #ffffff !important;
+
+    transform:
+        translateY(-2px) !important;
+
+}
+
+
+
+/* =========================================================
+   HERO BACKGROUND
+========================================================= */
+
+.hero {
+
+    background-image:
+
+        linear-gradient(
+            90deg,
+            rgba(3, 47, 33, 0.88) 0%,
+            rgba(5, 61, 42, 0.70) 40%,
+            rgba(5, 61, 42, 0.42) 70%,
+            rgba(5, 61, 42, 0.18) 100%
+        ),
+
+        url("farm-landscape.jpg") !important;
+
+    background-position:
+        center center !important;
+
+    background-size:
+        cover !important;
+
+    background-repeat:
+        no-repeat !important;
+
+}
+
+
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+.hero h1 {
+
+    color:
+        #ffffff !important;
+
+}
+
+
+.hero h1 span {
+
+    color:
+        #d8e9d4 !important;
+
+}
+
+
+.hero p {
+
+    color:
+        rgba(245, 250, 246, 0.90) !important;
+
+}
+
+
+.hero-highlights span {
+
+    color:
+        #edf7ef !important;
+
+}
+
+
+.hero-trust strong {
+
+    color:
+        #b5dda0 !important;
+
+}
+
+
+.hero-trust span {
+
+    color:
+        rgba(245,250,246,0.72) !important;
+
+}
+
+
+.trust-divider {
+
+    background:
+        rgba(235,247,238,0.26) !important;
+
+}
+
+
+
+/* =========================================================
+   HERO BADGE
+========================================================= */
+
+.hero-badge {
+
+    background:
+        rgba(231, 246, 235, 0.94) !important;
+
+    color:
+        #174b35 !important;
+
+    border:
+        1px solid
+        rgba(170, 214, 181, 0.65) !important;
+
+}
+
+
+.badge-dot {
+
+    background:
+        #3f9a5b !important;
+
+}
+
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.primary-btn {
+
+    background:
+        #dcefdc !important;
+
+    color:
+        #10402c !important;
+
+    border:
+        1px solid
+        rgba(197,229,203,0.80) !important;
+
+}
+
+
+.primary-btn:hover {
+
+    background:
+        #ffffff !important;
+
+    color:
+        #073b2c !important;
+
+}
+
+
+.secondary-btn {
+
+    background:
+        rgba(255,255,255,0.14) !important;
+
+    color:
+        #ffffff !important;
+
+    border:
+        1px solid
+        rgba(225,242,228,0.45) !important;
+
+    backdrop-filter:
+        blur(8px) !important;
+
+}
+
+
+.secondary-btn:hover {
+
+    background:
+        rgba(255,255,255,0.24) !important;
+
+    color:
+        #ffffff !important;
+
+}
+
+
+
+/* =========================================================
+   HERO INTELLIGENCE AREA
+========================================================= */
+
+.hero-intelligence {
+
+    gap:
+        15px !important;
+
+}
+
+
+
+/* =========================================================
+   INTELLIGENCE CARDS
+========================================================= */
+
+.hero-intelligence
+.intelligence-card-color {
+
+    position:
+        relative !important;
+
+    overflow:
+        hidden !important;
+
+    width:
+        100% !important;
+
+    min-height:
+        88px !important;
+
+    display:
+        grid !important;
+
+    grid-template-columns:
+        48px 1fr 20px !important;
+
+    align-items:
+        center !important;
+
+    gap:
+        13px !important;
+
+    padding:
+        14px 16px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(231,246,235,0.95),
+            rgba(204,231,213,0.91)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(169,214,181,0.75) !important;
+
+    border-left:
+        4px solid
+        #4f9b66 !important;
+
+    border-radius:
+        18px !important;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,37,25,0.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.70) !important;
+
+    backdrop-filter:
+        blur(15px)
+        saturate(120%) !important;
+
+    -webkit-backdrop-filter:
+        blur(15px)
+        saturate(120%) !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease,
+        border-color .25s ease !important;
+
+}
+
+
+
+/* =========================================================
+   CARD COLORS
+========================================================= */
+
+
+/* District */
+
+.hero-intelligence
+.intelligence-card-color:nth-child(1) {
+
+    border-left-color:
+        #4c9b63 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(232,247,235,0.97),
+            rgba(201,230,210,0.92)
+        ) !important;
+
+}
+
+
+
+/* Soil */
+
+.hero-intelligence
+.intelligence-card-color:nth-child(2) {
+
+    border-left-color:
+        #4c91a5 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(228,243,246,0.97),
+            rgba(199,225,231,0.92)
+        ) !important;
+
+}
+
+
+
+/* Weather */
+
+.hero-intelligence
+.intelligence-card-color:nth-child(3) {
+
+    border-left-color:
+        #579b70 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(233,247,237,0.97),
+            rgba(205,232,213,0.92)
+        ) !important;
+
+}
+
+
+
+/* Irrigation */
+
+.hero-intelligence
+.intelligence-card-color:nth-child(4) {
+
+    border-left-color:
+        #4b91a8 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(227,243,246,0.97),
+            rgba(198,226,232,0.92)
+        ) !important;
+
+}
+
+
+
+/* =========================================================
+   CARD ICONS
+========================================================= */
+
+.hero-intelligence
+.intelligence-card-color
+.intel-icon {
+
+    width:
+        46px !important;
+
+    height:
+        46px !important;
+
+    display:
+        grid !important;
+
+    place-items:
+        center !important;
+
+    border-radius:
+        14px !important;
+
+    background:
+        rgba(213,238,219,0.95) !important;
+
+    border:
+        1px solid
+        rgba(124,185,143,0.40) !important;
+
+    font-size:
+        21px !important;
+
+}
+
+
+.hero-intelligence
+.intelligence-card-color:nth-child(2)
+.intel-icon,
+
+.hero-intelligence
+.intelligence-card-color:nth-child(4)
+.intel-icon {
+
+    background:
+        rgba(213,236,241,0.96) !important;
+
+    border-color:
+        rgba(104,166,183,0.40) !important;
+
+}
+
+
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
+
+.hero-intelligence
+.intelligence-card-color strong {
+
+    color:
+        #103b2c !important;
+
+    font-family:
+        "Manrope",
+        sans-serif !important;
+
+    font-size:
+        14px !important;
+
+}
+
+
+.hero-intelligence
+.intelligence-card-color span {
+
+    color:
+        #587066 !important;
+
+    font-size:
+        11px !important;
+
+}
+
+
+.hero-intelligence
+.intelligence-card-color > b {
+
+    color:
+        #2d8050 !important;
+
+    font-size:
+        19px !important;
+
+}
+
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.hero-intelligence
+.intelligence-card-color:hover {
+
+    transform:
+        translateX(-7px)
+        translateY(-2px) !important;
+
+    border-color:
+        rgba(107,173,126,0.95) !important;
+
+    box-shadow:
+        0 23px 45px
+        rgba(0,38,25,0.31) !important;
+
+}
+
+
+
+/* =========================================================
+   FOOTER
+   ONLY LOGO + TEXT
+   NO TREE IMAGE
+========================================================= */
+
+.footer img,
+.footer-logo img,
+.footer-logo::before,
+.footer-logo::after {
+
+    display:
+        none !important;
+
+}
+
+
+.footer {
+
+    background:
+        linear-gradient(
+            135deg,
+            #052d22,
+            #073b2c
+        ) !important;
+
+}
+
+
+.footer-logo {
+
+    display:
+        inline-flex !important;
+
+    align-items:
+        center !important;
+
+    gap:
+        9px !important;
+
+    color:
+        #ffffff !important;
+
+    font-family:
+        "Manrope",
+        sans-serif !important;
+
+    font-size:
+        20px !important;
+
+    font-weight:
+        800 !important;
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .hero-container {
+
+        grid-template-columns:
+            1fr !important;
+
+        gap:
+            35px !important;
+
+    }
+
+
+    .hero-content-left {
+
+        grid-column:
+            1 !important;
+
+        grid-row:
+            1 !important;
+
+        max-width:
+            100% !important;
+
+        text-align:
+            left !important;
+
+    }
+
+
+    .hero-intelligence {
+
+        grid-column:
+            1 !important;
+
+        grid-row:
+            2 !important;
+
+        width:
+            100% !important;
+
+        max-width:
+            100% !important;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar-ai .nav-container {
+
+        min-height:
+            68px !important;
+
+    }
+
+
+    .navbar-ai .logo-mark {
+
+        width:
+            42px !important;
+
+        height:
+            42px !important;
+
+    }
+
+
+    .hero-intelligence
+    .intelligence-card-color {
+
+        min-height:
+            78px !important;
+
+        border-radius:
+            16px !important;
+
+    }
+
+
+    .hero-intelligence
+    .intelligence-card-color:hover {
+
+        transform:
+            translateY(-3px) !important;
+
+    }
+
+}

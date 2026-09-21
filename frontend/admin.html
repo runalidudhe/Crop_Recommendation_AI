@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AgroAI - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     ADMIN HEADER
+===================================================== -->
+
+<header class="admin-header">
+
+    <div class="admin-logo">
+        🌱 AgroAI
+    </div>
+
+    <div class="admin-title">
+
+        <h1>ADMIN PANEL</h1>
+
+        <p>Smart Agriculture Management System</p>
+
+    </div>
+
+    <div class="admin-header-info">
+
+        <span id="adminDate">--</span>
+
+        <span id="adminTime">--</span>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="admin-nav">
+
+    <a href="#dashboard" class="active">
+        📊 Dashboard
+    </a>
+
+    <a href="#history">
+        📋 Prediction History
+    </a>
+
+    <a href="#crops">
+        🌾 Manage Crops
+    </a>
+
+    <a href="#messages">
+        💬 Contact Messages
+    </a>
+
+    <a href="index.html">
+        🏠 Back to Website
+    </a>
+
+    <button
+        class="admin-logout"
+        onclick="logoutAdmin()"
+    >
+        🚪 Logout
+    </button>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
+
+<main class="admin-container">
+
+
+    <!-- =================================================
+         WELCOME
+    ================================================= -->
+
+    <section class="admin-welcome">
+
+        <div>
+
+            <h2>
+                Admin Dashboard
+            </h2>
+
+            <p>
+                Welcome back! Manage AgroAI activity,
+                crop predictions and system data.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         DASHBOARD SUMMARY
+    ================================================= -->
+
+    <section id="dashboard">
+
+        <div class="admin-box-header">
+
+            <div>
+
+                <h2>
+                    📊 Dashboard Summary
+                </h2>
+
+                <p>
+                    Overview of AgroAI system activity
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+
+            <!-- TOTAL PREDICTIONS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Total Predictions
+                </h3>
+
+                <div
+                    class="dashboard-number"
+                    id="totalPredictions"
+                >
+                    0
+                </div>
+
+                <p>
+                    All crop predictions
+                </p>
+
+            </div>
+
+
+
+            <!-- MOST PREDICTED -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🌾
+                </div>
+
+                <h3>
+                    Most Predicted Crop
+                </h3>
+
+                <div
+                    class="dashboard-number"
+                    id="mostPredictedCrop"
+                >
+                    --
+                </div>
+
+                <p id="cropCount">
+                    0 predictions
+                </p>
+
+            </div>
+
+
+
+            <!-- USERS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Total Users
+                </h3>
+
+                <div
+                    class="dashboard-number"
+                    id="totalUsers"
+                >
+                    0
+                </div>
+
+                <p>
+                    Registered users
+                </p>
+
+            </div>
+
+
+
+            <!-- AI STATUS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Status
+                </h3>
+
+                <div
+                    class="dashboard-number"
+                    id="aiStatus"
+                >
+                    Online
+                </div>
+
+                <p>
+                    Prediction system active
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         RECENT ACTIVITY + POPULAR CROPS
+    ================================================= -->
+
+    <section class="admin-grid">
+
+
+        <!-- RECENT PREDICTIONS -->
+
+        <div class="admin-box">
+
+            <div class="admin-box-header">
+
+                <div>
+
+                    <h2>
+                        📋 Recent Predictions
+                    </h2>
+
+                    <p>
+                        Latest crop recommendations
+                    </p>
+
+                </div>
+
+                <a
+                    href="#history"
+                    class="view-link"
+                >
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="history-table-wrapper">
+
+                <table class="history-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Date</th>
+
+                            <th>Input</th>
+
+                            <th>Crop</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentHistory">
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                id="historyEmpty"
+                            >
+                                No prediction history available.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- POPULAR CROPS -->
+
+        <div class="admin-box">
+
+            <div class="admin-box-header">
+
+                <div>
+
+                    <h2>
+                        🌾 Popular Crops
+                    </h2>
+
+                    <p>
+                        Most recommended crops
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="popularCrops"
+                class="popular-crops"
+            >
+
+                <div class="empty-state">
+                    No crop data available.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         QUICK ACTIONS
+    ================================================= -->
+
+    <section class="admin-box quick-actions">
+
+        <div class="admin-box-header">
+
+            <div>
+
+                <h2>
+                    ⚡ Quick Actions
+                </h2>
+
+                <p>
+                    Quickly access admin features
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-action-grid">
+
+
+            <a
+                href="#history"
+                class="quick-action-card"
+            >
+
+                <span>📋</span>
+
+                <div>
+
+                    <strong>
+                        View History
+                    </strong>
+
+                    <small>
+                        Check all predictions
+                    </small>
+
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="#crops"
+                class="quick-action-card"
+            >
+
+                <span>🌾</span>
+
+                <div>
+
+                    <strong>
+                        Manage Crops
+                    </strong>
+
+                    <small>
+                        Add or remove crops
+                    </small>
+
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="#analytics"
+                class="quick-action-card"
+            >
+
+                <span>📈</span>
+
+                <div>
+
+                    <strong>
+                        View Analytics
+                    </strong>
+
+                    <small>
+                        Analyze AI predictions
+                    </small>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PREDICTION HISTORY
+    ================================================= -->
+
+    <section
+        id="history"
+        class="history-section"
+    >
+
+        <div class="history-box">
+
+            <div class="history-header">
+
+                <div>
+
+                    <h2>
+                        📋 Prediction History
+                    </h2>
+
+                    <p>
+                        Complete AI recommendation records
+                    </p>
+
+                </div>
+
+                <button
+                    class="clear-history-btn"
+                    onclick="clearHistory()"
+                >
+                    🗑 Clear History
+                </button>
+
+            </div>
+
+
+            <!-- HISTORY STATS -->
+
+            <div class="history-stats">
+
+                <div>
+
+                    <span>
+                        Total Records
+                    </span>
+
+                    <strong id="historyTotal">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Latest Prediction
+                    </span>
+
+                    <strong id="latestPrediction">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Unique Crops
+                    </span>
+
+                    <strong id="uniqueCrops">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- HISTORY TABLE -->
+
+            <div class="history-table-wrapper">
+
+                <table class="history-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+                            <th>Date & Time</th>
+                            <th>N</th>
+                            <th>P</th>
+                            <th>K</th>
+                            <th>Temperature</th>
+                            <th>Humidity</th>
+                            <th>pH</th>
+                            <th>Rainfall</th>
+                            <th>Recommended Crop</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="historyTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="10"
+                                id="historyEmpty"
+                            >
+                                No prediction history available.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MANAGE CROPS
+    ================================================= -->
+
+    <section
+        id="crops"
+        class="crop-management"
+    >
+
+        <div class="crop-management-box">
+
+            <div class="admin-box-header">
+
+                <div>
+
+                    <h2>
+                        🌾 Manage Crops
+                    </h2>
+
+                    <p>
+                        Manage crops available in AgroAI.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="add-crop-area">
+
+                <div class="crop-input-group">
+
+                    <input
+                        type="text"
+                        id="cropName"
+                        placeholder="Enter crop name"
+                    >
+
+                    <button
+                        class="manage-crop-btn"
+                        onclick="addCrop()"
+                    >
+                        + Add Crop
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="available-crops">
+
+                <h3>
+                    Available Crops
+                </h3>
+
+                <p id="cropTotal">
+                    0 Crops
+                </p>
+
+
+                <div
+                    id="cropList"
+                    class="crop-list"
+                >
+
+                    <div class="empty-state">
+                        No crops available.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ANALYTICS - 3 GRAPHS
+    ================================================= -->
+
+    <section
+        id="analytics"
+        class="analytics-section"
+    >
+
+        <div class="admin-box">
+
+            <div class="admin-box-header">
+
+                <div>
+
+                    <h2>
+                        📈 Prediction Analytics
+                    </h2>
+
+                    <p>
+                        Visual overview of crop recommendation activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+
+                <!-- =================================================
+                     GRAPH 1 - BAR CHART
+                ================================================= -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        📊 Most Recommended Crops
+                    </h3>
+
+                    <p>
+                        Number of times each crop was recommended.
+                    </p>
+
+                    <div class="chart-container">
+
+                        <canvas id="cropChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     GRAPH 2 - DOUGHNUT / CIRCLE CHART
+                ================================================= -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        🍩 Crop Recommendation Share
+                    </h3>
+
+                    <p>
+                        Percentage distribution of recommended crops.
+                    </p>
+
+                    <div class="chart-container">
+
+                        <canvas id="cropShareChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     GRAPH 3 - LINE CHART
+                ================================================= -->
+
+                <div class="chart-card">
+
+                    <h3>
+                        📈 Prediction History Trend
+                    </h3>
+
+                    <p>
+                        Number of predictions over time.
+                    </p>
+
+                    <div class="chart-container">
+
+                        <canvas id="trendChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CONTACT MESSAGES
+    ================================================= -->
+
+    <section
+        id="messages"
+        class="messages-section"
+    >
+
+        <div class="messages-box">
+
+            <div class="admin-box-header">
+
+                <div>
+
+                    <h2>
+                        💬 Contact Messages
+                    </h2>
+
+                    <p>
+                        Messages received from website visitors.
+                    </p>
+
+                </div>
+
+                <div class="message-summary">
+
+                    <span>
+                        Total:
+                        <strong id="totalMessages">
+                            0
+                        </strong>
+                    </span>
+
+                    <span>
+                        Unread:
+                        <strong id="unreadMessages">
+                            0
+                        </strong>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="messagesList"
+                class="messages-list"
+            >
+
+                <div class="empty-state">
+                    No contact messages available.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SYSTEM INFORMATION
+    ================================================= -->
+
+    <section class="system-info">
+
+        <div class="system-info-card">
+
+            <span>
+                🌱
+            </span>
+
+            <div>
+
+                <strong>
+                    Soil Parameters
+                </strong>
+
+                <p>
+                    N, P, K and pH are analyzed
+                    for crop recommendation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-info-card">
+
+            <span>
+                🌤️
+            </span>
+
+            <div>
+
+                <strong>
+                    Environmental Data
+                </strong>
+
+                <p>
+                    Temperature, humidity and rainfall
+                    are considered.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-info-card">
+
+            <span>
+                🤖
+            </span>
+
+            <div>
+
+                <strong>
+                    Machine Learning
+                </strong>
+
+                <p>
+                    AgroAI uses a trained ML model
+                    for crop prediction.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="admin-footer">
+
+    <strong>
+        🌱 AgroAI
+    </strong>
+
+    <p>
+        Smart Agriculture with Artificial Intelligence
+    </p>
+
+    <p>
+        Admin Dashboard • Designed by Runali Dudhe | BCA Student
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     CHART.JS
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- =====================================================
+     ADMIN JAVASCRIPT
+===================================================== -->
+
+<script src="admin.js"></script>
+
+
+</body>
+
+</html>

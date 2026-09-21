@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <meta
+        content="AgroAI - AI-powered smart agriculture platform for intelligent crop, weather, soil and irrigation decisions."
+        name="description"
+    />
+
+    <title>AgroAI | Smart Agriculture</title>
+
+    <link href="index.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    />
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar navbar-ai">
+
+    <div class="nav-container">
+
+        <!-- LOGO -->
+        <a class="logo" href="index.html">
+
+            <span class="logo-mark">
+                <img src="agroai-logo.png" alt="AgroAI Logo">
+            </span>
+
+            <span>
+                Agro<span>AI</span>
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+        <nav class="nav-links" id="navLinks">
+
+            <a class="active" href="index.html">
+                Home
+            </a>
+
+            <a href="crop.html" class="protected-link">
+                Crop Recommendation
+            </a>
+
+            <a href="chatbot.html" class="protected-link">
+                AI Assistant
+            </a>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="contact.html">
+                Contact Us
+            </a>
+
+        </nav>
+
+
+        <!-- NAV ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- LOGIN -->
+            <a
+                class="login-btn"
+                href="login.html"
+                id="loginBtn"
+            >
+                Login
+            </a>
+
+
+            <!-- PROFILE -->
+            <button
+                aria-label="Profile"
+                class="icon-nav-btn"
+                id="profileBtn"
+                style="display:none;"
+                title="Profile"
+                type="button"
+            >
+                👤
+            </button>
+
+
+            <!-- ADMIN -->
+            <a
+                aria-label="Admin Dashboard"
+                class="icon-nav-btn admin-icon"
+                href="admin.html"
+                id="adminBtn"
+                style="display:none;"
+                title="Admin Dashboard"
+            >
+                ⚙
+            </a>
+
+
+            <!-- LOGOUT -->
+            <button
+                aria-label="Logout"
+                class="icon-nav-btn logout-icon"
+                id="logoutBtn"
+                style="display:none;"
+                title="Logout"
+                type="button"
+            >
+                ↪
+            </button>
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+        <button
+            aria-label="Open menu"
+            class="mobile-menu"
+            id="mobileMenu"
+            type="button"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-pattern"></div>
+
+    <div class="hero-glow glow-one"></div>
+    <div class="hero-glow glow-two"></div>
+
+    <div class="hero-container">
+
+        <div class="hero-content hero-content-left">
+
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                AI-POWERED SMART AGRICULTURE
+            </div>
+
+
+            <h1>
+                Smarter Farming.
+                <span>Better Decisions.</span>
+            </h1>
+
+
+            <p>
+                AgroAI combines crop recommendation, soil intelligence,
+                weather insights and smart irrigation into one
+                easy-to-use farming platform.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    class="primary-btn protected-link"
+                    href="crop.html"
+                >
+                    <span>🌱</span>
+                    Get Crop Recommendation
+                    <b>→</b>
+                </a>
+
+
+                <a
+                    class="secondary-btn protected-link"
+                    href="chatbot.html"
+                >
+                    <span>🤖</span>
+                    Ask AgroAI
+                    <b>→</b>
+                </a>
+
+            </div>
+
+
+            <div class="hero-highlights">
+
+                <span>✓ AI Based</span>
+                <span>✓ Data Driven</span>
+                <span>✓ Farmer Focused</span>
+
+            </div>
+
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+                    <strong>32+</strong>
+                    <span>Supported Crops</span>
+                </div>
+
+                <div class="trust-divider"></div>
+
+                <div class="trust-item">
+                    <strong>7</strong>
+                    <span>Farm Parameters</span>
+                </div>
+
+                <div class="trust-divider"></div>
+
+                <div class="trust-item">
+                    <strong>24/7</strong>
+                    <span>AI Assistance</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO INTELLIGENCE CARDS -->
+
+        <div class="hero-intelligence">
+
+            <a
+                class="intelligence-card intelligence-card-color protected-link"
+                href="crop.html"
+            >
+                <div class="intel-icon">📍</div>
+
+                <div>
+                    <strong>District Intelligence</strong>
+                    <span>Regional farming context</span>
+                </div>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                class="intelligence-card intelligence-card-color protected-link"
+                href="crop.html"
+            >
+                <div class="intel-icon soil-icon">🧪</div>
+
+                <div>
+                    <strong>Soil Intelligence</strong>
+                    <span>NPK and pH analysis</span>
+                </div>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                class="intelligence-card intelligence-card-color protected-link"
+                href="weather.html"
+            >
+                <div class="intel-icon weather-icon">🌦️</div>
+
+                <div>
+                    <strong>Weather Intelligence</strong>
+                    <span>Weather-aware planning</span>
+                </div>
+
+                <b>→</b>
+            </a>
+
+
+            <a
+                class="intelligence-card intelligence-card-color protected-link"
+                href="irrigation.html"
+            >
+                <div class="intel-icon water-icon">💧</div>
+
+                <div>
+                    <strong>Smart Irrigation</strong>
+                    <span>Water requirement support</span>
+                </div>
+
+                <b>→</b>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT AGROAI
+===================================================== -->
+
+<section class="about-section" id="about">
+
+    <div class="section-container about-grid">
+
+        <div class="about-image-wrap">
+
+            <img
+                alt="Farmer working in agricultural field"
+                src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1200&q=85"
+            />
+
+        </div>
+
+
+        <div class="about-content">
+
+            <span class="section-label">
+                ABOUT AGROAI
+            </span>
+
+
+            <h2>
+                Making agricultural
+                decisions <span>smarter.</span>
+            </h2>
+
+
+            <p>
+                Farming decisions depend on many factors such as
+                soil nutrients, rainfall, temperature, humidity,
+                pH and location. AgroAI brings these factors
+                together and helps convert them into meaningful
+                farming insights.
+            </p>
+
+
+            <p>
+                Instead of depending only on guesswork, farmers
+                can use data and AI to understand which crops
+                may suit their conditions and how different
+                farm factors can affect their decisions.
+            </p>
+
+
+            <div class="about-points">
+
+                <div>
+                    <span>✓</span>
+                    Soil and NPK based analysis
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Weather-aware farming insights
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Crop and irrigation intelligence
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    AI farming assistance
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SMART FARMING INTELLIGENCE
+===================================================== -->
+
+<section class="intelligence-section">
+
+    <div class="section-container">
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                AGROAI INTELLIGENCE
+            </span>
+
+            <h2>
+                One Platform.
+                <span>Multiple Farming Insights.</span>
+            </h2>
+
+            <p>
+                AgroAI combines different agricultural intelligence
+                modules so farmers can understand their farm from
+                multiple perspectives.
+            </p>
+
+        </div>
+
+
+        <div class="module-grid">
+
+            <article class="module-card">
+
+                <div class="module-top">
+                    <span class="module-icon">🌾</span>
+                    <span class="module-number">01</span>
+                </div>
+
+                <h3>
+                    Crop Recommendation
+                </h3>
+
+                <p>
+                    Analyze nitrogen, phosphorus, potassium,
+                    temperature, humidity, pH and rainfall to
+                    generate suitable crop recommendations.
+                </p>
+
+                <a href="crop.html" class="protected-link">
+                    Explore Crop AI →
+                </a>
+
+            </article>
+
+
+            <article class="module-card">
+
+                <div class="module-top">
+                    <span class="module-icon">🌦️</span>
+                    <span class="module-number">02</span>
+                </div>
+
+                <h3>
+                    Weather Intelligence
+                </h3>
+
+                <p>
+                    Understand weather conditions and use them
+                    while planning farming activities, irrigation
+                    and crop management.
+                </p>
+
+                <a href="weather.html" class="protected-link">
+                    Explore Weather →
+                </a>
+
+            </article>
+
+
+            <article class="module-card">
+
+                <div class="module-top">
+                    <span class="module-icon">💧</span>
+                    <span class="module-number">03</span>
+                </div>
+
+                <h3>
+                    Smart Irrigation
+                </h3>
+
+                <p>
+                    Use crop, soil and weather information to
+                    understand irrigation requirements and
+                    improve water management.
+                </p>
+
+                <a href="irrigation.html" class="protected-link">
+                    Explore Irrigation →
+                </a>
+
+            </article>
+
+
+            <article class="module-card">
+
+                <div class="module-top">
+                    <span class="module-icon">🤖</span>
+                    <span class="module-number">04</span>
+                </div>
+
+                <h3>
+                    AI Farming Assistant
+                </h3>
+
+                <p>
+                    Ask AgroAI about crops, soil, fertilizer,
+                    irrigation, cultivation, harvesting and
+                    farming practices.
+                </p>
+
+                <a href="chatbot.html" class="protected-link">
+                    Ask AgroAI →
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHAT AGROAI ANALYZES
+===================================================== -->
+
+<section class="analysis-section">
+
+    <div class="analysis-bg-shape analysis-shape-one"></div>
+    <div class="analysis-bg-shape analysis-shape-two"></div>
+
+    <div class="section-container">
+
+        <div class="analysis-header">
+
+            <div>
+
+                <span class="section-label">
+                    FARM DATA INTELLIGENCE
+                </span>
+
+                <h2>
+                    Every farm has a story.
+                    <span>AgroAI reads the data.</span>
+                </h2>
+
+            </div>
+
+
+            <p>
+                Smart agricultural decisions begin with understanding
+                the conditions around the farm. AgroAI brings important
+                soil, weather and location parameters together so they
+                can be interpreted in one place.
+            </p>
+
+        </div>
+
+
+        <div class="analysis-feature-grid">
+
+            <div class="analysis-feature-card">
+
+                <div class="feature-card-content">
+
+                    <div class="analysis-icon featured-icon">
+                        🧪
+                    </div>
+
+                    <span class="analysis-card-label">
+                        CORE FARM DATA
+                    </span>
+
+                    <h3>
+                        Soil &amp; Nutrient Intelligence
+                    </h3>
+
+                    <p>
+                        Understand the nutritional condition represented
+                        by the farm data using important soil parameters.
+                        These values are especially useful for crop
+                        recommendation and agricultural analysis.
+                    </p>
+
+                    <div class="parameter-tags">
+
+                        <span>Nitrogen</span>
+                        <span>Phosphorus</span>
+                        <span>Potassium</span>
+                        <span>pH</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-visual">
+
+                    <div class="soil-ring">
+                        <span>🌱</span>
+                    </div>
+
+                    <div class="soil-mini-card">
+                        <strong>N • P • K • pH</strong>
+                        <small>Soil parameters</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-card analysis-temp">
+
+                <div class="analysis-card-top">
+                    <div class="analysis-icon">🌡️</div>
+                    <span class="analysis-index">01</span>
+                </div>
+
+                <h3>Temperature</h3>
+
+                <p>
+                    Helps understand the environmental conditions
+                    around the crop and supports crop suitability analysis.
+                </p>
+
+                <div class="analysis-progress">
+                    <span></span>
+                </div>
+
+                <small>Environmental condition</small>
+
+            </div>
+
+
+            <div class="analysis-card analysis-humidity">
+
+                <div class="analysis-card-top">
+                    <div class="analysis-icon">💦</div>
+                    <span class="analysis-index">02</span>
+                </div>
+
+                <h3>Humidity</h3>
+
+                <p>
+                    Adds another important environmental factor to
+                    the overall understanding of farm conditions.
+                </p>
+
+                <div class="analysis-progress">
+                    <span></span>
+                </div>
+
+                <small>Air moisture condition</small>
+
+            </div>
+
+
+            <div class="analysis-card analysis-rain">
+
+                <div class="analysis-card-top">
+                    <div class="analysis-icon">🌧️</div>
+                    <span class="analysis-index">03</span>
+                </div>
+
+                <h3>Rainfall</h3>
+
+                <p>
+                    Rainfall information helps represent water
+                    availability and supports farming planning.
+                </p>
+
+                <div class="analysis-progress">
+                    <span></span>
+                </div>
+
+                <small>Water availability context</small>
+
+            </div>
+
+
+            <div class="analysis-card analysis-location">
+
+                <div class="analysis-card-top">
+                    <div class="analysis-icon">📍</div>
+                    <span class="analysis-index">04</span>
+                </div>
+
+                <h3>District &amp; Location</h3>
+
+                <p>
+                    Location provides regional context that can be
+                    useful when interpreting agricultural conditions.
+                </p>
+
+                <div class="location-chip">
+                    <span>●</span>
+                    Regional context
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DATA FLOW -->
+
+        <div class="analysis-flow">
+
+            <div class="flow-title">
+
+                <span>HOW AGROAI USES FARM DATA</span>
+
+                <strong>
+                    From farm parameters to useful insight
+                </strong>
+
+            </div>
+
+
+            <div class="flow-steps">
+
+                <div class="flow-step" tabindex="0">
+
+                    <div class="flow-number">01</div>
+
+                    <div>
+                        <strong>Collect</strong>
+                        <small>Enter farm conditions</small>
+                    </div>
+
+                    <span class="flow-hover">
+                        Farm inputs
+                    </span>
+
+                </div>
+
+
+                <span class="flow-arrow">→</span>
+
+
+                <div class="flow-step" tabindex="0">
+
+                    <div class="flow-number">02</div>
+
+                    <div>
+                        <strong>Analyze</strong>
+                        <small>Process the provided data</small>
+                    </div>
+
+                    <span class="flow-hover">
+                        AI analysis
+                    </span>
+
+                </div>
+
+
+                <span class="flow-arrow">→</span>
+
+
+                <div class="flow-step" tabindex="0">
+
+                    <div class="flow-number">03</div>
+
+                    <div>
+                        <strong>Understand</strong>
+                        <small>Read farming insights</small>
+                    </div>
+
+                    <span class="flow-hover">
+                        Clear insights
+                    </span>
+
+                </div>
+
+
+                <span class="flow-arrow">→</span>
+
+
+                <div class="flow-step" tabindex="0">
+
+                    <div class="flow-number">04</div>
+
+                    <div>
+                        <strong>Decide</strong>
+                        <small>Use insights for planning</small>
+                    </div>
+
+                    <span class="flow-hover">
+                        Smart planning
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SMART FARMING ECOSYSTEM
+===================================================== -->
+
+<section class="decision-section ecosystem-section">
+
+    <div class="section-container">
+
+        <div class="section-heading center ecosystem-heading">
+
+            <span class="section-label">
+                AGROAI ADVANTAGE
+            </span>
+
+            <h2>
+                Technology That
+                <span>Works Around the Farmer.</span>
+            </h2>
+
+            <p>
+                Beyond recommendations and weather tools, AgroAI is designed
+                to make everyday farm information easier to understand,
+                organize and use.
+            </p>
+
+        </div>
+
+
+        <div class="ecosystem-list advantage-grid">
+
+            <article class="decision-item ecosystem-card">
+
+                <div class="decision-number">01</div>
+
+                <div>
+
+                    <h3>Fertilizer Guidance</h3>
+
+                    <p>
+                        Get practical fertilizer information based on crop
+                        needs and the farm conditions you provide.
+                    </p>
+
+                    <span class="ecosystem-tag">
+                        Nutrient Support
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <article class="decision-item ecosystem-card">
+
+                <div class="decision-number">02</div>
+
+                <div>
+
+                    <h3>My Farm</h3>
+
+                    <p>
+                        Keep important farm details organized so your
+                        agricultural information stays easy to manage.
+                    </p>
+
+                    <span class="ecosystem-tag">
+                        Farm Management
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <article class="decision-item ecosystem-card">
+
+                <div class="decision-number">03</div>
+
+                <div>
+
+                    <h3>Personalized Insights</h3>
+
+                    <p>
+                        Use your district, crop and farm information to
+                        make AgroAI responses more relevant to your situation.
+                    </p>
+
+                    <span class="ecosystem-tag">
+                        Personalized AI
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <article class="decision-item ecosystem-card">
+
+                <div class="decision-number">04</div>
+
+                <div>
+
+                    <h3>Multilingual &amp; Voice Support</h3>
+
+                    <p>
+                        Interact naturally in English, Hindi, Hinglish or
+                        Marathi, with voice support for easier access.
+                    </p>
+
+                    <span class="ecosystem-tag">
+                        Natural Interaction
+                    </span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BENEFITS
+===================================================== -->
+
+<section class="benefits-section">
+
+    <div class="section-container">
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                WHY USE AGROAI
+            </span>
+
+            <h2>
+                Built Around
+                <span>Farmer Needs</span>
+            </h2>
+
+            <p>
+                AgroAI focuses on making smart farming technology
+                practical, understandable and easy to use.
+            </p>
+
+        </div>
+
+
+        <div class="benefit-grid">
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Better Crop Selection
+                </h3>
+
+                <p>
+                    Use farm parameters to generate
+                    AI-based crop recommendations.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    💧
+                </div>
+
+                <h3>
+                    Efficient Water Planning
+                </h3>
+
+                <p>
+                    Understand irrigation requirements using
+                    crop and environmental information.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Data-Based Decisions
+                </h3>
+
+                <p>
+                    Bring soil, weather and farm information
+                    together in one platform.
+                </p>
+
+            </div>
+
+
+            <div class="benefit-card">
+
+                <div class="benefit-icon">
+                    🗣️
+                </div>
+
+                <h3>
+                    Easy AI Assistance
+                </h3>
+
+                <p>
+                    Ask questions naturally through the
+                    AgroAI farming assistant.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SUPPORTED CROPS
+===================================================== -->
+
+<section class="crops-section">
+
+    <div class="section-container">
+
+        <div class="crop-library-head">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    CROP KNOWLEDGE LIBRARY
+                </span>
+
+                <h2>
+                    Explore <span>Popular Crops</span>
+                </h2>
+
+                <p>
+                    Discover crop-specific information and use AgroAI
+                    to make smarter farming decisions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FIRST 8 CROPS -->
+
+        <div class="featured-crops" id="cropList">
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon rice-icon">🌾</div>
+                <div>
+                    <h3>Rice</h3>
+                    <p>Water-loving staple crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon maize-icon">🌽</div>
+                <div>
+                    <h3>Maize</h3>
+                    <p>Warm-season cereal crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon chickpea-icon">🫘</div>
+                <div>
+                    <h3>Chickpea</h3>
+                    <p>Cool-season pulse crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon mango-icon">🥭</div>
+                <div>
+                    <h3>Mango</h3>
+                    <p>Popular tropical fruit crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon banana-icon">🍌</div>
+                <div>
+                    <h3>Banana</h3>
+                    <p>High-water tropical crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon cotton-icon">🌿</div>
+                <div>
+                    <h3>Cotton</h3>
+                    <p>Important fibre crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon grape-icon">🍇</div>
+                <div>
+                    <h3>Grapes</h3>
+                    <p>Fruit crop needing careful care</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card featured-crop">
+                <div class="crop-card-icon coconut-icon">🥥</div>
+                <div>
+                    <h3>Coconut</h3>
+                    <p>Long-term tropical plantation crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+        </div>
+
+
+        <!-- MORE CROPS BUTTON -->
+
+        <button
+            class="more-crops-btn"
+            id="moreCropsBtn"
+            type="button"
+        >
+            + More Crops
+        </button>
+
+
+        <!-- EXTRA CROPS -->
+
+        <div
+            class="extra-crops-grid"
+            id="extraCropGrid"
+        >
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌱</div>
+                <div>
+                    <h3>Lentil</h3>
+                    <p>Cool-season pulse crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🫘</div>
+                <div>
+                    <h3>Kidney Beans</h3>
+                    <p>Protein-rich pulse crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🫘</div>
+                <div>
+                    <h3>Pigeon Peas</h3>
+                    <p>Warm-season pulse crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🫘</div>
+                <div>
+                    <h3>Moth Beans</h3>
+                    <p>Drought-tolerant pulse crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌱</div>
+                <div>
+                    <h3>Mung Bean</h3>
+                    <p>Fast-growing pulse crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🫘</div>
+                <div>
+                    <h3>Black Gram</h3>
+                    <p>Important pulse crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🍎</div>
+                <div>
+                    <h3>Pomegranate</h3>
+                    <p>Dry-climate fruit crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🍊</div>
+                <div>
+                    <h3>Orange</h3>
+                    <p>Citrus fruit crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🍉</div>
+                <div>
+                    <h3>Watermelon</h3>
+                    <p>Warm-season fruit crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🍈</div>
+                <div>
+                    <h3>Muskmelon</h3>
+                    <p>Warm-season melon crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🍎</div>
+                <div>
+                    <h3>Apple</h3>
+                    <p>Cool-climate fruit crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🍊</div>
+                <div>
+                    <h3>Papaya</h3>
+                    <p>Fast-growing tropical fruit</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">☕</div>
+                <div>
+                    <h3>Coffee</h3>
+                    <p>Plantation beverage crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌿</div>
+                <div>
+                    <h3>Jute</h3>
+                    <p>Important natural fibre crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌾</div>
+                <div>
+                    <h3>Wheat</h3>
+                    <p>Major cool-season cereal</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌾</div>
+                <div>
+                    <h3>Barley</h3>
+                    <p>Hardy cereal crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌻</div>
+                <div>
+                    <h3>Sunflower</h3>
+                    <p>Oilseed crop needing sunlight</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🍅</div>
+                <div>
+                    <h3>Tomato</h3>
+                    <p>Popular vegetable crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🥔</div>
+                <div>
+                    <h3>Potato</h3>
+                    <p>Cool-season tuber crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌿</div>
+                <div>
+                    <h3>Sugarcane</h3>
+                    <p>High-water commercial crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🌶️</div>
+                <div>
+                    <h3>Chilli</h3>
+                    <p>Important spice crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🥜</div>
+                <div>
+                    <h3>Groundnut</h3>
+                    <p>Important oilseed crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🧅</div>
+                <div>
+                    <h3>Onion</h3>
+                    <p>Major vegetable and spice crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+
+            <article class="crop-card extra-crop">
+                <div class="crop-card-icon">🫛</div>
+                <div>
+                    <h3>Peas</h3>
+                    <p>Cool-season vegetable crop</p>
+                </div>
+                <span>→</span>
+            </article>
+
+        </div>
+
+
+        <div class="crop-library-note">
+
+            <span>✦</span>
+
+            Browse the crop library or start a personalized
+            recommendation using your farm parameters.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+===================================================== -->
+
+<section class="final-cta">
+
+    <div class="cta-pattern"></div>
+
+    <div class="cta-content">
+
+        <span class="section-label light">
+            START SMART FARMING
+        </span>
+
+        <h2>
+            Your Farm Data.
+            <span>Smarter Decisions.</span>
+        </h2>
+
+        <p>
+            Explore AgroAI's intelligent farming tools and
+            start understanding your agricultural conditions
+            through data and AI.
+        </p>
+
+
+        <div class="cta-buttons">
+
+            <a
+                class="cta-primary protected-link"
+                href="crop.html"
+            >
+                🌱 Try Crop Recommendation
+            </a>
+
+
+            <a
+                class="cta-secondary protected-link"
+                href="chatbot.html"
+            >
+                🤖 Ask AgroAI
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-logo">
+
+            <img
+                src="agroai-logo.png"
+                alt="AgroAI Logo"
+            >
+
+            <span class="footer-brand-text">
+                AgroAI
+            </span>
+
+        </div>
+
+
+        <p>
+            Smart agriculture powered by AI.
+        </p>
+
+
+        <div class="footer-line"></div>
+
+
+        <small>
+            © 2026 AgroAI. All rights reserved.
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =================================================
+       AUTH ELEMENTS
+    ================================================= */
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+    const profileBtn =
+        document.getElementById("profileBtn");
+
+    const adminBtn =
+        document.getElementById("adminBtn");
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    const footerProfileLink =
+        document.getElementById("footerProfileLink");
+
+
+    const loggedIn =
+        localStorage.getItem("agroai_logged_in") === "true";
+
+    const role =
+        localStorage.getItem("agroai_role");
+
+
+    /* =================================================
+       NAVBAR AUTH DISPLAY
+    ================================================= */
+
+    if (loggedIn) {
+
+        if (loginBtn) {
+            loginBtn.style.display = "none";
+        }
+
+        if (profileBtn) {
+            profileBtn.style.display = "inline-flex";
+        }
+
+        if (logoutBtn) {
+            logoutBtn.style.display = "inline-flex";
+        }
+
+
+        if (adminBtn) {
+
+            adminBtn.style.display =
+                role === "admin"
+                    ? "inline-flex"
+                    : "none";
+
+        }
+
+    } else {
+
+        if (loginBtn) {
+            loginBtn.style.display = "inline-flex";
+        }
+
+        if (profileBtn) {
+            profileBtn.style.display = "none";
+        }
+
+        if (adminBtn) {
+            adminBtn.style.display = "none";
+        }
+
+        if (logoutBtn) {
+            logoutBtn.style.display = "none";
+        }
+
+    }
+
+
+    /* =================================================
+       PROTECTED AGROAI FEATURES
+    ================================================= */
+
+    const protectedLinks =
+        document.querySelectorAll(
+            '.protected-link, a[href="crop.html"], a[href="chatbot.html"], a[href="weather.html"], a[href="irrigation.html"]'
+        );
+
+
+    protectedLinks.forEach(function (link) {
+
+        link.addEventListener("click", function (event) {
+
+            const isLoggedIn =
+                localStorage.getItem(
+                    "agroai_logged_in"
+                ) === "true";
+
+
+            if (!isLoggedIn) {
+
+                event.preventDefault();
+
+
+                localStorage.setItem(
+                    "agroai_redirect_after_login",
+                    link.getAttribute("href")
+                );
+
+
+                alert(
+                    "Please Sign Up and Login first to use AgroAI features."
+                );
+
+
+                window.location.href =
+                    "signup.html";
+
+            }
+
+        });
+
+    });
+
+
+    /* =================================================
+       PROFILE
+    ================================================= */
+
+    if (profileBtn) {
+
+        profileBtn.addEventListener(
+            "click",
+            function () {
+
+                const isLoggedIn =
+                    localStorage.getItem(
+                        "agroai_logged_in"
+                    ) === "true";
+
+
+                if (isLoggedIn) {
+
+                    window.location.href =
+                        "profile.html";
+
+                } else {
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       FOOTER PROFILE
+    ================================================= */
+
+    if (footerProfileLink) {
+
+        footerProfileLink.addEventListener(
+            "click",
+            function (event) {
+
+                const isLoggedIn =
+                    localStorage.getItem(
+                        "agroai_logged_in"
+                    ) === "true";
+
+
+                if (!isLoggedIn) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Please Login first to open your profile."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       LOGOUT
+    ================================================= */
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
+            function () {
+
+                localStorage.removeItem(
+                    "agroai_logged_in"
+                );
+
+                localStorage.removeItem(
+                    "agroai_role"
+                );
+
+                localStorage.removeItem(
+                    "agroai_user"
+                );
+
+                localStorage.removeItem(
+                    "agroai_redirect_after_login"
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       MORE CROPS
+    ================================================= */
+
+    const moreBtn =
+        document.getElementById("moreCropsBtn");
+
+    const extraCrops =
+        document.querySelectorAll(".extra-crop");
+
+    let expanded = false;
+
+
+    if (moreBtn) {
+
+        moreBtn.addEventListener(
+            "click",
+            function () {
+
+                expanded = !expanded;
+
+
+                extraCrops.forEach(
+                    function (crop) {
+
+                        crop.classList.toggle(
+                            "show",
+                            expanded
+                        );
+
+                    }
+                );
+
+
+                moreBtn.textContent =
+                    expanded
+                        ? "− Show Less"
+                        : "+ More Crops";
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       MOBILE MENU
+    ================================================= */
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+
+    if (mobileMenu && navLinks) {
+
+        mobileMenu.addEventListener(
+            "click",
+            function () {
+
+                navLinks.classList.toggle(
+                    "mobile-open"
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navLinks.classList.remove(
+                            "mobile-open"
+                        );
+
+                    }
+                );
+
+            });
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

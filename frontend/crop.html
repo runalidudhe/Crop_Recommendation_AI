@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="AgroAI Smart Crop Recommendation">
+
+    <title>AgroAI | Crop Recommendation</title>
+
+    <link rel="stylesheet" href="crop.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="main-header">
+
+    <div class="navbar">
+
+        <!-- LOGO -->
+
+        <a
+            href="index.html"
+            class="nav-logo">
+
+            <span class="logo-icon">
+                🌱
+            </span>
+
+            <span>
+                AgroAI
+            </span>
+
+        </a>
+
+
+        <!-- RIGHT NAVIGATION -->
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a
+                href="crop.html"
+                class="active">
+
+                🌾 Crop Recommendation
+
+            </a>
+
+            <a href="chatbot.html">
+                🤖 AI Assistant
+            </a>
+
+
+            <!-- LOGGED OUT -->
+
+            <a
+                href="login.html"
+                id="loginLink"
+                class="auth-link">
+
+                Login
+
+            </a>
+
+
+            <a
+                href="signup.html"
+                id="signupLink"
+                class="auth-link signup-link">
+
+                Sign Up
+
+            </a>
+
+
+            <!-- LOGGED IN -->
+
+            <button
+                type="button"
+                id="logoutLink"
+                class="logout-link hidden">
+
+                Logout
+
+            </button>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="crop-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            🌾 AI-POWERED SMART FARMING
+        </span>
+
+        <h1>
+            Smart Crop
+            <span>Recommendation</span>
+        </h1>
+
+        <p>
+            Enter your farm conditions and let AgroAI
+            analyze the data to recommend suitable crops.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="main-container">
+
+
+<!-- =========================================================
+     FORM SECTION
+========================================================= -->
+
+<section class="form-section">
+
+    <div class="section-heading">
+
+        <div class="section-icon">
+            🌱
+        </div>
+
+        <div>
+
+            <span class="section-label">
+                FARM ANALYSIS
+            </span>
+
+            <h2>
+                Farm Information
+            </h2>
+
+            <p>
+                Provide accurate farm and environmental
+                values for a better AI recommendation.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+<form
+    id="cropForm"
+    novalidate>
+
+
+<!-- =====================================================
+     LOCATION
+====================================================== -->
+
+<div class="input-card">
+
+    <div class="card-heading">
+
+        <div class="card-icon">
+            📍
+        </div>
+
+        <div>
+
+            <h3>
+                Farm Location
+            </h3>
+
+            <p>
+                Select your state and district.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-grid location-grid">
+
+
+        <!-- STATE -->
+
+        <div class="form-group">
+
+            <label for="state">
+
+                State
+                <span>*</span>
+
+            </label>
+
+            <select
+                id="state"
+                name="state">
+
+                <option value="">
+                    Select State
+                </option>
+
+                <option value="Maharashtra">
+                    Maharashtra
+                </option>
+
+            </select>
+
+            <small
+                id="stateError"
+                class="field-error">
+            </small>
+
+        </div>
+
+
+
+        <!-- DISTRICT -->
+
+        <div class="form-group">
+
+            <label for="district">
+
+                District
+                <span>*</span>
+
+            </label>
+
+            <select
+                id="district"
+                name="district"
+                disabled>
+
+                <option value="">
+                    Select District
+                </option>
+
+            </select>
+
+            <small
+                id="districtError"
+                class="field-error">
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SOIL NUTRIENTS
+====================================================== -->
+
+<div class="input-card">
+
+    <div class="card-heading">
+
+        <div class="card-icon">
+            🧪
+        </div>
+
+        <div>
+
+            <h3>
+                Soil Nutrients
+            </h3>
+
+            <p>
+                Enter the NPK values available in your soil.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-grid three-columns">
+
+
+        <!-- N -->
+
+        <div class="form-group">
+
+            <label for="nitrogen">
+
+                Nitrogen (N)
+                <span>*</span>
+
+            </label>
+
+            <input
+                type="number"
+                id="nitrogen"
+                name="nitrogen"
+                min="0"
+                max="140"
+                step="any"
+                placeholder="Example: 90">
+
+            <small
+                id="nitrogenError"
+                class="field-error">
+            </small>
+
+        </div>
+
+
+
+        <!-- P -->
+
+        <div class="form-group">
+
+            <label for="phosphorus">
+
+                Phosphorus (P)
+                <span>*</span>
+
+            </label>
+
+            <input
+                type="number"
+                id="phosphorus"
+                name="phosphorus"
+                min="0"
+                max="145"
+                step="any"
+                placeholder="Example: 42">
+
+            <small
+                id="phosphorusError"
+                class="field-error">
+            </small>
+
+        </div>
+
+
+
+        <!-- K -->
+
+        <div class="form-group">
+
+            <label for="potassium">
+
+                Potassium (K)
+                <span>*</span>
+
+            </label>
+
+            <input
+                type="number"
+                id="potassium"
+                name="potassium"
+                min="0"
+                max="205"
+                step="any"
+                placeholder="Example: 43">
+
+            <small
+                id="potassiumError"
+                class="field-error">
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ENVIRONMENT
+====================================================== -->
+
+<div class="input-card">
+
+    <div class="card-heading">
+
+        <div class="card-icon">
+            🌦️
+        </div>
+
+        <div>
+
+            <h3>
+                Environmental Conditions
+            </h3>
+
+            <p>
+                Enter temperature, humidity, pH and rainfall.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-grid four-columns">
+
+
+        <!-- TEMPERATURE -->
+
+        <div class="form-group">
+
+            <label for="temperature">
+
+                Temperature
+                <span>*</span>
+
+            </label>
+
+            <div class="unit-input">
+
+                <input
+                    type="number"
+                    id="temperature"
+                    name="temperature"
+                    min="-10"
+                    max="60"
+                    step="any"
+                    placeholder="25.6">
+
+                <span>
+                    °C
+                </span>
+
+            </div>
+
+            <small
+                id="temperatureError"
+                class="field-error">
+            </small>
+
+        </div>
+
+
+
+        <!-- HUMIDITY -->
+
+        <div class="form-group">
+
+            <label for="humidity">
+
+                Humidity
+                <span>*</span>
+
+            </label>
+
+            <div class="unit-input">
+
+                <input
+                    type="number"
+                    id="humidity"
+                    name="humidity"
+                    min="0"
+                    max="100"
+                    step="any"
+                    placeholder="80">
+
+                <span>
+                    %
+                </span>
+
+            </div>
+
+            <small
+                id="humidityError"
+                class="field-error">
+            </small>
+
+        </div>
+
+
+
+        <!-- PH -->
+
+        <div class="form-group">
+
+            <label for="ph">
+
+                Soil pH
+                <span>*</span>
+
+            </label>
+
+            <div class="unit-input">
+
+                <input
+                    type="number"
+                    id="ph"
+                    name="ph"
+                    min="0"
+                    max="14"
+                    step="any"
+                    placeholder="6.5">
+
+                <span>
+                    pH
+                </span>
+
+            </div>
+
+            <small
+                id="phError"
+                class="field-error">
+            </small>
+
+        </div>
+
+
+
+        <!-- RAINFALL -->
+
+        <div class="form-group">
+
+            <label for="rainfall">
+
+                Rainfall
+                <span>*</span>
+
+            </label>
+
+            <div class="unit-input">
+
+                <input
+                    type="number"
+                    id="rainfall"
+                    name="rainfall"
+                    min="0"
+                    max="3000"
+                    step="any"
+                    placeholder="200">
+
+                <span>
+                    mm
+                </span>
+
+            </div>
+
+            <small
+                id="rainfallError"
+                class="field-error">
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FORM MESSAGE
+====================================================== -->
+
+<div
+    id="formMessage"
+    class="form-message"
+    role="alert">
+</div>
+
+
+
+<!-- =====================================================
+     BUTTONS
+====================================================== -->
+
+<div class="form-actions">
+
+
+    <!-- RECOMMENDATION -->
+
+    <button
+        type="submit"
+        id="predictButton"
+        class="predict-button">
+
+        <span id="predictIcon">
+            🌾
+        </span>
+
+        <span id="predictText">
+            Get AI Recommendation
+        </span>
+
+        <span
+            id="loadingSpinner"
+            class="button-spinner">
+        </span>
+
+    </button>
+
+
+
+    <!-- RESET -->
+
+    <button
+        type="button"
+        id="resetButton"
+        class="reset-button">
+
+        <span>
+            ↻
+        </span>
+
+        Reset
+
+    </button>
+
+</div>
+
+
+</form>
+
+</section>
+
+
+
+<!-- =========================================================
+     RESULT SECTION
+========================================================= -->
+
+<section
+    id="resultSection"
+    class="result-section">
+
+
+    <!-- RESULT HEADER -->
+
+    <div class="result-header">
+
+        <div class="result-header-icon">
+            ✓
+        </div>
+
+        <div>
+
+            <span class="result-label">
+                AI ANALYSIS COMPLETE
+            </span>
+
+            <h2>
+                Your Farming Recommendation
+            </h2>
+
+            <p>
+                AgroAI analyzed the submitted farm conditions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MAIN RECOMMENDATION
+    ====================================================== -->
+
+    <div class="main-recommendation-card">
+
+
+        <div class="recommendation-left">
+
+            <span class="recommendation-label">
+                🌾 RECOMMENDED CROP
+            </span>
+
+            <h1 id="recommendedCrop">
+                —
+            </h1>
+
+            <p class="recommendation-description">
+                AgroAI's primary recommendation based on
+                your submitted conditions.
+            </p>
+
+
+
+            <!-- CONFIDENCE -->
+
+            <div
+                id="confidenceBox"
+                class="confidence-box">
+
+                <div class="confidence-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <span>
+                        AI Confidence
+                    </span>
+
+                    <strong id="confidenceValue">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MAIN IMAGE -->
+
+        <div class="main-crop-image-wrapper">
+
+            <div class="image-badge">
+                AI PICK
+            </div>
+
+            <img
+                id="cropImage"
+                class="main-crop-image"
+                src=""
+                alt="Recommended crop">
+
+            <div
+                id="imageFallback"
+                class="image-fallback">
+
+                🌱
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         WHY THIS CROP
+    ====================================================== -->
+
+    <div class="result-card">
+
+        <div class="result-card-heading">
+
+            <div class="result-heading-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h3>
+                    Why AgroAI Recommended This Crop
+                </h3>
+
+                <p>
+                    Important parameters considered by the
+                    machine learning model.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="match-grid">
+
+
+            <div class="match-item">
+
+                <div class="match-icon">
+                    🧪
+                </div>
+
+                <div>
+
+                    <strong>
+                        NPK
+                    </strong>
+
+                    <small>
+                        N, P & K values
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="match-item">
+
+                <div class="match-icon">
+                    🌡️
+                </div>
+
+                <div>
+
+                    <strong>
+                        Temperature
+                    </strong>
+
+                    <small>
+                        Temperature conditions
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="match-item">
+
+                <div class="match-icon">
+                    💧
+                </div>
+
+                <div>
+
+                    <strong>
+                        Humidity
+                    </strong>
+
+                    <small>
+                        Atmospheric humidity
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="match-item">
+
+                <div class="match-icon">
+                    ⚗️
+                </div>
+
+                <div>
+
+                    <strong>
+                        pH Compatibility
+                    </strong>
+
+                    <small>
+                        Soil pH value
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="match-item">
+
+                <div class="match-icon">
+                    🌧️
+                </div>
+
+                <div>
+
+                    <strong>
+                        Rainfall
+                    </strong>
+
+                    <small>
+                        Rainfall conditions
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FARM CONDITIONS
+    ====================================================== -->
+
+    <div class="result-card">
+
+        <div class="result-card-heading">
+
+            <div class="result-heading-icon">
+                📊
+            </div>
+
+            <div>
+
+                <h3>
+                    Farm Conditions
+                </h3>
+
+                <p>
+                    Values submitted for this prediction.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="condition-grid">
+
+
+            <div class="condition-item">
+
+                <span>📍</span>
+
+                <div>
+
+                    <small>
+                        State
+                    </small>
+
+                    <strong id="resultState">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>📍</span>
+
+                <div>
+
+                    <small>
+                        District
+                    </small>
+
+                    <strong id="resultDistrict">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>🧪</span>
+
+                <div>
+
+                    <small>
+                        Nitrogen
+                    </small>
+
+                    <strong id="resultNitrogen">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>🧪</span>
+
+                <div>
+
+                    <small>
+                        Phosphorus
+                    </small>
+
+                    <strong id="resultPhosphorus">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>🧪</span>
+
+                <div>
+
+                    <small>
+                        Potassium
+                    </small>
+
+                    <strong id="resultPotassium">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>🌡️</span>
+
+                <div>
+
+                    <small>
+                        Temperature
+                    </small>
+
+                    <strong id="resultTemperature">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>💧</span>
+
+                <div>
+
+                    <small>
+                        Humidity
+                    </small>
+
+                    <strong id="resultHumidity">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>⚗️</span>
+
+                <div>
+
+                    <small>
+                        Soil pH
+                    </small>
+
+                    <strong id="resultPh">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="condition-item">
+
+                <span>🌧️</span>
+
+                <div>
+
+                    <small>
+                        Rainfall
+                    </small>
+
+                    <strong id="resultRainfall">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DISTRICT INTELLIGENCE
+    ====================================================== -->
+
+    <div class="result-card district-card">
+
+        <div class="result-card-heading">
+
+            <div class="result-heading-icon">
+                📍
+            </div>
+
+            <div>
+
+                <h3>
+                    District Farming Intelligence
+                </h3>
+
+                <p>
+                    Regional information for your selected district.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="district-location">
+
+            <span>
+                SELECTED LOCATION
+            </span>
+
+            <h3 id="districtTitle">
+                —
+            </h3>
+
+            <p id="districtOverview">
+                —
+            </p>
+
+        </div>
+
+
+
+        <div class="district-grid">
+
+
+            <div class="district-item">
+
+                <span>
+                    🌾
+                </span>
+
+                <div>
+
+                    <small>
+                        Major Crops
+                    </small>
+
+                    <strong id="districtMajorCrops">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="district-item">
+
+                <span>
+                    🌧️
+                </span>
+
+                <div>
+
+                    <small>
+                        Average Rainfall
+                    </small>
+
+                    <strong id="districtRainfall">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="district-item">
+
+                <span>
+                    🌤️
+                </span>
+
+                <div>
+
+                    <small>
+                        Climate
+                    </small>
+
+                    <strong id="districtClimate">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="district-item">
+
+                <span>
+                    🌱
+                </span>
+
+                <div>
+
+                    <small>
+                        Farming Focus
+                    </small>
+
+                    <strong id="districtFarmingFocus">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="district-note">
+
+            <span>
+                💡
+            </span>
+
+            <p id="districtNote">
+                —
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CROP INFORMATION
+    ====================================================== -->
+
+    <div class="result-card">
+
+        <div class="result-card-heading">
+
+            <div class="result-heading-icon">
+                🌾
+            </div>
+
+            <div>
+
+                <h3>
+                    Crop Information
+                </h3>
+
+                <p>
+                    Useful information about the recommended crop.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="crop-info-grid">
+
+
+            <div>
+
+                <span>
+                    🌦️
+                </span>
+
+                <small>
+                    Season
+                </small>
+
+                <strong id="cropSeason">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                    🪨
+                </span>
+
+                <small>
+                    Suitable Soil
+                </small>
+
+                <strong id="cropSoil">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                    💧
+                </span>
+
+                <small>
+                    Water Requirement
+                </small>
+
+                <strong id="cropWater">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                    🌡️
+                </span>
+
+                <small>
+                    Temperature
+                </small>
+
+                <strong id="cropTemperature">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                    ⚗️
+                </span>
+
+                <small>
+                    pH
+                </small>
+
+                <strong id="cropPh">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                    🧪
+                </span>
+
+                <small>
+                    Fertilizer
+                </small>
+
+                <strong id="cropFertilizer">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                    🌱
+                </span>
+
+                <small>
+                    Sowing
+                </small>
+
+                <strong id="cropSowing">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div>
+
+                <span>
+                    🌾
+                </span>
+
+                <small>
+                    Harvesting
+                </small>
+
+                <strong id="cropHarvesting">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TIPS
+    ====================================================== -->
+
+    <div class="tips-grid">
+
+
+        <div class="tip-card">
+
+            <div class="tip-icon">
+                💡
+            </div>
+
+            <div>
+
+                <span>
+                    AGROAI TIP
+                </span>
+
+                <h3>
+                    Farming Tips
+                </h3>
+
+                <p id="farmingTips">
+                    —
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="tip-card precaution">
+
+            <div class="tip-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <span>
+                    IMPORTANT
+                </span>
+
+                <h3>
+                    Precautions
+                </h3>
+
+                <p id="precautions">
+                    —
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOP 3 RECOMMENDATIONS
+    ====================================================== -->
+
+    <div class="result-card">
+
+        <div class="result-card-heading">
+
+            <div class="result-heading-icon">
+                🏆
+            </div>
+
+            <div>
+
+                <h3>
+                    Top 3 Crop Recommendations
+                </h3>
+
+                <p>
+                    Ranked directly from the machine learning model.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div
+            id="topRecommendations"
+            class="top-recommendations">
+        </div>
+
+
+
+        <p
+            id="topRecommendationNote"
+            class="top-recommendation-note">
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ACTION BUTTONS
+    ====================================================== -->
+
+    <div class="result-actions">
+
+
+        <button
+            type="button"
+            id="printButton"
+            class="action-button print-button">
+
+            🖨️ Print Result
+
+        </button>
+
+
+
+        <button
+            type="button"
+            id="saveButton"
+            class="action-button save-button">
+
+            💾 Save Result
+
+        </button>
+
+
+
+        <button
+            type="button"
+            id="againButton"
+            class="action-button again-button">
+
+            ↻ Try Another Prediction
+
+        </button>
+
+
+
+        <button
+            type="button"
+            id="askButton"
+            class="action-button ask-button">
+
+            🤖 Ask AgroAI
+
+        </button>
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            🌱 AgroAI
+        </div>
+
+        <p>
+            Smart agriculture powered by Artificial Intelligence.
+        </p>
+
+        <span>
+            AI-based Crop Recommendation System
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="crop.js"></script>
+
+
+</body>
+</html>

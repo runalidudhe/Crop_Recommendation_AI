@@ -1,0 +1,1433 @@
+/* =====================================================
+   AGROAI SMART IRRIGATION
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-green: #073d30;
+    --green: #0b6247;
+    --green-light: #16815e;
+    --lime: #a6d86c;
+    --mint: #e1f4e9;
+    --cream: #f7f5eb;
+    --white: #ffffff;
+    --text: #19372f;
+    --muted: #71817b;
+    --border: #e0e8e1;
+    --shadow: 0 14px 38px rgba(7, 67, 48, 0.10);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    min-height: 76px;
+    padding: 0 5%;
+    background: rgba(5, 57, 44, 0.98);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+}
+
+.logo > span:last-child > span {
+    color: var(--lime);
+}
+
+.logo-icon {
+    font-size: 26px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 21px;
+}
+
+.nav-links a {
+    color: #d9eae3;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: white;
+}
+
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--lime);
+    border-radius: 5px;
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-auth a,
+.logout-btn {
+    border: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 9px 14px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+#loginLink {
+    color: white;
+    border: 1px solid rgba(255,255,255,.25);
+}
+
+.signup-btn {
+    background: var(--lime);
+    color: #183b2d;
+}
+
+.logout-btn {
+    background: #e5f2e9;
+    color: var(--dark-green);
+    display: none;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.irrigation-hero {
+    min-height: 430px;
+    position: relative;
+    background:
+        url("agriculture-bg.jpg")
+        center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 65px 7%;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 50, 38, .90),
+            rgba(5, 70, 52, .65),
+            rgba(5, 70, 52, .20)
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    color: white;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(166, 216, 108, .15);
+    border: 1px solid rgba(166, 216, 108, .35);
+    color: #d3f2b3;
+    border-radius: 30px;
+    padding: 8px 14px;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.hero-content h1 {
+    font-size: 50px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+}
+
+.hero-content h1 span {
+    display: block;
+    color: #c9efa9;
+}
+
+.hero-content p {
+    color: #e2eee9;
+    font-size: 16px;
+    max-width: 620px;
+    margin-bottom: 25px;
+}
+
+.hero-points {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.hero-points span {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.17);
+    backdrop-filter: blur(8px);
+    padding: 9px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.irrigation-container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 65px 24px 75px;
+}
+
+
+/* =====================================================
+   INPUT CARD
+===================================================== */
+
+.irrigation-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+}
+
+.section-heading {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.heading-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    background: var(--mint);
+    display: grid;
+    place-items: center;
+    font-size: 27px;
+}
+
+.eyebrow {
+    color: var(--green);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+}
+
+.section-heading h2 {
+    color: var(--dark-green);
+    font-size: 27px;
+    margin: 4px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+#irrigationForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.input-wrapper {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    background: #fbfcf9;
+    border: 1px solid #d9e2da;
+    border-radius: 10px;
+    padding: 0 12px;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(11,98,71,.08);
+}
+
+.input-icon {
+    margin-right: 9px;
+    font-size: 16px;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: var(--text);
+    font-size: 13px;
+}
+
+.input-wrapper select:disabled,
+.input-wrapper input:disabled {
+    cursor: not-allowed;
+}
+
+.unit {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--green);
+}
+
+.input-group small {
+    color: #89958f;
+    font-size: 10px;
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.irrigation-btn,
+.reset-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 19px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.irrigation-btn {
+    background: var(--green);
+    color: white;
+}
+
+.irrigation-btn:hover {
+    background: #084b38;
+}
+
+.irrigation-btn:disabled {
+    opacity: .7;
+    cursor: wait;
+}
+
+.reset-btn {
+    background: #e9f1eb;
+    color: var(--dark-green);
+}
+
+.loader {
+    display: none;
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    border: 2px solid rgba(255,255,255,.35);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.search-tip {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-top: 24px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #f1f7ed;
+}
+
+.search-tip > span {
+    font-size: 20px;
+}
+
+.search-tip strong {
+    color: var(--dark-green);
+    font-size: 13px;
+}
+
+.search-tip p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.error-message {
+    display: none;
+    margin-top: 15px;
+    background: #fff0ed;
+    color: #9d4036;
+    border-radius: 9px;
+    padding: 10px 13px;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   BENEFITS
+===================================================== */
+
+.irrigation-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-top: 22px;
+}
+
+.benefit-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 23px;
+    box-shadow: var(--shadow);
+}
+
+.benefit-icon {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.benefit-card h3 {
+    color: var(--dark-green);
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.benefit-card p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.irrigation-result {
+    margin-top: 70px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.result-header h2 {
+    color: var(--dark-green);
+    font-size: 31px;
+    margin: 5px 0;
+}
+
+.result-header p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.live-badge {
+    background: #e7f5e9;
+    color: var(--green);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.live-badge span {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #43a866;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+
+/* =====================================================
+   RESULT LOCATION
+===================================================== */
+
+.result-location {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 17px 20px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 17px;
+    box-shadow: var(--shadow);
+}
+
+.location-icon {
+    font-size: 27px;
+}
+
+.result-location small {
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.result-location h3 {
+    color: var(--dark-green);
+    font-size: 17px;
+}
+
+.result-location p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   ADVANCED WATER ANALYSIS
+===================================================== */
+
+.water-requirement-section {
+    margin-top: 30px;
+}
+
+
+/* =====================================================
+   NEW WATER SECTION HEADING
+===================================================== */
+
+.water-section-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding: 2px 2px 0;
+}
+
+.water-heading-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #e2f5e8,
+        #f1faed
+    );
+
+    border: 1px solid rgba(34, 120, 70, 0.12);
+
+    font-size: 27px;
+
+    box-shadow:
+        0 7px 20px rgba(20, 70, 40, 0.07);
+}
+
+
+.water-heading-content {
+    padding-top: 1px;
+}
+
+
+.water-heading-label {
+    display: block;
+
+    color: var(--green);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.6px;
+
+    line-height: 1.3;
+}
+
+
+.water-heading-content h2 {
+    margin: 4px 0 5px;
+
+    color: var(--dark-green);
+
+    font-size: 25px;
+
+    font-weight: 750;
+
+    line-height: 1.2;
+}
+
+
+.water-heading-content p {
+    margin: 0;
+
+    max-width: 760px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   WATER SUMMARY
+===================================================== */
+
+.water-summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 22px;
+}
+
+
+.water-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    border: 1px solid rgba(34, 120, 70, 0.12);
+
+    box-shadow:
+        0 10px 30px rgba(20, 70, 40, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.water-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(20, 70, 40, 0.13);
+}
+
+.water-card-icon {
+    width: 52px;
+
+    height: 52px;
+
+    min-width: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #edf8f0;
+
+    font-size: 25px;
+}
+
+.water-card span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    color: #718078;
+}
+
+.water-card strong {
+    display: block;
+
+    font-size: 20px;
+
+    color: #174b2a;
+
+    line-height: 1.2;
+}
+
+
+/* =====================================================
+   WATER DETAIL
+===================================================== */
+
+.water-detail-box {
+    display: flex;
+
+    gap: 18px;
+
+    margin-top: 20px;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7fcf8,
+            #eef8f1
+        );
+
+    border: 1px solid rgba(34, 120, 70, 0.12);
+}
+
+.water-insight {
+    flex: 1;
+}
+
+.detail-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #174b2a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.water-detail-box p {
+    margin: 0;
+
+    line-height: 1.7;
+
+    color: #5d6c63;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   RECOMMENDED WATER
+===================================================== */
+
+.recommended-water {
+    flex: 0 0 340px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 15px 17px;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(34, 120, 70, 0.10);
+
+    box-shadow:
+        0 6px 18px rgba(20, 70, 40, 0.05);
+}
+
+.recommended-icon {
+    width: 43px;
+
+    height: 43px;
+
+    min-width: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #edf8f0;
+
+    font-size: 21px;
+}
+
+.recommended-content {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.recommended-water span {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #456052;
+}
+
+.recommended-water strong {
+    color: #16733a;
+
+    font-size: 19px;
+
+    margin: 2px 0;
+}
+
+.recommended-water small {
+    color: #7a8981;
+
+    font-size: 9px;
+
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.irrigation-status {
+    background: linear-gradient(
+        135deg,
+        #0b6046,
+        #167456
+    );
+
+    color: white;
+
+    border-radius: 20px;
+
+    padding: 27px;
+
+    display: grid;
+
+    grid-template-columns: auto 1fr auto;
+
+    gap: 18px;
+
+    align-items: center;
+
+    box-shadow:
+        0 15px 35px rgba(7,72,50,.18);
+
+    margin-top: 20px;
+}
+
+.irrigation-status.wait {
+    background: linear-gradient(
+        135deg,
+        #76671e,
+        #a08d30
+    );
+}
+
+.irrigation-status.stop {
+    background: linear-gradient(
+        135deg,
+        #784238,
+        #a45a4b
+    );
+}
+
+.status-icon {
+    font-size: 40px;
+}
+
+.status-content > span {
+    font-size: 9px;
+    letter-spacing: 1.6px;
+    opacity: .75;
+    font-weight: 800;
+}
+
+.status-content h2 {
+    font-size: 27px;
+    margin: 2px 0;
+}
+
+.status-content p {
+    font-size: 12px;
+    opacity: .9;
+}
+
+.moisture-result {
+    text-align: right;
+    padding-left: 25px;
+    border-left: 1px solid rgba(255,255,255,.2);
+}
+
+.moisture-result small {
+    display: block;
+    opacity: .75;
+    font-size: 9px;
+}
+
+.moisture-result strong {
+    font-size: 27px;
+}
+
+
+/* =====================================================
+   WEATHER STATS
+===================================================== */
+
+.weather-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 18px 0;
+}
+
+.weather-stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 19px;
+    box-shadow: var(--shadow);
+}
+
+.weather-stat-card > div {
+    font-size: 22px;
+}
+
+.weather-stat-card small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 7px;
+}
+
+.weather-stat-card strong {
+    display: block;
+    color: var(--dark-green);
+    font-size: 21px;
+    margin-top: 2px;
+}
+
+
+/* =====================================================
+   ADVICE
+===================================================== */
+
+.advice-section,
+.forecast-section {
+    margin-top: 28px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 17px;
+}
+
+.section-title > span {
+    font-size: 27px;
+}
+
+.section-title h2 {
+    color: var(--dark-green);
+    font-size: 21px;
+    margin-top: 2px;
+}
+
+.section-title p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.advice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.advice-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 19px;
+    display: flex;
+    gap: 12px;
+    box-shadow: var(--shadow);
+}
+
+.advice-icon {
+    font-size: 25px;
+}
+
+.advice-card h3 {
+    color: var(--dark-green);
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.advice-card p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.warning-card {
+    background: #fffaf0;
+    border-color: #f0dfad;
+}
+
+
+/* =====================================================
+   FORECAST
+===================================================== */
+
+.forecast-section {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 19px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.rain-forecast {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.rain-day {
+    background: #f3f8f2;
+    border-radius: 12px;
+    padding: 14px 8px;
+    text-align: center;
+}
+
+.rain-day strong {
+    display: block;
+    color: var(--dark-green);
+    font-size: 11px;
+}
+
+.rain-day .rain-mm {
+    color: var(--green);
+    font-size: 20px;
+    font-weight: 800;
+    margin: 6px 0;
+}
+
+.rain-day small {
+    color: var(--muted);
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 23px;
+}
+
+.print-btn,
+.another-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.print-btn {
+    background: var(--green);
+    color: white;
+}
+
+.another-btn {
+    background: #dff1e7;
+    color: var(--dark-green);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    background: var(--dark-green);
+    color: #d9e8e1;
+    text-align: center;
+    padding: 25px 20px;
+}
+
+.footer-logo {
+    color: white;
+    font-size: 18px;
+}
+
+.footer p {
+    font-size: 11px;
+    margin: 3px 0 5px;
+}
+
+.footer span {
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1050px) {
+
+    .navbar {
+        padding: 0 3%;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .hero-content h1 {
+        font-size: 43px;
+    }
+}
+
+
+@media (max-width: 1000px) {
+
+    .water-summary {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .water-detail-box {
+        flex-direction: column;
+    }
+
+    .recommended-water {
+        flex: 1;
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .navbar {
+        min-height: 70px;
+        flex-wrap: wrap;
+        padding: 12px 18px;
+    }
+
+    .logo {
+        margin-right: 0;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 3px;
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+    }
+
+    .nav-auth {
+        margin-left: auto;
+    }
+
+    .irrigation-hero {
+        min-height: 390px;
+        padding: 50px 25px;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+
+    .irrigation-container {
+        padding: 50px 17px;
+    }
+
+    #irrigationForm {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        grid-column: auto;
+    }
+
+    .irrigation-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .weather-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .advice-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rain-forecast {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .result-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .irrigation-status {
+        grid-template-columns: auto 1fr;
+    }
+
+    .moisture-result {
+        grid-column: 2;
+        text-align: left;
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .water-heading-content h2 {
+        font-size: 22px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .water-summary {
+        grid-template-columns:
+            1fr;
+    }
+
+    .water-card {
+        padding: 18px;
+    }
+
+    .water-detail-box {
+        flex-direction: column;
+    }
+
+    .recommended-water {
+        flex-direction: row;
+        align-items: center;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .nav-auth .signup-btn {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-points span {
+        font-size: 10px;
+    }
+
+    .irrigation-card {
+        padding: 22px;
+    }
+
+    .section-heading h2 {
+        font-size: 22px;
+    }
+
+    .weather-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .result-header {
+        flex-direction: column;
+    }
+
+    .result-header h2 {
+        font-size: 25px;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .result-actions button {
+        width: 100%;
+    }
+
+    .water-section-heading {
+        gap: 11px;
+    }
+
+    .water-heading-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        font-size: 23px;
+    }
+
+    .water-heading-label {
+        font-size: 9px;
+    }
+
+    .water-heading-content h2 {
+        font-size: 20px;
+    }
+
+    .water-heading-content p {
+        font-size: 11px;
+    }
+
+    .recommended-water {
+        align-items: flex-start;
+    }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print {
+
+    .navbar,
+    .irrigation-hero,
+    .irrigation-card,
+    .irrigation-benefits,
+    .result-actions,
+    .footer {
+        display: none !important;
+    }
+
+    .irrigation-container {
+        padding: 10px;
+        max-width: none;
+    }
+
+    .irrigation-result {
+        display: block !important;
+        margin-top: 0;
+    }
+
+    .irrigation-status,
+    .weather-stat-card,
+    .advice-card,
+    .forecast-section,
+    .result-location,
+    .water-card,
+    .water-detail-box {
+        box-shadow: none;
+    }
+}

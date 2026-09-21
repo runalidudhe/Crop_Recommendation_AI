@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather Intelligence | AgroAI</title>
+
+    <link rel="stylesheet" href="weather.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="logo-icon">🌱</span>
+        <span>Agro<span>AI</span></span>
+    </div>
+
+    <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="crop.html">Crop Recommendation</a>
+
+        <a href="weather.html" class="active">Weather</a>
+
+        <a href="chatbot.html">AI Assistant</a>
+
+    </nav>
+
+    <div class="nav-auth">
+
+        <a href="login.html"
+           id="loginLink">
+            Login
+        </a>
+
+        <a href="signup.html"
+           id="signupLink"
+           class="signup-btn">
+            Signup
+        </a>
+
+        <button
+            type="button"
+            id="logoutBtn"
+            class="logout-btn">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="weather-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-icon">
+            🌦️
+        </div>
+
+        <div>
+
+            <span class="hero-label">
+                AGROAI WEATHER INTELLIGENCE
+            </span>
+
+            <h1>
+                Weather Intelligence
+            </h1>
+
+            <p>
+                Real-time weather insights and smart farming
+                recommendations for better agricultural decisions.
+            </p>
+
+            <div class="hero-tags">
+
+                <span>🌡️ Live Weather</span>
+
+                <span>🌧️ Rain Forecast</span>
+
+                <span>🌱 Farming Advice</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="weather-container">
+
+
+    <!-- ================= SEARCH CARD ================= -->
+
+    <section class="location-card">
+
+        <div class="section-heading">
+
+            <div class="heading-icon">
+                📍
+            </div>
+
+            <div>
+
+                <span class="section-label">
+                    LOCATION WEATHER
+                </span>
+
+                <h2>
+                    Check Weather for Your Farm
+                </h2>
+
+                <p>
+                    Select your location to get real-time weather
+                    and farming intelligence.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form id="weatherForm">
+
+
+            <!-- STATE -->
+
+            <div class="input-group">
+
+                <label for="state">
+                    State
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🗺️
+                    </span>
+
+                    <select id="state" required>
+
+                        <option value="">
+                            Select State
+                        </option>
+
+                        <option value="Maharashtra">
+                            Maharashtra
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <small>
+                    Choose your state
+                </small>
+
+            </div>
+
+
+            <!-- DISTRICT -->
+
+            <div class="input-group">
+
+                <label for="district">
+                    District
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        📌
+                    </span>
+
+                    <select
+                        id="district"
+                        required
+                        disabled>
+
+                        <option value="">
+                            Select State First
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <small>
+                    Choose your district
+                </small>
+
+            </div>
+
+
+            <!-- CITY -->
+
+            <div class="input-group">
+
+                <label for="city">
+                    City
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🏙️
+                    </span>
+
+                    <input
+                        type="text"
+                        id="city"
+                        list="cityList"
+                        placeholder="Select or type city"
+                        autocomplete="off"
+                        disabled
+                    >
+
+                </div>
+
+                <datalist id="cityList"></datalist>
+
+                <small>
+                    Enter nearest city
+                </small>
+
+            </div>
+
+
+            <!-- VILLAGE -->
+
+            <div class="input-group">
+
+                <label for="village">
+                    Village
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🌾
+                    </span>
+
+                    <input
+                        type="text"
+                        id="village"
+                        list="villageList"
+                        placeholder="Type village name"
+                        autocomplete="off"
+                        disabled
+                    >
+
+                </div>
+
+                <datalist id="villageList"></datalist>
+
+                <small>
+                    Optional village name
+                </small>
+
+            </div>
+
+
+            <!-- SEARCH TYPE -->
+
+            <div class="input-group">
+
+                <label for="locationType">
+                    Location Type
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔎
+                    </span>
+
+                    <select id="locationType">
+
+                        <option value="auto">
+                            Auto Select
+                        </option>
+
+                        <option value="city">
+                            City
+                        </option>
+
+                        <option value="village">
+                            Village
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <small>
+                    Select what you want to search
+                </small>
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <div class="form-button-area">
+
+                <button
+                    type="submit"
+                    class="weather-btn"
+                    id="weatherBtn">
+
+                    <span id="btnText">
+                        ☁️ Check Weather
+                    </span>
+
+                    <span
+                        id="loader"
+                        class="loader">
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- TIP -->
+
+        <div class="search-tip">
+
+            <span class="tip-icon">
+                💡
+            </span>
+
+            <div>
+
+                <strong>
+                    AgroAI Tip
+                </strong>
+
+                <p>
+                    Select the nearest city or village to get
+                    more relevant local weather information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div
+            id="errorMessage"
+            class="error-message">
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= WEATHER RESULT ================= -->
+
+    <section
+        id="weatherResult"
+        class="weather-result hidden">
+
+
+        <!-- RESULT HEADER -->
+
+        <div class="result-header">
+
+            <div>
+
+                <span class="result-label">
+                    LIVE WEATHER REPORT
+                </span>
+
+                <h2>
+                    📍
+                    <span id="locationName">
+                        --
+                    </span>
+                </h2>
+
+                <p id="locationState">
+                    --
+                </p>
+
+            </div>
+
+            <div class="live-badge">
+
+                <span></span>
+
+                LIVE
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= CURRENT WEATHER ================= -->
+
+        <div class="current-weather-card">
+
+
+            <!-- MAIN WEATHER -->
+
+            <div class="current-main">
+
+                <div class="weather-icon-wrapper">
+
+                    <img
+                        id="currentIcon"
+                        src=""
+                        alt="Current Weather">
+
+                </div>
+
+
+                <div class="current-temperature">
+
+                    <span id="currentTemperature">
+                        --°C
+                    </span>
+
+                    <p id="currentCondition">
+                        --
+                    </p>
+
+                    <small id="currentDescription">
+                        --
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- WEATHER STATS -->
+
+            <div class="current-details">
+
+
+                <div class="weather-stat">
+
+                    <div class="stat-icon">
+                        🌡️
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Feels Like
+                        </small>
+
+                        <strong id="feelsLike">
+                            --°C
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-stat">
+
+                    <div class="stat-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Humidity
+                        </small>
+
+                        <strong id="humidity">
+                            --%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-stat">
+
+                    <div class="stat-icon">
+                        🌧️
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Rain
+                        </small>
+
+                        <strong id="currentRain">
+                            No rain
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-stat">
+
+                    <div class="stat-icon">
+                        💨
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Wind Speed
+                        </small>
+
+                        <strong id="windSpeed">
+                            -- m/s
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-stat">
+
+                    <div class="stat-icon">
+                        🔵
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Pressure
+                        </small>
+
+                        <strong id="pressure">
+                            -- hPa
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-stat">
+
+                    <div class="stat-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Farming Status
+                        </small>
+
+                        <strong id="farmingStatus">
+                            Suitable
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= FARMING ADVICE ================= -->
+
+        <section class="advice-section">
+
+            <div class="section-title">
+
+                <div class="section-title-icon">
+                    🌱
+                </div>
+
+                <div>
+
+                    <span class="section-label">
+                        SMART FARMING
+                    </span>
+
+                    <h2>
+                        Weather-Based Farming Advice
+                    </h2>
+
+                    <p>
+                        Practical recommendations based on
+                        current and upcoming weather conditions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="advice-grid">
+
+
+                <!-- IRRIGATION -->
+
+                <div class="advice-card irrigation">
+
+                    <div class="advice-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <span class="advice-tag">
+                            WATER
+                        </span>
+
+                        <h3>
+                            Irrigation Advice
+                        </h3>
+
+                        <p id="irrigationAdvice">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SOWING -->
+
+                <div class="advice-card sowing">
+
+                    <div class="advice-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <span class="advice-tag">
+                            FIELD WORK
+                        </span>
+
+                        <h3>
+                            Sowing Advice
+                        </h3>
+
+                        <p id="sowingAdvice">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WARNING -->
+
+                <div
+                    class="advice-card warning"
+                    id="warningCard">
+
+                    <div class="advice-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <span class="advice-tag">
+                            ALERT
+                        </span>
+
+                        <h3>
+                            Weather Warning
+                        </h3>
+
+                        <p id="heavyRainWarning">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FORECAST ================= -->
+
+        <section class="forecast-section">
+
+            <div class="section-title">
+
+                <div class="section-title-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <span class="section-label">
+                        WEATHER OUTLOOK
+                    </span>
+
+                    <h2>
+                        5-Day Weather Forecast
+                    </h2>
+
+                    <p>
+                        Plan irrigation and farming activities
+                        using the upcoming weather.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="forecastContainer"
+                class="forecast-container">
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FARMING TIP ================= -->
+
+        <div class="farming-note">
+
+            <div class="note-icon">
+                🌾
+            </div>
+
+            <div>
+
+                <strong>
+                    AgroAI Farming Tip
+                </strong>
+
+                <p>
+                    Always check soil moisture before irrigation.
+                    During heavy rainfall, maintain proper drainage
+                    to prevent waterlogging and crop damage.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= NEW SEARCH ================= -->
+
+        <div class="another-search">
+
+            <button
+                type="button"
+                id="checkAnotherBtn">
+
+                🔄
+                Check Another Location
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            🌱 <strong>AgroAI</strong>
+        </div>
+
+        <p>
+            Smart farming powered by AI and real-time
+            weather intelligence.
+        </p>
+
+        <div class="footer-copy">
+            © 2026 AgroAI. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="weather.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Irrigation | AgroAI</title>
+
+    <link rel="stylesheet"
+          href="irrigation.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <span class="logo-icon">🌱</span>
+
+        <span>
+            Agro<span>AI</span>
+        </span>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="crop.html">
+            Crop Recommendation
+        </a>
+
+        <a href="weather.html">
+            Weather
+        </a>
+
+        <a href="irrigation.html"
+           class="active">
+            Irrigation
+        </a>
+
+        <a href="chatbot.html">
+            AI Assistant
+        </a>
+
+    </nav>
+
+
+    <div class="nav-auth">
+
+        <a href="login.html"
+           id="loginLink">
+            Login
+        </a>
+
+        <a href="signup.html"
+           id="signupLink"
+           class="signup-btn">
+            Signup
+        </a>
+
+        <button type="button"
+                id="logoutBtn"
+                class="logout-btn">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="irrigation-hero">
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            💧 SMART IRRIGATION INTELLIGENCE
+        </div>
+
+
+        <h1>
+
+            Smart Irrigation
+
+            <span>
+                for Smarter Farming
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Know when your crop needs water using soil
+            moisture, real-time weather and rainfall forecast.
+
+        </p>
+
+
+        <div class="hero-points">
+
+            <span>
+                💧 Soil Moisture
+            </span>
+
+            <span>
+                🌦️ Real Weather
+            </span>
+
+            <span>
+                🚿 Water Guidance
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="irrigation-container">
+
+
+    <!-- =================================================
+         INPUT CARD
+    ================================================== -->
+
+    <section class="irrigation-card">
+
+
+        <div class="section-heading">
+
+            <div class="heading-icon">
+                💧
+            </div>
+
+
+            <div>
+
+                <span class="eyebrow">
+                    FARM INFORMATION
+                </span>
+
+
+                <h2>
+                    Check Irrigation Requirement
+                </h2>
+
+
+                <p>
+                    Enter your farm details to get smart
+                    irrigation guidance.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <form id="irrigationForm">
+
+
+            <!-- STATE -->
+
+            <div class="input-group">
+
+                <label for="state">
+                    State
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🗺️
+                    </span>
+
+
+                    <select id="state"
+                            required>
+
+                        <option value="">
+                            Select State
+                        </option>
+
+                        <option value="Maharashtra">
+                            Maharashtra
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <small>
+                    Select your state
+                </small>
+
+            </div>
+
+
+
+            <!-- DISTRICT -->
+
+            <div class="input-group">
+
+                <label for="district">
+                    District
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        📍
+                    </span>
+
+
+                    <select id="district"
+                            required
+                            disabled>
+
+                        <option value="">
+                            First select state
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <small>
+                    Select your district
+                </small>
+
+            </div>
+
+
+
+            <!-- CROP -->
+
+            <div class="input-group">
+
+                <label for="crop">
+                    Crop
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🌱
+                    </span>
+
+
+                    <select id="crop"
+                            required>
+
+                        <option value="">
+                            Select Crop
+                        </option>
+
+                        <option value="Rice">
+                            Rice
+                        </option>
+
+                        <option value="Wheat">
+                            Wheat
+                        </option>
+
+                        <option value="Maize">
+                            Maize
+                        </option>
+
+                        <option value="Cotton">
+                            Cotton
+                        </option>
+
+                        <option value="Soybean">
+                            Soybean
+                        </option>
+
+                        <option value="Chickpea">
+                            Chickpea
+                        </option>
+
+                        <option value="Pigeon Peas">
+                            Pigeon Peas
+                        </option>
+
+                        <option value="Blackgram">
+                            Blackgram
+                        </option>
+
+                        <option value="Mungbean">
+                            Mungbean
+                        </option>
+
+                        <option value="Groundnut">
+                            Groundnut
+                        </option>
+
+                        <option value="Sugarcane">
+                            Sugarcane
+                        </option>
+
+                        <option value="Tomato">
+                            Tomato
+                        </option>
+
+                        <option value="Onion">
+                            Onion
+                        </option>
+
+                        <option value="Potato">
+                            Potato
+                        </option>
+
+                        <option value="Sunflower">
+                            Sunflower
+                        </option>
+
+                        <option value="Banana">
+                            Banana
+                        </option>
+
+                        <option value="Mango">
+                            Mango
+                        </option>
+
+                        <option value="Grapes">
+                            Grapes
+                        </option>
+
+                        <option value="Orange">
+                            Orange
+                        </option>
+
+                        <option value="Pomegranate">
+                            Pomegranate
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <small>
+                    Select the crop currently growing
+                </small>
+
+            </div>
+
+
+
+            <!-- SOIL MOISTURE -->
+
+            <div class="input-group">
+
+                <label for="soilMoisture">
+                    Soil Moisture
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        💦
+                    </span>
+
+
+                    <input
+                        type="number"
+                        id="soilMoisture"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        placeholder="e.g. 35"
+                        required
+                    >
+
+
+                    <span class="unit">
+                        %
+                    </span>
+
+                </div>
+
+
+                <small>
+                    Enter current soil moisture from 0–100%
+                </small>
+
+            </div>
+
+
+
+            <!-- FIELD AREA -->
+
+            <div class="input-group">
+
+                <label for="fieldArea">
+                    Field Area
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🌾
+                    </span>
+
+
+                    <input
+                        type="number"
+                        id="fieldArea"
+                        min="0.1"
+                        step="0.1"
+                        placeholder="e.g. 2"
+                        required
+                    >
+
+
+                    <span class="unit">
+                        acres
+                    </span>
+
+                </div>
+
+
+                <small>
+                    Enter approximate field area
+                </small>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    id="irrigationBtn"
+                    class="irrigation-btn"
+                >
+
+                    <span id="btnText">
+                        💧 Check Irrigation
+                    </span>
+
+                    <span
+                        id="loader"
+                        class="loader"
+                    ></span>
+
+                </button>
+
+
+                <button
+                    type="reset"
+                    id="resetBtn"
+                    class="reset-btn"
+                >
+
+                    Reset
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+
+        <!-- TIP -->
+
+        <div class="search-tip">
+
+            <span>
+                💡
+            </span>
+
+
+            <div>
+
+                <strong>
+                    AgroAI Tip
+                </strong>
+
+
+                <p>
+                    Always check soil moisture before irrigation.
+                    If rain is expected, avoid unnecessary watering.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ERROR -->
+
+        <div
+            id="errorMessage"
+            class="error-message"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         INFORMATION CARDS
+    ================================================== -->
+
+    <section class="irrigation-benefits">
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                💧
+            </div>
+
+
+            <h3>
+                Save Water
+            </h3>
+
+
+            <p>
+                Avoid unnecessary irrigation by checking
+                soil moisture and rainfall.
+            </p>
+
+        </div>
+
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                🌦️
+            </div>
+
+
+            <h3>
+                Weather Based
+            </h3>
+
+
+            <p>
+                Use real-time weather and upcoming
+                rainfall information.
+            </p>
+
+        </div>
+
+
+
+        <div class="benefit-card">
+
+            <div class="benefit-icon">
+                🌱
+            </div>
+
+
+            <h3>
+                Crop Friendly
+            </h3>
+
+
+            <p>
+                Get irrigation guidance according to
+                your selected crop.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         RESULT
+    ================================================== -->
+
+    <section
+        id="irrigationResult"
+        class="irrigation-result hidden"
+    >
+
+
+        <!-- RESULT HEADER -->
+
+        <div class="result-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    AGROAI IRRIGATION REPORT
+                </span>
+
+
+                <h2>
+                    Smart Irrigation Recommendation
+                </h2>
+
+
+                <p>
+                    Based on your farm information and
+                    real-time weather conditions.
+                </p>
+
+            </div>
+
+
+            <div class="live-badge">
+
+                <span></span>
+
+                LIVE ANALYSIS
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOCATION -->
+
+        <div class="result-location">
+
+            <div class="location-icon">
+                📍
+            </div>
+
+
+            <div>
+
+                <small>
+                    FARM LOCATION
+                </small>
+
+
+                <h3 id="resultLocation">
+                    --
+                </h3>
+
+
+                <p id="resultCrop">
+                    --
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ADVANCED WATER ANALYSIS
+        ================================================== -->
+
+        <section class="water-requirement-section">
+
+
+            <!-- NEW PROPER HEADING -->
+
+            <div class="water-section-heading">
+
+                <div class="water-heading-icon">
+                    💧
+                </div>
+
+
+                <div class="water-heading-content">
+
+                    <span class="water-heading-label">
+                        ADVANCED WATER ANALYSIS
+                    </span>
+
+
+                    <h2>
+                        Crop Water Requirement
+                    </h2>
+
+
+                    <p>
+                        Smart water estimation based on crop type,
+                        field area, soil moisture and current
+                        weather conditions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- WATER SUMMARY -->
+
+            <div class="water-summary">
+
+
+                <!-- WATER CATEGORY -->
+
+                <div class="water-card">
+
+                    <div class="water-card-icon">
+                        🌱
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            WATER CATEGORY
+                        </span>
+
+
+                        <strong id="waterCategory">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DAILY REQUIREMENT -->
+
+                <div class="water-card">
+
+                    <div class="water-card-icon">
+                        💦
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            DAILY REQUIREMENT
+                        </span>
+
+
+                        <strong id="dailyWater">
+                            -- mm/day
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- WATER PER ACRE -->
+
+                <div class="water-card">
+
+                    <div class="water-card-icon">
+                        🚜
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            WATER PER ACRE
+                        </span>
+
+
+                        <strong id="waterPerAcre">
+                            -- L
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL FIELD WATER -->
+
+                <div class="water-card">
+
+                    <div class="water-card-icon">
+                        📐
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            TOTAL FIELD WATER
+                        </span>
+
+
+                        <strong id="totalWater">
+                            -- L/day
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- WATER INSIGHT -->
+
+            <div class="water-detail-box">
+
+
+                <div class="water-insight">
+
+                    <span class="detail-label">
+                        💡 Water Requirement Insight
+                    </span>
+
+
+                    <p id="waterRequirementNote">
+
+                        Water requirement depends on crop type,
+                        field area, soil moisture and weather
+                        conditions.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- RECOMMENDED WATER -->
+
+                <div class="recommended-water">
+
+                    <div class="recommended-icon">
+                        💧
+                    </div>
+
+
+                    <div class="recommended-content">
+
+                        <span>
+                            Recommended Irrigation Water
+                        </span>
+
+
+                        <strong id="recommendedWater">
+                            -- L/day
+                        </strong>
+
+
+                        <small>
+                            Current irrigation quantity after
+                            considering rainfall and soil moisture.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- IRRIGATION STATUS -->
+
+        <div
+            class="irrigation-status"
+            id="statusCard"
+        >
+
+            <div
+                class="status-icon"
+                id="statusIcon"
+            >
+                💧
+            </div>
+
+
+            <div class="status-content">
+
+                <span>
+                    IRRIGATION STATUS
+                </span>
+
+
+                <h2 id="irrigationStatus">
+                    --
+                </h2>
+
+
+                <p id="statusReason">
+                    --
+                </p>
+
+            </div>
+
+
+            <div class="moisture-result">
+
+                <small>
+                    SOIL MOISTURE
+                </small>
+
+
+                <strong id="resultMoisture">
+                    --%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WEATHER STATS -->
+
+        <div class="weather-stats">
+
+
+            <div class="weather-stat-card">
+
+                <div>
+                    🌡️
+                </div>
+
+
+                <small>
+                    Temperature
+                </small>
+
+
+                <strong id="resultTemperature">
+                    --°C
+                </strong>
+
+            </div>
+
+
+
+            <div class="weather-stat-card">
+
+                <div>
+                    💦
+                </div>
+
+
+                <small>
+                    Humidity
+                </small>
+
+
+                <strong id="resultHumidity">
+                    --%
+                </strong>
+
+            </div>
+
+
+
+            <div class="weather-stat-card">
+
+                <div>
+                    🌧️
+                </div>
+
+
+                <small>
+                    Rain Expected
+                </small>
+
+
+                <strong id="resultRain">
+                    -- mm
+                </strong>
+
+            </div>
+
+
+
+            <div class="weather-stat-card">
+
+                <div>
+                    ☁️
+                </div>
+
+
+                <small>
+                    Rain Probability
+                </small>
+
+
+                <strong id="resultProbability">
+                    --%
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- IRRIGATION GUIDANCE -->
+
+        <section class="advice-section">
+
+
+            <div class="section-title">
+
+                <span>
+                    🌱
+                </span>
+
+
+                <div>
+
+                    <span class="eyebrow">
+                        SMART FARMING
+                    </span>
+
+
+                    <h2>
+                        Irrigation Guidance
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="advice-grid">
+
+
+                <div class="advice-card">
+
+                    <div class="advice-icon">
+                        🚿
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Water Advice
+                        </h3>
+
+
+                        <p id="waterAdvice">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="advice-card">
+
+                    <div class="advice-icon">
+                        ⏰
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            When to Irrigate
+                        </h3>
+
+
+                        <p id="timingAdvice">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="advice-card warning-card"
+                    id="warningCard"
+                >
+
+                    <div class="advice-icon">
+                        ⚠️
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Field Warning
+                        </h3>
+
+
+                        <p id="warningAdvice">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- RAIN FORECAST -->
+
+        <section class="forecast-section">
+
+
+            <div class="section-title">
+
+                <span>
+                    🌦️
+                </span>
+
+
+                <div>
+
+                    <span class="eyebrow">
+                        WEATHER IMPACT
+                    </span>
+
+
+                    <h2>
+                        Upcoming Rainfall
+                    </h2>
+
+
+                    <p>
+                        Rainfall forecast that can affect irrigation.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                id="rainForecast"
+                class="rain-forecast"
+            ></div>
+
+
+        </section>
+
+
+
+        <!-- RESULT ACTIONS -->
+
+        <div class="result-actions">
+
+            <button
+                type="button"
+                id="printBtn"
+                class="print-btn"
+            >
+                🖨️ Print Result
+            </button>
+
+
+            <button
+                type="button"
+                id="anotherBtn"
+                class="another-btn"
+            >
+                🔄 Check Another Farm
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+
+        🌱
+
+        <strong>
+            AgroAI
+        </strong>
+
+    </div>
+
+
+    <p>
+        Smart agriculture powered by AI and real-time intelligence.
+    </p>
+
+
+    <span>
+        © 2026 AgroAI. All rights reserved.
+    </span>
+
+</footer>
+
+
+
+<script src="irrigation.js"></script>
+
+
+</body>
+
+</html>

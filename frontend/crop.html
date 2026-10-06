@@ -10,9 +10,9 @@
 
     <meta
         name="description"
-        content="AgroAI Smart Crop Recommendation">
+        content="FarmNexa-AI Smart Crop Recommendation">
 
-    <title>AgroAI | Crop Recommendation</title>
+    <title>FarmNexa-AI | Crop Recommendation</title>
 
     <link rel="stylesheet" href="crop.css">
 
@@ -42,83 +42,49 @@
 
     <div class="navbar">
 
-        <!-- LOGO -->
+        <!-- LEFT -->
+        <a href="index.html" class="brand-logo">
 
-        <a
-            href="index.html"
-            class="nav-logo">
+            <img
+                src="farmnexa-ai-logo.png"
+                alt="FarmNexa-AI Logo"
+            >
 
-            <span class="logo-icon">
-                🌱
-            </span>
-
-            <span>
-                AgroAI
-            </span>
+            <span>FarmNexa-AI</span>
 
         </a>
 
 
-        <!-- RIGHT NAVIGATION -->
-
+        <!-- CENTER -->
         <nav class="nav-links">
 
-            <a href="index.html">
-                Home
-            </a>
-
-            <a
-                href="crop.html"
-                class="active">
-
-                🌾 Crop Recommendation
-
+            <a href="index.html" class="active">
+                🏠 Home
             </a>
 
             <a href="chatbot.html">
                 🤖 AI Assistant
             </a>
 
-
-            <!-- LOGGED OUT -->
-
-            <a
-                href="login.html"
-                id="loginLink"
-                class="auth-link">
-
-                Login
-
-            </a>
-
-
-            <a
-                href="signup.html"
-                id="signupLink"
-                class="auth-link signup-link">
-
-                Sign Up
-
-            </a>
-
-
-            <!-- LOGGED IN -->
-
-            <button
-                type="button"
-                id="logoutLink"
-                class="logout-link hidden">
-
-                Logout
-
-            </button>
-
         </nav>
+
+
+        <!-- RIGHT -->
+        <div class="datetime-box" aria-live="polite">
+
+            <div id="date">
+                24 Sept 2026
+            </div>
+
+            <div id="time">
+                00:00:00
+            </div>
+
+        </div>
 
     </div>
 
 </header>
-
 
 
 <!-- =========================================================
@@ -141,7 +107,7 @@
         </h1>
 
         <p>
-            Enter your farm conditions and let AgroAI
+            Enter your farm conditions and let FarmNexa-AI
             analyze the data to recommend suitable crops.
         </p>
 
@@ -271,10 +237,7 @@
 
             </label>
 
-            <select
-                id="district"
-                name="district"
-                disabled>
+            <select id="district" name="district" disabled>
 
                 <option value="">
                     Select District
@@ -681,7 +644,12 @@
     <div class="result-header">
 
         <div class="result-header-icon">
-            ✓
+
+            <img
+                src="farmnexa-ai-logo.png"
+                alt="FarmNexa-AI"
+                class="result-logo">
+
         </div>
 
         <div>
@@ -695,7 +663,7 @@
             </h2>
 
             <p>
-                AgroAI analyzed the submitted farm conditions.
+                FarmNexa-AI analyzed the submitted farm conditions.
             </p>
 
         </div>
@@ -722,7 +690,7 @@
             </h1>
 
             <p class="recommendation-description">
-                AgroAI's primary recommendation based on
+                FarmNexa-AI's primary recommendation based on
                 your submitted conditions.
             </p>
 
@@ -799,7 +767,7 @@
             <div>
 
                 <h3>
-                    Why AgroAI Recommended This Crop
+                    Why FarmNexa-AI Recommended This Crop
                 </h3>
 
                 <p>
@@ -1495,7 +1463,7 @@
             <div>
 
                 <span>
-                    AGROAI TIP
+                    FARMNEXA-AI TIP
                 </span>
 
                 <h3>
@@ -1629,7 +1597,7 @@
             id="askButton"
             class="action-button ask-button">
 
-            🤖 Ask AgroAI
+            🤖 Ask FarmNexa-AI
 
         </button>
 
@@ -1651,7 +1619,16 @@
     <div class="footer-content">
 
         <div class="footer-brand">
-            🌱 AgroAI
+
+            <img
+                src="farmnexa-ai-logo.png"
+                alt="FarmNexa-AI Logo"
+                class="footer-logo-image">
+
+            <span>
+                FarmNexa-AI
+            </span>
+
         </div>
 
         <p>

@@ -1,54 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Weather Intelligence | AgroAI</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="weather.css">
+    <title>Weather Intelligence | FarmNexa-AI</title>
+
+    <link
+        rel="stylesheet"
+        href="weather.css"
+    >
+
 </head>
+
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
 
 <header class="navbar">
 
     <div class="logo">
-        <span class="logo-icon">🌱</span>
-        <span>Agro<span>AI</span></span>
+
+        <img
+            src="farmnexa-ai-logo.png"
+            alt="FarmNexa-AI Logo"
+            class="agroai-logo-image"
+        >
+
     </div>
+
 
     <nav class="nav-links">
 
-        <a href="index.html">Home</a>
+        <a href="index.html">
+            Home
+        </a>
 
-        <a href="crop.html">Crop Recommendation</a>
+        <a href="crop.html">
+            Crop Recommendation
+        </a>
 
-        <a href="weather.html" class="active">Weather</a>
+        <a
+            href="weather.html"
+            class="active"
+        >
+            Weather
+        </a>
 
-        <a href="chatbot.html">AI Assistant</a>
+        <a href="chatbot.html">
+            AI Assistant
+        </a>
 
     </nav>
 
+
     <div class="nav-auth">
 
-        <a href="login.html"
-           id="loginLink">
+        <a
+            href="login.html"
+            id="loginLink"
+        >
             Login
         </a>
 
-        <a href="signup.html"
-           id="signupLink"
-           class="signup-btn">
+        <a
+            href="signup.html"
+            id="signupLink"
+            class="signup-btn"
+        >
             Signup
         </a>
 
         <button
             type="button"
             id="logoutBtn"
-            class="logout-btn">
+            class="logout-btn"
+        >
             Logout
         </button>
 
@@ -57,11 +94,15 @@
 </header>
 
 
-<!-- ================= HERO ================= -->
+
+<!-- =====================================================
+     HERO
+====================================================== -->
 
 <section class="weather-hero">
 
     <div class="hero-overlay"></div>
+
 
     <div class="hero-content">
 
@@ -69,28 +110,38 @@
             🌦️
         </div>
 
+
         <div>
 
             <span class="hero-label">
-                AGROAI WEATHER INTELLIGENCE
+                FARMNEXA-AI WEATHER INTELLIGENCE
             </span>
+
 
             <h1>
                 Weather Intelligence
             </h1>
+
 
             <p>
                 Real-time weather insights and smart farming
                 recommendations for better agricultural decisions.
             </p>
 
+
             <div class="hero-tags">
 
-                <span>🌡️ Live Weather</span>
+                <span>
+                    🌡️ Live Weather
+                </span>
 
-                <span>🌧️ Rain Forecast</span>
+                <span>
+                    🌧️ Rain Forecast
+                </span>
 
-                <span>🌱 Farming Advice</span>
+                <span>
+                    🌱 Farming Advice
+                </span>
 
             </div>
 
@@ -101,14 +152,20 @@
 </section>
 
 
-<!-- ================= MAIN ================= -->
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
 
 <main class="weather-container">
 
 
-    <!-- ================= SEARCH CARD ================= -->
+    <!-- =================================================
+         LOCATION CARD
+    ================================================== -->
 
     <section class="location-card">
+
 
         <div class="section-heading">
 
@@ -116,25 +173,33 @@
                 📍
             </div>
 
+
             <div>
 
                 <span class="section-label">
                     LOCATION WEATHER
                 </span>
 
+
                 <h2>
                     Check Weather for Your Farm
                 </h2>
 
+
                 <p>
-                    Select your location to get real-time weather
-                    and farming intelligence.
+                    Select your location to get real-time
+                    weather and farming intelligence.
                 </p>
 
             </div>
 
         </div>
 
+
+
+        <!-- =============================================
+             WEATHER FORM
+        ============================================== -->
 
         <form id="weatherForm">
 
@@ -147,13 +212,18 @@
                     State
                 </label>
 
+
                 <div class="input-wrapper">
 
                     <span class="input-icon">
                         🗺️
                     </span>
 
-                    <select id="state" required>
+
+                    <select
+                        id="state"
+                        required
+                    >
 
                         <option value="">
                             Select State
@@ -167,11 +237,13 @@
 
                 </div>
 
+
                 <small>
                     Choose your state
                 </small>
 
             </div>
+
 
 
             <!-- DISTRICT -->
@@ -182,16 +254,19 @@
                     District
                 </label>
 
+
                 <div class="input-wrapper">
 
                     <span class="input-icon">
                         📌
                     </span>
 
+
                     <select
                         id="district"
                         required
-                        disabled>
+                        disabled
+                    >
 
                         <option value="">
                             Select State First
@@ -201,11 +276,13 @@
 
                 </div>
 
+
                 <small>
                     Choose your district
                 </small>
 
             </div>
+
 
 
             <!-- CITY -->
@@ -216,11 +293,13 @@
                     City
                 </label>
 
+
                 <div class="input-wrapper">
 
                     <span class="input-icon">
                         🏙️
                     </span>
+
 
                     <input
                         type="text"
@@ -233,13 +312,16 @@
 
                 </div>
 
+
                 <datalist id="cityList"></datalist>
+
 
                 <small>
                     Enter nearest city
                 </small>
 
             </div>
+
 
 
             <!-- VILLAGE -->
@@ -250,11 +332,13 @@
                     Village
                 </label>
 
+
                 <div class="input-wrapper">
 
                     <span class="input-icon">
                         🌾
                     </span>
+
 
                     <input
                         type="text"
@@ -267,7 +351,9 @@
 
                 </div>
 
+
                 <datalist id="villageList"></datalist>
+
 
                 <small>
                     Optional village name
@@ -276,7 +362,8 @@
             </div>
 
 
-            <!-- SEARCH TYPE -->
+
+            <!-- LOCATION TYPE -->
 
             <div class="input-group">
 
@@ -284,11 +371,13 @@
                     Location Type
                 </label>
 
+
                 <div class="input-wrapper">
 
                     <span class="input-icon">
                         🔎
                     </span>
+
 
                     <select id="locationType">
 
@@ -308,11 +397,13 @@
 
                 </div>
 
+
                 <small>
                     Select what you want to search
                 </small>
 
             </div>
+
 
 
             <!-- BUTTON -->
@@ -322,22 +413,26 @@
                 <button
                     type="submit"
                     class="weather-btn"
-                    id="weatherBtn">
+                    id="weatherBtn"
+                >
 
                     <span id="btnText">
                         ☁️ Check Weather
                     </span>
 
+
                     <span
                         id="loader"
-                        class="loader">
-                    </span>
+                        class="loader"
+                    ></span>
 
                 </button>
 
             </div>
 
+
         </form>
+
 
 
         <!-- TIP -->
@@ -348,11 +443,13 @@
                 💡
             </span>
 
+
             <div>
 
                 <strong>
-                    AgroAI Tip
+                    FarmNexa-AI Tip
                 </strong>
+
 
                 <p>
                     Select the nearest city or village to get
@@ -364,22 +461,27 @@
         </div>
 
 
+
         <!-- ERROR -->
 
         <div
             id="errorMessage"
-            class="error-message">
-        </div>
+            class="error-message"
+        ></div>
+
 
     </section>
 
 
 
-    <!-- ================= WEATHER RESULT ================= -->
+    <!-- =================================================
+         WEATHER RESULT
+    ================================================== -->
 
     <section
         id="weatherResult"
-        class="weather-result hidden">
+        class="weather-result hidden"
+    >
 
 
         <!-- RESULT HEADER -->
@@ -392,6 +494,7 @@
                     LIVE WEATHER REPORT
                 </span>
 
+
                 <h2>
                     📍
                     <span id="locationName">
@@ -399,11 +502,13 @@
                     </span>
                 </h2>
 
+
                 <p id="locationState">
                     --
                 </p>
 
             </div>
+
 
             <div class="live-badge">
 
@@ -417,21 +522,21 @@
 
 
 
-        <!-- ================= CURRENT WEATHER ================= -->
+        <!-- CURRENT WEATHER -->
 
         <div class="current-weather-card">
 
 
-            <!-- MAIN WEATHER -->
-
             <div class="current-main">
+
 
                 <div class="weather-icon-wrapper">
 
                     <img
                         id="currentIcon"
                         src=""
-                        alt="Current Weather">
+                        alt="Current Weather"
+                    >
 
                 </div>
 
@@ -442,9 +547,11 @@
                         --°C
                     </span>
 
+
                     <p id="currentCondition">
                         --
                     </p>
+
 
                     <small id="currentDescription">
                         --
@@ -452,11 +559,10 @@
 
                 </div>
 
+
             </div>
 
 
-
-            <!-- WEATHER STATS -->
 
             <div class="current-details">
 
@@ -482,6 +588,7 @@
                 </div>
 
 
+
                 <div class="weather-stat">
 
                     <div class="stat-icon">
@@ -501,6 +608,7 @@
                     </div>
 
                 </div>
+
 
 
                 <div class="weather-stat">
@@ -524,6 +632,7 @@
                 </div>
 
 
+
                 <div class="weather-stat">
 
                     <div class="stat-icon">
@@ -543,6 +652,7 @@
                     </div>
 
                 </div>
+
 
 
                 <div class="weather-stat">
@@ -566,6 +676,7 @@
                 </div>
 
 
+
                 <div class="weather-stat">
 
                     <div class="stat-icon">
@@ -586,15 +697,19 @@
 
                 </div>
 
+
             </div>
 
         </div>
 
 
 
-        <!-- ================= FARMING ADVICE ================= -->
+        <!-- =================================================
+             FARMING ADVICE
+        ================================================== -->
 
         <section class="advice-section">
+
 
             <div class="section-title">
 
@@ -602,24 +717,28 @@
                     🌱
                 </div>
 
+
                 <div>
 
                     <span class="section-label">
                         SMART FARMING
                     </span>
 
+
                     <h2>
                         Weather-Based Farming Advice
                     </h2>
 
+
                     <p>
-                        Practical recommendations based on
-                        current and upcoming weather conditions.
+                        Practical recommendations based on current
+                        and upcoming weather conditions.
                     </p>
 
                 </div>
 
             </div>
+
 
 
             <div class="advice-grid">
@@ -633,15 +752,18 @@
                         💧
                     </div>
 
+
                     <div>
 
                         <span class="advice-tag">
                             WATER
                         </span>
 
+
                         <h3>
                             Irrigation Advice
                         </h3>
+
 
                         <p id="irrigationAdvice">
                             --
@@ -652,6 +774,7 @@
                 </div>
 
 
+
                 <!-- SOWING -->
 
                 <div class="advice-card sowing">
@@ -660,15 +783,18 @@
                         🌱
                     </div>
 
+
                     <div>
 
                         <span class="advice-tag">
                             FIELD WORK
                         </span>
 
+
                         <h3>
                             Sowing Advice
                         </h3>
+
 
                         <p id="sowingAdvice">
                             --
@@ -679,15 +805,18 @@
                 </div>
 
 
+
                 <!-- WARNING -->
 
                 <div
                     class="advice-card warning"
-                    id="warningCard">
+                    id="warningCard"
+                >
 
                     <div class="advice-icon">
                         ⚠️
                     </div>
+
 
                     <div>
 
@@ -695,9 +824,11 @@
                             ALERT
                         </span>
 
+
                         <h3>
                             Weather Warning
                         </h3>
+
 
                         <p id="heavyRainWarning">
                             --
@@ -707,15 +838,19 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
 
-        <!-- ================= FORECAST ================= -->
+        <!-- =================================================
+             FORECAST
+        ================================================== -->
 
         <section class="forecast-section">
+
 
             <div class="section-title">
 
@@ -723,15 +858,18 @@
                     📅
                 </div>
 
+
                 <div>
 
                     <span class="section-label">
                         WEATHER OUTLOOK
                     </span>
 
+
                     <h2>
                         5-Day Weather Forecast
                     </h2>
+
 
                     <p>
                         Plan irrigation and farming activities
@@ -745,14 +883,15 @@
 
             <div
                 id="forecastContainer"
-                class="forecast-container">
-            </div>
+                class="forecast-container"
+            ></div>
+
 
         </section>
 
 
 
-        <!-- ================= FARMING TIP ================= -->
+        <!-- FARMING NOTE -->
 
         <div class="farming-note">
 
@@ -760,11 +899,13 @@
                 🌾
             </div>
 
+
             <div>
 
                 <strong>
-                    AgroAI Farming Tip
+                    FarmNexa-AI Farming Tip
                 </strong>
+
 
                 <p>
                     Always check soil moisture before irrigation.
@@ -778,44 +919,52 @@
 
 
 
-        <!-- ================= NEW SEARCH ================= -->
+        <!-- ANOTHER SEARCH -->
 
         <div class="another-search">
 
             <button
                 type="button"
-                id="checkAnotherBtn">
-
-                🔄
-                Check Another Location
-
+                id="checkAnotherBtn"
+            >
+                🔄 Check Another Location
             </button>
 
         </div>
 
+
     </section>
+
 
 </main>
 
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+====================================================== -->
 
 <footer class="footer">
 
     <div class="footer-content">
 
         <div class="footer-brand">
-            🌱 <strong>AgroAI</strong>
+            <img
+                src="farmnexa-ai-logo.png"
+                alt="FarmNexa-AI Logo"
+                class="agroai-footer-logo"
+            >
         </div>
+
 
         <p>
             Smart farming powered by AI and real-time
             weather intelligence.
         </p>
 
+
         <div class="footer-copy">
-            © 2026 AgroAI. All rights reserved.
+            © 2026 FarmNexa-AI. All rights reserved.
         </div>
 
     </div>
@@ -823,7 +972,9 @@
 </footer>
 
 
+
 <script src="weather.js"></script>
 
 </body>
+
 </html>

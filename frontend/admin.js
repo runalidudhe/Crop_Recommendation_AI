@@ -1,5 +1,6 @@
 /* =========================================================
    AGROAI - ADMIN PANEL JAVASCRIPT
+
    Dashboard + History + Manage Crops + Analytics
    + Contact Messages
 ========================================================= */
@@ -33,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
 
     }
-
 
 
     /* =====================================================
@@ -82,14 +82,12 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(updateDateTime, 1000);
 
 
-
     /* =====================================================
        API BASE URL
     ===================================================== */
 
     const API_URL =
         "http://127.0.0.1:8000";
-
 
 
     /* =====================================================
@@ -101,7 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let cropShareChart = null;
 
     let trendChart = null;
-
 
 
     /* =====================================================
@@ -131,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 await response.json();
 
 
-
             /* =============================================
                TOTAL PREDICTIONS
             ============================================= */
@@ -150,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-
             /* =============================================
                TOTAL USERS
             ============================================= */
@@ -167,7 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     data.total_users ?? 0;
 
             }
-
 
 
             /* =============================================
@@ -226,7 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-
             /* =============================================
                AI STATUS
             ============================================= */
@@ -256,7 +249,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
 
 
     /* =====================================================
@@ -296,13 +288,11 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-
             /* =============================================
                HISTORY STATS
             ============================================= */
 
             updateHistoryStats(history);
-
 
 
             /* =============================================
@@ -312,7 +302,6 @@ document.addEventListener("DOMContentLoaded", function () {
             renderHistoryTable(history);
 
 
-
             /* =============================================
                RECENT HISTORY
             ============================================= */
@@ -320,13 +309,11 @@ document.addEventListener("DOMContentLoaded", function () {
             renderRecentHistory(history);
 
 
-
             /* =============================================
                POPULAR CROPS
             ============================================= */
 
             renderPopularCrops(history);
-
 
 
             /* =============================================
@@ -351,7 +338,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
 
 
     /* =====================================================
@@ -438,7 +424,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        GET CROP NAME
     ===================================================== */
@@ -469,7 +454,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        GET DATE
     ===================================================== */
@@ -498,7 +482,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        GET TIME
     ===================================================== */
@@ -521,7 +504,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
@@ -674,7 +656,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        RECENT HISTORY
     ===================================================== */
@@ -758,7 +739,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
     }
-
 
 
     /* =====================================================
@@ -878,7 +858,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        GRAPH 1
        BAR CHART - MOST RECOMMENDED CROPS
@@ -957,7 +936,6 @@ document.addEventListener("DOMContentLoaded", function () {
             new Chart(
                 canvas.getContext("2d"),
                 {
-
                     type: "bar",
 
                     data: {
@@ -967,14 +945,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         datasets: [
 
                             {
-
                                 label:
                                     "Recommendations",
 
                                 data: values,
 
                                 borderWidth: 1
-
                             }
 
                         ]
@@ -1062,11 +1038,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                 }
-
             );
 
     }
-
 
 
     /* =====================================================
@@ -1130,7 +1104,6 @@ document.addEventListener("DOMContentLoaded", function () {
             new Chart(
                 canvas.getContext("2d"),
                 {
-
                     type: "doughnut",
 
                     data: {
@@ -1140,14 +1113,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         datasets: [
 
                             {
-
                                 label:
                                     "Crop Share",
 
                                 data: values,
 
                                 borderWidth: 2
-
                             }
 
                         ]
@@ -1233,11 +1204,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                 }
-
             );
 
     }
-
 
 
     /* =====================================================
@@ -1317,7 +1286,6 @@ document.addEventListener("DOMContentLoaded", function () {
             new Chart(
                 canvas.getContext("2d"),
                 {
-
                     type: "line",
 
                     data: {
@@ -1327,7 +1295,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         datasets: [
 
                             {
-
                                 label:
                                     "Predictions",
 
@@ -1340,7 +1307,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 fill: false,
 
                                 pointRadius: 4
-
                             }
 
                         ]
@@ -1428,11 +1394,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                 }
-
             );
 
     }
-
 
 
     /* =====================================================
@@ -1480,7 +1444,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
 
 
     /* =====================================================
@@ -1565,7 +1528,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        ESCAPE CROP NAME
     ===================================================== */
@@ -1577,7 +1539,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .replace(/'/g, "\\'");
 
     }
-
 
 
     /* =====================================================
@@ -1623,14 +1584,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     await fetch(
                         `${API_URL}/admin/crops`,
                         {
-
                             method: "POST",
 
                             headers: {
-
                                 "Content-Type":
                                     "application/json"
-
                             },
 
                             body: JSON.stringify({
@@ -1689,7 +1647,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-
     /* =====================================================
        DELETE CROP
     ===================================================== */
@@ -1716,9 +1673,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             cropName
                         )}`,
                         {
-
                             method: "DELETE"
-
                         }
                     );
 
@@ -1765,7 +1720,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-
     /* =====================================================
        CLEAR HISTORY
     ===================================================== */
@@ -1792,9 +1746,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     await fetch(
                         `${API_URL}/admin/history`,
                         {
-
                             method: "DELETE"
-
                         }
                     );
 
@@ -1843,7 +1795,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-
     /* =====================================================
        CONTACT MESSAGES
     ===================================================== */
@@ -1873,7 +1824,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const messages =
                 data.messages || [];
-
 
 
             /* =============================================
@@ -1908,7 +1858,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-
             /* =============================================
                MESSAGE LIST
             ============================================= */
@@ -1940,7 +1889,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
 
             }
-
 
 
             /* =============================================
@@ -2093,7 +2041,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     /* =====================================================
        ESCAPE HTML
     ===================================================== */
@@ -2111,7 +2058,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return div.innerHTML;
 
     }
-
 
 
     /* =====================================================
@@ -2160,7 +2106,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
         };
-
 
 
     /* =====================================================
@@ -2224,7 +2169,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
 
-
     /* =====================================================
        LOGOUT
     ===================================================== */
@@ -2264,7 +2208,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "login.html";
 
         };
-
 
 
     /* =====================================================
@@ -2311,7 +2254,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
     /* =====================================================
        ENTER KEY FOR ADD CROP
     ===================================================== */
@@ -2342,7 +2284,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================

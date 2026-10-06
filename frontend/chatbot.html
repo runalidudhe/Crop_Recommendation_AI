@@ -1,363 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>FarmNexa-AI - AI Farming Assistant</title>
 
-    <meta
-        name="description"
-        content="AgroAI Smart Farming AI Assistant"
-    >
-
-    <title>AgroAI | AI Farming Assistant</title>
-
-    <link
-        rel="stylesheet"
-        href="chatbot.css"
-    >
+    <link rel="stylesheet" href="chatbot.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         NAVBAR
-    ====================================================== -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-    <header class="navbar">
+<nav class="navbar">
 
-        <div class="nav-container">
+    <div class="nav-container">
 
-            <!-- Logo -->
+        <a href="index.html" class="brand">
 
-            <a
-                href="index.html"
-                class="brand"
-                aria-label="AgroAI Home"
-            >
-                <span class="brand-icon">🌱</span>
+            <span class="brand-icon">
+                <img
+                    src="farmnexa-ai-logo.png"
+                    alt="FarmNexa-AI Logo"
+                >
+            </span>
 
-                <span class="brand-text">
-                    AgroAI
-                </span>
+            <span class="brand-text">
+                FarmNexa-AI
+            </span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
             </a>
 
+            <a href="crop.html">
+                Crop Recommendation
+            </a>
 
-            <!-- Main Navigation -->
-
-            <nav
-                class="nav-links"
-                aria-label="Main navigation"
-            >
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="crop.html">
-                    Crop Recommendation
-                </a>
-
-                <a
-                    href="chatbot.html"
-                    class="active"
-                >
-                    AI Assistant
-                </a>
-
-            </nav>
-
-
-            <!-- Login / Logout -->
-
-            <div class="nav-auth">
-
-                <a
-                    href="login.html"
-                    id="loginNav"
-                    class="login-nav-btn"
-                >
-                    Login
-                </a>
-
-                <button
-                    type="button"
-                    id="logoutNav"
-                    class="logout-nav-btn hidden"
-                >
-                    Logout
-                </button>
-
-            </div>
+            <a href="chatbot.html" class="active">
+                AI Assistant
+            </a>
 
         </div>
 
-    </header>
+
+        <div class="nav-auth">
+
+            <a
+                href="login.html"
+                id="loginNav"
+                class="login-nav-btn"
+            >
+                Login
+            </a>
+
+            <button
+                type="button"
+                id="logoutNav"
+                class="logout-nav-btn hidden"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>
 
 
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-    <main class="page">
+<main class="page">
 
-        <!-- Page Heading -->
 
-        <section class="page-heading">
+    <!-- PAGE HEADING -->
 
-            <div class="heading-content">
+    <section class="page-heading">
 
-                <div class="heading-badge">
-                    🌱 AGROAI SMART FARMING
-                </div>
+        <div class="heading-content">
 
-                <h1>
-                    Smart Farming,
-                    <span>Simple Answers.</span>
-                </h1>
-
-                <p>
-                    Ask AgroAI about crops, soil, fertilizer,
-                    irrigation, pests, diseases and farming.
-                </p>
-
+            <div class="heading-badge">
+                🌱 FARMNEXA-AI SMART FARMING
             </div>
 
-        </section>
+            <h1>
+                Smart Farming,
+                <span>Simple Answers.</span>
+            </h1>
+
+            <p>
+                Ask FarmNexa-AI about crops, soil, fertilizer,
+                irrigation, pests, diseases and farming.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CHAT + FAQ
+    ================================================= -->
+
+    <section class="chat-layout">
 
 
         <!-- =================================================
-             CHAT + FAQ
-        ================================================== -->
+             CHAT CARD
+        ================================================= -->
 
-        <section class="chat-layout">
-
-
-            <!-- =================================================
-                 CHAT CARD
-            ================================================== -->
-
-            <div class="chat-card">
+        <div class="chat-card">
 
 
-                <!-- Chat Header -->
+            <!-- CHAT HEADER -->
 
-                <div class="chat-header">
+            <div class="chat-header">
 
-                    <div class="chat-header-left">
+                <div class="chat-header-left">
 
-                        <div class="bot-avatar">
-                            🌱
-                        </div>
-
-                        <div class="bot-title">
-
-                            <h2>
-                                AgroAI
-                            </h2>
-
-                            <p>
-                                <span class="online-dot"></span>
-
-                                <span id="chatStatus">
-                                    AI Farming Assistant
-                                </span>
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Header Buttons -->
-
-                    <div class="chat-header-actions">
-
-                        <button
-                            type="button"
-                            id="clearChatButton"
-                            class="header-action"
-                            title="Clear Chat"
-                            aria-label="Clear Chat"
+                    <div class="bot-avatar">
+                        <img
+                            src="farmnexa-ai-logo.png"
+                            alt="FarmNexa-AI"
                         >
-                            🗑️
-                        </button>
-
-                        <button
-                            type="button"
-                            id="screenshotChatButton"
-                            class="header-action"
-                            title="Print Chat"
-                            aria-label="Print Chat"
-                        >
-                            🖨️
-                        </button>
-
                     </div>
 
-                </div>
-
-
-                <!-- =================================================
-                     CHAT MESSAGES
-                ================================================== -->
-
-                <div
-                    id="chatMessages"
-                    class="chat-messages"
-                    aria-live="polite"
-                    aria-label="Chat messages"
-                >
-
-                    <!-- Initial welcome message -->
-
-                    <div class="message-row bot-row">
-
-                        <div class="small-avatar">
-                            🌱
-                        </div>
-
-                        <div class="message-content">
-
-                            <div class="message-bubble">
-
-                                <div class="message-text">
-                                    Hello! I'm AgroAI. How can I help you with farming today?
-                                </div>
-
-                                <div class="message-time">
-                                    Now
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =================================================
-                     TYPING INDICATOR
-                ================================================== -->
-
-                <div
-                    id="typingIndicator"
-                    class="typing-indicator hidden"
-                >
-
-                    <div class="small-avatar">
-                        🌱
-                    </div>
-
-                    <div class="typing-bubble">
-
-                        <span></span>
-                        <span></span>
-                        <span></span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =================================================
-                     INPUT AREA
-                ================================================== -->
-
-                <div class="chat-input-area">
-
-                    <form
-                        id="chatForm"
-                        class="chat-form"
-                        autocomplete="off"
-                    >
-
-                        <div class="input-wrapper">
-
-                            <textarea
-                                id="chatInput"
-                                class="chat-input"
-                                rows="1"
-                                maxlength="2000"
-                                placeholder="Ask AgroAI anything about farming..."
-                                aria-label="Ask AgroAI"
-                            ></textarea>
-
-                        </div>
-
-
-                        <div class="input-actions">
-
-                            <!-- Microphone -->
-
-                            <button
-                                type="button"
-                                id="micButton"
-                                class="input-button mic-button"
-                                title="Voice Input"
-                                aria-label="Voice Input"
-                            >
-                                🎤
-                            </button>
-
-
-                            <!-- Send -->
-
-                            <button
-                                type="submit"
-                                id="sendButton"
-                                class="send-button"
-                            >
-                                <span>
-                                    Send
-                                </span>
-
-                                <span class="send-icon">
-                                    ➤
-                                </span>
-
-                            </button>
-
-                        </div>
-
-                    </form>
-
-
-                    <div class="input-hint">
-                        Press Enter to send • Shift + Enter for new line
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- =================================================
-                 FAQ CARD
-            ================================================== -->
-
-            <aside class="faq-card">
-
-                <div class="faq-header">
-
-                    <div class="faq-icon">
-                        💡
-                    </div>
-
-                    <div>
+                    <div class="bot-title">
 
                         <h2>
-                            Farming FAQs
+                            FarmNexa-AI
                         </h2>
 
                         <p>
-                            Quick questions
+                            <span class="online-dot"></span>
+                            AI Farming Assistant
                         </p>
 
                     </div>
@@ -365,194 +152,360 @@
                 </div>
 
 
-                <!-- FAQ Buttons -->
-
-                <div class="faq-list">
-
+                <div class="chat-header-actions">
 
                     <button
                         type="button"
-                        class="faq-question"
-                        data-question="Which crop is suitable for black soil?"
+                        id="clearChatButton"
+                        class="header-action"
+                        title="Clear Chat"
                     >
-
-                        <span class="faq-question-icon">
-                            🌱
-                        </span>
-
-                        <span>
-                            Which crop is suitable for black soil?
-                        </span>
-
+                        🗑️
                     </button>
 
-
                     <button
                         type="button"
-                        class="faq-question"
-                        data-question="What fertilizer is good for rice?"
+                        id="screenshotChatButton"
+                        class="header-action"
+                        title="Print Chat"
                     >
-
-                        <span class="faq-question-icon">
-                            🧪
-                        </span>
-
-                        <span>
-                            What fertilizer is good for rice?
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="faq-question"
-                        data-question="How much water does wheat need?"
-                    >
-
-                        <span class="faq-question-icon">
-                            💧
-                        </span>
-
-                        <span>
-                            How much water does wheat need?
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="faq-question"
-                        data-question="How can I control crop pests?"
-                    >
-
-                        <span class="faq-question-icon">
-                            🐛
-                        </span>
-
-                        <span>
-                            How can I control crop pests?
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="faq-question"
-                        data-question="What is NPK and why is it important?"
-                    >
-
-                        <span class="faq-question-icon">
-                            🌿
-                        </span>
-
-                        <span>
-                            What is NPK and why is it important?
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="faq-question"
-                        data-question="When is the best time to sow wheat?"
-                    >
-
-                        <span class="faq-question-icon">
-                            🌾
-                        </span>
-
-                        <span>
-                            When is the best time to sow wheat?
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="faq-question"
-                        data-question="How can I identify crop disease?"
-                    >
-
-                        <span class="faq-question-icon">
-                            🔬
-                        </span>
-
-                        <span>
-                            How can I identify crop disease?
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="faq-question"
-                        data-question="Which crop is suitable for my soil?"
-                    >
-
-                        <span class="faq-question-icon">
-                            🤖
-                        </span>
-
-                        <span>
-                            Which crop is suitable for my soil?
-                        </span>
-
+                        🖨️
                     </button>
 
                 </div>
 
+            </div>
 
-                <!-- FAQ Tip -->
 
-                <div class="faq-note">
+            <!-- =================================================
+                 CHAT MESSAGES
+            ================================================= -->
 
-                    <div class="faq-note-title">
-                        💬 Tip
+            <div
+                id="chatMessages"
+                class="chat-messages"
+            >
+
+                <!-- INITIAL AI MESSAGE -->
+
+                <div class="message-row bot-row">
+
+                    <div class="small-avatar">
+
+                        <img
+                            src="farmnexa-ai-logo.png"
+                            alt="FarmNexa-AI"
+                        >
+
                     </div>
 
+
+                    <div class="message-content">
+
+                        <div class="message-bubble">
+
+                            <div class="message-text">
+                                Hello! I'm FarmNexa-AI. How can I help you with farming today?
+                            </div>
+
+                        </div>
+
+                        <div class="message-time">
+                            Now
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TYPING -->
+
+            <div
+                id="typingIndicator"
+                class="typing-indicator hidden"
+            >
+
+                <div class="small-avatar">
+
+                    <img
+                        src="farmnexa-ai-logo.png"
+                        alt="FarmNexa-AI"
+                    >
+
+                </div>
+
+                <div class="typing-bubble">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INPUT
+            ================================================= -->
+
+            <div class="chat-input-area">
+
+                <form
+                    id="chatForm"
+                    class="chat-form"
+                >
+
+                    <textarea
+                        id="chatInput"
+                        class="chat-input"
+                        placeholder="Ask FarmNexa-AI anything about farming..."
+                        rows="1"
+                        autocomplete="off"
+                    ></textarea>
+
+
+                    <div class="input-actions">
+
+                        <button
+                            type="button"
+                            id="micButton"
+                            class="input-button mic-button"
+                            title="Voice Input"
+                        >
+                            🎤
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            id="sendButton"
+                            class="send-button"
+                        >
+                            Send ➤
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <div class="input-hint">
+                    Press Enter to send • Shift + Enter for new line
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FAQ
+        ================================================= -->
+
+        <aside class="faq-card">
+
+            <div class="faq-header">
+
+                <div class="faq-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <h2>
+                        Farming FAQs
+                    </h2>
+
                     <p>
-                        Ask naturally. Spelling mistakes are okay.
+                        Quick questions
                     </p>
 
                 </div>
 
-            </aside>
-
-        </section>
-
-    </main>
+            </div>
 
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+            <div class="faq-list">
 
-    <footer class="footer">
 
-        <div class="footer-content">
-           <span class="brand-icon">🌱</span>
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="Which crop is suitable for black soil?"
+                >
 
-                <span class="brand-text">
-                    AGROAI
+                    <span>🌱</span>
 
-                </span>
+                    <span>
+                        Which crop is suitable for black soil?
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="What fertilizer is good for rice?"
+                >
+
+                    <span>🧪</span>
+
+                    <span>
+                        What fertilizer is good for rice?
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="How much water does wheat need?"
+                >
+
+                    <span>💧</span>
+
+                    <span>
+                        How much water does wheat need?
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="How can I control crop pests?"
+                >
+
+                    <span>🐛</span>
+
+                    <span>
+                        How can I control crop pests?
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="What is NPK and why is it important?"
+                >
+
+                    <span>🌿</span>
+
+                    <span>
+                        What is NPK and why is it important?
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="When is the best time to sow wheat?"
+                >
+
+                    <span>🌾</span>
+
+                    <span>
+                        When is the best time to sow wheat?
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="How can I identify crop disease?"
+                >
+
+                    <span>🦠</span>
+
+                    <span>
+                        How can I identify crop disease?
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="faq-question"
+                    data-question="Which crop is suitable for my soil?"
+                >
+
+                    <span>🌱</span>
+
+                    <span>
+                        Which crop is suitable for my soil?
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+            <div class="faq-note">
+
+                <strong>
+                    💬 Ask naturally
+                </strong>
+
+                <p>
+                    Ask your farming question in English,
+                    Hindi, Hinglish or Marathi.
+                </p>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+
+            <img
+                src="farmnexa-ai-logo.png"
+                alt="FarmNexa-AI Logo"
+            >
+
+            <span>
+                FarmNexa-AI
+            </span>
+
         </div>
 
-    </footer>
+        <div class="footer-text">
+            Smart agriculture powered by AI.
+        </div>
+
+    </div>
+
+</footer>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
-    <script src="chatbot.js"></script>
+<script src="chatbot.js"></script>
 
 </body>
-
 </html>

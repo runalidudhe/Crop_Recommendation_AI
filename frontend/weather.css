@@ -104,24 +104,22 @@ body {
 
     align-items: center;
 
-    gap: 8px;
-
-    color: white;
-
-    font-size: 24px;
-
-    font-weight: 800;
+    flex-shrink: 0;
 
     white-space: nowrap;
 }
 
-.logo-icon {
-    font-size: 28px;
+.agroai-logo-image {
+
+    width: 118px;
+
+    height: 58px;
+
+    object-fit: contain;
+
+    display: block;
 }
 
-.logo > span:last-child > span {
-    color: var(--light-green);
-}
 
 .nav-links {
 
@@ -1653,10 +1651,24 @@ body {
 
 .footer-brand {
 
-    color: white;
+    display: flex;
 
-    font-size: 18px;
+    justify-content: center;
+
+    align-items: center;
 }
+
+.agroai-footer-logo {
+
+    width: 145px;
+
+    height: 95px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
 
 .footer-content p {
 

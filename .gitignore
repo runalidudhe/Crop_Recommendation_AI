@@ -1,3 +1,9 @@
 /.vscode
-/database
 /venv
+/database
+
+__pycache__/
+*.pyc
+.env
+*.env
+*.log

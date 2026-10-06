@@ -63,22 +63,20 @@ select {
 }
 
 .logo {
-    color: white;
-    font-size: 25px;
-    font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 8px;
     margin-right: auto;
+    flex-shrink: 0;
 }
 
-.logo > span:last-child > span {
-    color: var(--lime);
+.agroai-logo-image {
+    width: 118px;
+    height: 58px;
+    object-fit: contain;
+    display: block;
 }
 
-.logo-icon {
-    font-size: 26px;
-}
+
 
 .nav-links {
     display: flex;
@@ -1156,9 +1154,19 @@ select {
 }
 
 .footer-logo {
-    color: white;
-    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
 }
+
+.agroai-footer-logo {
+    width: 145px;
+    height: 95px;
+    object-fit: contain;
+    display: block;
+}
+
 
 .footer p {
     font-size: 11px;
@@ -1224,6 +1232,11 @@ select {
 
     .logo {
         margin-right: 0;
+    }
+
+    .agroai-logo-image {
+        width: 105px;
+        height: 52px;
     }
 
     .nav-links {

@@ -2328,3 +2328,379 @@ body {
     }
 
 }
+/* =========================================================
+   FINAL UI FIXES - LIVE NAVBAR + LOGO
+========================================================= */
+
+.nav-logo {
+    gap: 10px;
+}
+
+.logo-image {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    display: block;
+    border-radius: 9px;
+}
+
+.datetime-box {
+    margin-left: auto;
+    margin-right: 24px;
+    min-width: 118px;
+    padding: 6px 11px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 10px;
+    background: rgba(255,255,255,.08);
+    color: #eef7ef;
+    text-align: center;
+    line-height: 1.25;
+}
+
+.datetime-box #date {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.datetime-box #time {
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    color: #cde89d;
+    font-variant-numeric: tabular-nums;
+}
+
+.result-header-icon {
+    overflow: hidden;
+    background: #ffffff;
+    border: 2px solid #d8ead0;
+}
+
+.result-logo {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+}
+
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.footer-logo-image {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 7px;
+}
+
+/* Keep the district selector visually active even before interaction. */
+.form-group select:disabled {
+    background: #f7fbf5;
+    color: #52665a;
+    border-color: #d5ded4;
+    cursor: pointer;
+    opacity: 1;
+}
+
+@media (max-width: 800px) {
+    .datetime-box {
+        margin-right: 10px;
+        min-width: 104px;
+    }
+
+    .logo-image {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (max-width: 650px) {
+    .datetime-box {
+        order: 3;
+        margin: 4px 0 0;
+    }
+}
+/* =====================================================
+   CROP PAGE NAVIGATION
+   CENTER HOME + AI ASSISTANT
+===================================================== */
+
+.crop-nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 100%;
+}
+
+.crop-nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    padding: 10px 18px;
+    border-radius: 10px;
+
+    transition: all 0.25s ease;
+}
+
+.crop-nav-links a:hover {
+    transform: translateY(-1px);
+}
+/* =========================================================
+   FINAL NAVBAR FIX
+   LOGO LEFT | NAV CENTER | DATE/TIME RIGHT
+========================================================= */
+
+.navbar {
+    display: grid !important;
+
+    grid-template-columns: 1fr auto 1fr !important;
+
+    grid-template-areas:
+        "logo nav datetime" !important;
+
+    align-items: center;
+
+    width: 100%;
+    min-height: 76px;
+
+    padding: 10px 42px;
+
+    box-sizing: border-box;
+}
+
+
+/* ================= LOGO ================= */
+
+.brand-logo {
+    grid-area: logo !important;
+
+    justify-self: start;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+}
+
+
+/* ================= CENTER NAV ================= */
+
+.nav-links {
+    grid-area: nav !important;
+
+    justify-self: center;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+}
+
+
+/* ================= DATE / TIME ================= */
+
+.datetime-box {
+    grid-area: datetime !important;
+
+    justify-self: end;
+
+    text-align: right;
+
+    margin: 0 !important;
+}
+/* =========================================================
+   AGROAI CROP PAGE - FINAL NAVBAR
+   LOGO LEFT | NAVIGATION CENTER | DATE/TIME RIGHT
+========================================================= */
+
+.main-header {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar {
+    width: 100% !important;
+    min-height: 76px !important;
+
+    display: grid !important;
+
+    grid-template-columns: 1fr auto 1fr !important;
+
+    align-items: center !important;
+
+    padding: 10px 42px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   AGROAI LOGO - LEFT
+========================================================= */
+
+.brand-logo {
+    justify-self: start !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+
+    gap: 10px !important;
+
+    margin: 0 !important;
+
+    text-decoration: none !important;
+}
+
+.brand-logo img {
+    width: 48px !important;
+    height: 48px !important;
+
+    object-fit: contain !important;
+
+    display: block !important;
+}
+
+.brand-logo span {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   HOME + AI ASSISTANT - EXACT CENTER
+========================================================= */
+
+.nav-links {
+    justify-self: center !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 16px !important;
+
+    margin: 0 !important;
+}
+
+.nav-links a {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 10px 18px !important;
+
+    margin: 0 !important;
+
+    border-radius: 10px !important;
+
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+    font-size: 15px !important;
+    font-weight: 600 !important;
+
+    white-space: nowrap !important;
+
+    transition: all 0.25s ease !important;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+
+    transform: translateY(-1px);
+}
+
+.nav-links a.active {
+    background: rgba(255, 255, 255, 0.14) !important;
+}
+
+
+/* =========================================================
+   DATE + TIME - RIGHT
+========================================================= */
+
+.datetime-box {
+    justify-self: end !important;
+
+    margin: 0 !important;
+
+    text-align: right !important;
+
+    color: #ffffff !important;
+}
+
+.datetime-box #date {
+    font-size: 13px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1.3 !important;
+}
+
+.datetime-box #time {
+    margin-top: 2px !important;
+
+    font-size: 16px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.3 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        gap: 10px !important;
+
+        padding: 12px 18px !important;
+    }
+
+    .brand-logo {
+        justify-self: center !important;
+    }
+
+    .nav-links {
+        justify-self: center !important;
+
+        order: 2;
+
+        gap: 8px !important;
+    }
+
+    .datetime-box {
+        justify-self: center !important;
+
+        order: 3;
+
+        text-align: center !important;
+    }
+
+}

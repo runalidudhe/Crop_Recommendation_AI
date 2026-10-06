@@ -1,23 +1,25 @@
 /* =====================================================
    AGROAI SMART IRRIGATION
+   Frontend Controller
 ===================================================== */
 
 const API_URL = "http://127.0.0.1:8000";
 
 
 /* =====================================================
-   DISTRICTS
+   MAHARASHTRA DISTRICTS
 ===================================================== */
 
 const districts = [
-    "Ahmednagar",
+    "Ahilyanagar",
     "Akola",
     "Amravati",
-    "Aurangabad",
-    "Beed",
     "Bhandara",
+    "Beed",
     "Buldhana",
     "Chandrapur",
+    "Chhatrapati Sambhajinagar",
+    "Dharashiv",
     "Dhule",
     "Gadchiroli",
     "Gondia",
@@ -32,7 +34,6 @@ const districts = [
     "Nanded",
     "Nandurbar",
     "Nashik",
-    "Osmanabad",
     "Palghar",
     "Parbhani",
     "Pune",
@@ -50,17 +51,14 @@ const districts = [
 
 
 /* =====================================================
-   DOM CONTENT LOADED
+   START
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     setupDistricts();
-
     setupAuth();
-
     setupForm();
-
     setupButtons();
 
 });
@@ -73,33 +71,28 @@ document.addEventListener("DOMContentLoaded", function () {
 function setupDistricts() {
 
     const state = document.getElementById("state");
-
     const district = document.getElementById("district");
-
 
     if (!state || !district) {
         return;
     }
 
+    district.disabled = true;
 
     state.addEventListener("change", function () {
 
         district.innerHTML =
             '<option value="">Select District</option>';
 
-
         if (state.value === "Maharashtra") {
 
             district.disabled = false;
 
-
             districts.forEach(function (item) {
 
-                const option =
-                    document.createElement("option");
+                const option = document.createElement("option");
 
                 option.value = item;
-
                 option.textContent = item;
 
                 district.appendChild(option);
@@ -126,52 +119,39 @@ function setupAuth() {
     const loggedIn =
         localStorage.getItem("agroai_logged_in") === "true";
 
-
     const loginLink =
         document.getElementById("loginLink");
-
 
     const signupLink =
         document.getElementById("signupLink");
 
-
     const logoutBtn =
         document.getElementById("logoutBtn");
-
 
     if (!loginLink || !signupLink || !logoutBtn) {
         return;
     }
 
-
     if (loggedIn) {
 
         loginLink.style.display = "none";
-
         signupLink.style.display = "none";
-
         logoutBtn.style.display = "inline-block";
-
 
         logoutBtn.addEventListener("click", function () {
 
             localStorage.removeItem("agroai_logged_in");
-
             localStorage.removeItem("agroai_role");
-
             localStorage.removeItem("loggedInUser");
 
             window.location.href = "index.html";
 
         });
 
-
     } else {
 
         loginLink.style.display = "inline-block";
-
         signupLink.style.display = "inline-block";
-
         logoutBtn.style.display = "none";
 
     }
@@ -188,51 +168,69 @@ function setupForm() {
     const form =
         document.getElementById("irrigationForm");
 
-
     if (!form) {
         return;
     }
-
 
     form.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
-
         hideError();
 
+        /* ---------------------------------------------
+           FORM ELEMENTS
+        --------------------------------------------- */
 
-        /* -------------------------------------------------
-           GET FORM VALUES
-        ------------------------------------------------- */
+        const stateElement =
+            document.getElementById("state");
+
+        const districtElement =
+            document.getElementById("district");
+
+        const cropElement =
+            document.getElementById("crop");
+
+        const moistureElement =
+            document.getElementById("soilMoisture");
+
+        const areaElement =
+            document.getElementById("fieldArea");
+
+
+        /* ---------------------------------------------
+           VALUES
+        --------------------------------------------- */
 
         const state =
-            document.getElementById("state").value;
-
+            stateElement
+                ? stateElement.value.trim()
+                : "";
 
         const district =
-            document.getElementById("district").value;
-
+            districtElement
+                ? districtElement.value.trim()
+                : "";
 
         const crop =
-            document.getElementById("crop").value;
-
+            cropElement
+                ? cropElement.value.trim()
+                : "";
 
         const soilMoisture =
-            Number(
-                document.getElementById("soilMoisture").value
-            );
-
+            moistureElement
+                ? Number(moistureElement.value)
+                : NaN;
 
         const fieldArea =
-            Number(
-                document.getElementById("fieldArea").value
-            );
+            areaElement
+                ? Number(areaElement.value)
+                : NaN;
 
 
-        /* -------------------------------------------------
+        /* ---------------------------------------------
            VALIDATION
-        ------------------------------------------------- */
+        --------------------------------------------- */
 
         if (!state) {
 
@@ -241,9 +239,16 @@ function setupForm() {
             );
 
             return;
-
         }
 
+        if (state !== "Maharashtra") {
+
+            showError(
+                "Please select Maharashtra."
+            );
+
+            return;
+        }
 
         if (!district) {
 
@@ -252,9 +257,7 @@ function setupForm() {
             );
 
             return;
-
         }
-
 
         if (!crop) {
 
@@ -263,9 +266,7 @@ function setupForm() {
             );
 
             return;
-
         }
-
 
         if (
             Number.isNaN(soilMoisture) ||
@@ -278,9 +279,7 @@ function setupForm() {
             );
 
             return;
-
         }
-
 
         if (
             Number.isNaN(fieldArea) ||
@@ -292,92 +291,116 @@ function setupForm() {
             );
 
             return;
-
         }
 
 
-        /* -------------------------------------------------
+        /* ---------------------------------------------
            LOADING
-        ------------------------------------------------- */
+        --------------------------------------------- */
 
         setLoading(true);
 
 
         try {
 
-            /* -------------------------------------------------
-               ADVANCED IRRIGATION API
-            ------------------------------------------------- */
+            /* -----------------------------------------
+               API REQUEST
+            ----------------------------------------- */
 
-            const response =
-                await fetch(
-                    `${API_URL}/irrigation-advanced`,
-                    {
-                        method: "POST",
+            const response = await fetch(
+                `${API_URL}/irrigation`,
+                {
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+                    method: "POST",
 
-                        body: JSON.stringify({
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-                            district: district,
+                    body: JSON.stringify({
 
-                            state: state,
+                        state: state,
 
-                            country: "IN",
+                        district: district,
 
-                            crop: crop,
+                        crop: crop,
 
-                            soil_moisture:
-                                soilMoisture,
+                        soil_moisture: soilMoisture,
 
-                            field_area:
-                                fieldArea
+                        field_area: fieldArea,
 
-                        })
+                        country: "IN"
 
-                    }
+                    })
+
+                }
+            );
+
+
+            /* -----------------------------------------
+               READ RESPONSE
+            ----------------------------------------- */
+
+            let data = {};
+
+            try {
+
+                data = await response.json();
+
+            } catch (jsonError) {
+
+                throw new Error(
+                    "The AgroAI backend returned an invalid response."
                 );
 
-
-            const data =
-                await response.json();
+            }
 
 
-            /* -------------------------------------------------
-               API ERROR
-            ------------------------------------------------- */
+            /* -----------------------------------------
+               HTTP ERROR
+            ----------------------------------------- */
 
             if (!response.ok) {
 
                 throw new Error(
+
                     data.detail ||
-                    "Irrigation service failed."
+
+                    data.message ||
+
+                    `Irrigation service failed (${response.status}).`
+
                 );
 
             }
 
+
+            /* -----------------------------------------
+               APPLICATION ERROR
+            ----------------------------------------- */
 
             if (data.success === false) {
 
                 throw new Error(
+
                     data.message ||
+
                     "Unable to calculate irrigation."
+
                 );
 
             }
 
 
-            /* -------------------------------------------------
+            /* -----------------------------------------
                SHOW RESULT
-            ------------------------------------------------- */
+            ----------------------------------------- */
 
             showResult(data);
 
+        }
 
-        } catch (error) {
+        catch (error) {
 
             console.error(
                 "Irrigation Error:",
@@ -385,12 +408,29 @@ function setupForm() {
             );
 
 
-            showError(
-                "Unable to get irrigation advice. Please make sure the AgroAI backend is running."
-            );
+            if (
+                error instanceof TypeError &&
+                error.message
+                    .toLowerCase()
+                    .includes("fetch")
+            ) {
 
+                showError(
+                    "Unable to connect to the AgroAI backend. Please make sure the backend is running on port 8000."
+                );
 
-        } finally {
+            } else {
+
+                showError(
+                    error.message ||
+                    "Unable to get irrigation advice. Please try again."
+                );
+
+            }
+
+        }
+
+        finally {
 
             setLoading(false);
 
@@ -412,89 +452,114 @@ function showResult(data) {
             "irrigationResult"
         );
 
-
     const location =
         data.location || {};
-
 
     const weather =
         data.weather || {};
 
-
     const current =
         weather.current || {};
-
-
-    /*
-       IMPORTANT:
-
-       Advanced water information is inside:
-
-       data.irrigation
-
-       according to your backend JSON.
-    */
 
     const irrigation =
         data.irrigation || {};
 
 
     /* =================================================
-       LOCATION
+       INPUT VALUES
     ================================================= */
 
     const districtInput =
         document.getElementById("district");
 
-
     const cropInput =
         document.getElementById("crop");
-
 
     const fieldAreaInput =
         document.getElementById("fieldArea");
 
-
-    document.getElementById(
-        "resultLocation"
-    ).textContent =
-        `${location.name || districtInput.value}, ${location.state || "Maharashtra"}`;
+    const moistureInput =
+        document.getElementById("soilMoisture");
 
 
-    document.getElementById(
-        "resultCrop"
-    ).textContent =
-        `${data.crop || cropInput.value} • ${data.field_area || fieldAreaInput.value} acres`;
+    const districtValue =
+        districtInput
+            ? districtInput.value
+            : "";
+
+    const cropValue =
+        cropInput
+            ? cropInput.value
+            : "";
+
+    const fieldAreaValue =
+        fieldAreaInput
+            ? fieldAreaInput.value
+            : "";
+
+    const moistureValue =
+        moistureInput
+            ? moistureInput.value
+            : "";
+
+
+    /* =================================================
+       LOCATION
+    ================================================= */
+
+    setText(
+        "resultLocation",
+
+        `${location.name || districtValue}, ${location.state || "Maharashtra"}`
+    );
+
+
+    setText(
+        "resultCrop",
+
+        `${data.crop || cropValue} • ${data.field_area ?? fieldAreaValue} acres`
+    );
 
 
     /* =================================================
        SOIL MOISTURE
     ================================================= */
 
-    document.getElementById(
-        "resultMoisture"
-    ).textContent =
-        `${data.soil_moisture ?? document.getElementById("soilMoisture").value}%`;
+    const moisture =
+        data.soil_moisture !== undefined
+            ? Number(data.soil_moisture)
+            : Number(moistureValue);
+
+
+    setText(
+        "resultMoisture",
+
+        Number.isFinite(moisture)
+            ? `${moisture}%`
+            : "--%"
+    );
 
 
     /* =================================================
-       WEATHER
+       CURRENT WEATHER
     ================================================= */
 
-    document.getElementById(
-        "resultTemperature"
-    ).textContent =
+    setText(
+        "resultTemperature",
+
         current.temperature !== undefined
             ? `${current.temperature}°C`
-            : "--°C";
+            : "--°C"
+    );
 
 
-    document.getElementById(
-        "resultHumidity"
-    ).textContent =
+    setText(
+        "resultHumidity",
+
         current.humidity !== undefined
             ? `${current.humidity}%`
-            : "--%";
+            : "--%"
+    );
 
 
     /* =================================================
@@ -525,170 +590,175 @@ function showResult(data) {
         highestProbability =
             Math.max(
                 highestProbability,
-                Number(day.rain_probability || 0)
+
+                Number(
+                    day.rain_probability || 0
+                )
             );
 
     });
 
 
-    /*
-       Prefer backend calculated values if available.
-       Otherwise calculate from forecast.
-    */
+    /* =================================================
+       BACKEND FORECAST VALUES
+    ================================================= */
 
     const backendRain =
         irrigation.next_2_days_rain_mm;
-
 
     const backendProbability =
         irrigation.next_2_days_rain_probability;
 
 
-    document.getElementById(
-        "resultRain"
-    ).textContent =
+    setText(
+        "resultRain",
+
         backendRain !== undefined
             ? `${Number(backendRain).toFixed(1)} mm`
-            : `${totalRain.toFixed(1)} mm`;
+            : `${totalRain.toFixed(1)} mm`
+    );
 
 
-    document.getElementById(
-        "resultProbability"
-    ).textContent =
+    setText(
+        "resultProbability",
+
         backendProbability !== undefined
             ? `${Math.round(Number(backendProbability))}%`
-            : `${Math.round(highestProbability)}%`;
+            : `${Math.round(highestProbability)}%`
+    );
 
 
-    /* =====================================================
-       ADVANCED WATER REQUIREMENT
-    ===================================================== */
+    /* =================================================
+       WATER REQUIREMENT
+       FIXED SECTION
+    ================================================= */
 
-    const waterCategory =
-        document.getElementById(
-            "waterCategory"
-        );
+    setText(
+        "waterCategory",
 
+        getWaterCategory(
+            irrigation.status,
+            moisture
+        )
+    );
+
+
+    /*
+       Backend values:
+
+       daily_water_liters
+       water_per_acre_liters
+       total_water_liters
+       water_depth_mm
+       irrigation_required
+    */
 
     const dailyWater =
-        document.getElementById(
-            "dailyWater"
+        Number(
+            irrigation.daily_water_liters ??
+            irrigation.total_water_liters ??
+            0
         );
 
 
     const waterPerAcre =
-        document.getElementById(
-            "waterPerAcre"
+        Number(
+            irrigation.water_per_acre_liters ??
+            0
         );
 
 
     const totalWater =
-        document.getElementById(
-            "totalWater"
+        Number(
+            irrigation.total_water_liters ??
+            0
         );
 
 
-    const recommendedWater =
-        document.getElementById(
-            "recommendedWater"
+    const waterDepth =
+        Number(
+            irrigation.water_depth_mm ??
+            0
         );
 
 
-    const waterRequirementNote =
-        document.getElementById(
-            "waterRequirementNote"
-        );
-
-
-    /* -----------------------------------------------------
-       WATER CATEGORY
-    ----------------------------------------------------- */
-
-    if (waterCategory) {
-
-        waterCategory.textContent =
-            irrigation.water_category || "--";
-
-    }
-
-
-    /* -----------------------------------------------------
-       DAILY WATER REQUIREMENT
-    ----------------------------------------------------- */
-
-    if (dailyWater) {
-
-        dailyWater.textContent =
-            irrigation.daily_water_mm !== undefined
-                ? `${irrigation.daily_water_mm} mm/day`
-                : "-- mm/day";
-
-    }
-
-
-    /* -----------------------------------------------------
-       WATER PER ACRE
-    ----------------------------------------------------- */
-
-    if (waterPerAcre) {
-
-        waterPerAcre.textContent =
-            irrigation.estimated_water_litres_per_acre !== undefined
-                ? `${Number(
-                    irrigation.estimated_water_litres_per_acre
-                ).toLocaleString("en-IN")} L`
-                : "-- L";
-
-    }
-
-
-    /* -----------------------------------------------------
-       TOTAL FIELD WATER
-    ----------------------------------------------------- */
-
-    if (totalWater) {
-
-        totalWater.textContent =
-            irrigation.estimated_water_litres_total !== undefined
-                ? `${Number(
-                    irrigation.estimated_water_litres_total
-                ).toLocaleString("en-IN")} L/day`
-                : "-- L/day";
-
-    }
-
-
-    /* -----------------------------------------------------
-       RECOMMENDED WATER
-    ----------------------------------------------------- */
-
-    if (recommendedWater) {
-
-        recommendedWater.textContent =
-            irrigation.recommended_water_litres !== undefined
-                ? `${Number(
-                    irrigation.recommended_water_litres
-                ).toLocaleString("en-IN")} L/day`
-                : "-- L/day";
-
-    }
-
-
-    /* -----------------------------------------------------
-       WATER REQUIREMENT NOTE
-    ----------------------------------------------------- */
-
-    if (waterRequirementNote) {
-
-        waterRequirementNote.textContent =
-            irrigation.water_requirement_note ||
-            "Water requirement depends on crop type, field area, soil moisture and weather conditions.";
-
-    }
+    const irrigationRequired =
+        irrigation.irrigation_required === true;
 
 
     /* =================================================
-       STATUS
+       DAILY WATER
+    ================================================= */
+
+    setText(
+        "dailyWater",
+
+        Number.isFinite(dailyWater)
+            ? `${Math.round(dailyWater).toLocaleString("en-IN")} L/day`
+            : "--"
+    );
+
+
+    /* =================================================
+       WATER PER ACRE
+    ================================================= */
+
+    setText(
+        "waterPerAcre",
+
+        Number.isFinite(waterPerAcre)
+            ? `${Math.round(waterPerAcre).toLocaleString("en-IN")} L/acre`
+            : "--"
+    );
+
+
+    /* =================================================
+       TOTAL WATER
+    ================================================= */
+
+    setText(
+        "totalWater",
+
+        Number.isFinite(totalWater)
+            ? `${Math.round(totalWater).toLocaleString("en-IN")} L`
+            : "--"
+    );
+
+
+    /* =================================================
+       RECOMMENDED WATER
+    ================================================= */
+
+    setText(
+        "recommendedWater",
+
+        irrigationRequired
+
+            ? `${waterDepth.toFixed(1)} mm estimated irrigation depth`
+
+            : "0 L — irrigation not currently required"
+
+    );
+
+
+    /* =================================================
+       WATER NOTE
+    ================================================= */
+
+    setText(
+        "waterRequirementNote",
+
+        irrigationRequired
+
+            ? "Estimated project-level water quantity based on crop water group, soil-moisture deficit and field area. Actual irrigation should also consider crop stage, soil type, irrigation method and local agronomic guidance."
+
+            : "No irrigation quantity is recommended at this time because current soil moisture and/or rainfall conditions indicate that irrigation should be postponed or monitored."
+
+    );
+
+
+    /* =================================================
+       IRRIGATION STATUS
     ================================================= */
 
     const status =
@@ -698,49 +768,56 @@ function showResult(data) {
         ).toUpperCase();
 
 
-    document.getElementById(
-        "irrigationStatus"
-    ).textContent =
-        status;
+    setText(
+        "irrigationStatus",
+        status
+    );
 
 
-    document.getElementById(
-        "statusReason"
-    ).textContent =
+    setText(
+        "statusReason",
+
         irrigation.reason ||
-        "Check soil moisture and weather conditions before irrigation.";
+
+        "Check soil moisture and weather conditions before irrigation."
+    );
 
 
-    document.getElementById(
-        "waterAdvice"
-    ).textContent =
+    setText(
+        "waterAdvice",
+
         irrigation.water_advice ||
-        "Check soil moisture before watering.";
+
+        "Check soil moisture before watering."
+    );
 
 
-    document.getElementById(
-        "timingAdvice"
-    ).textContent =
+    setText(
+        "timingAdvice",
+
         irrigation.timing ||
-        "Monitor soil moisture and weather before irrigation.";
+
+        "Monitor soil moisture and weather before irrigation."
+    );
 
 
-    document.getElementById(
-        "warningAdvice"
-    ).textContent =
+    setText(
+        "warningAdvice",
+
         irrigation.warning ||
-        "No major irrigation warning.";
+
+        "No major irrigation warning."
+    );
 
 
     /* =================================================
-       STATUS COLOR
+       STATUS STYLE
     ================================================= */
 
     const statusCard =
         document.getElementById(
             "statusCard"
         );
-
 
     const statusIcon =
         document.getElementById(
@@ -752,16 +829,22 @@ function showResult(data) {
 
         statusCard.classList.remove(
             "wait",
-            "stop"
+            "stop",
+            "recommended"
         );
 
     }
 
 
-    if (status.includes("NOT") ||
-        status.includes("AVOID") ||
-        status.includes("STOP")) {
+    /* =================================================
+       NOT RECOMMENDED
+    ================================================= */
 
+    if (
+        status.includes("NOT") ||
+        status.includes("AVOID") ||
+        status.includes("STOP")
+    ) {
 
         if (statusCard) {
 
@@ -781,11 +864,15 @@ function showResult(data) {
 
     }
 
+
+    /* =================================================
+       WAIT / MONITOR
+    ================================================= */
+
     else if (
         status.includes("WAIT") ||
         status.includes("MONITOR")
     ) {
-
 
         if (statusCard) {
 
@@ -805,7 +892,20 @@ function showResult(data) {
 
     }
 
+
+    /* =================================================
+       IRRIGATION RECOMMENDED
+    ================================================= */
+
     else {
+
+        if (statusCard) {
+
+            statusCard.classList.add(
+                "recommended"
+            );
+
+        }
 
 
         if (statusIcon) {
@@ -819,12 +919,10 @@ function showResult(data) {
 
 
     /* =================================================
-       RAIN FORECAST
+       RAIN FORECAST CARDS
     ================================================= */
 
-    renderForecast(
-        forecast
-    );
+    renderForecast(forecast);
 
 
     /* =================================================
@@ -838,10 +936,17 @@ function showResult(data) {
         );
 
 
-        result.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+        setTimeout(function () {
+
+            result.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }, 100);
 
     }
 
@@ -849,10 +954,62 @@ function showResult(data) {
 
 
 /* =====================================================
-   FORECAST
+   WATER CATEGORY
 ===================================================== */
 
-function renderForecast(forecast) {
+function getWaterCategory(
+    status,
+    moisture
+) {
+
+    const safeStatus =
+        String(
+            status || ""
+        ).toUpperCase();
+
+
+    if (
+        safeStatus.includes("STOP") ||
+        safeStatus.includes("AVOID") ||
+        safeStatus.includes("NOT")
+    ) {
+
+        return "Low / Avoid";
+
+    }
+
+
+    if (
+        safeStatus.includes("WAIT") ||
+        safeStatus.includes("MONITOR")
+    ) {
+
+        return "Monitor";
+
+    }
+
+
+    if (
+        Number(moisture) < 30
+    ) {
+
+        return "Higher Attention";
+
+    }
+
+
+    return "Guidance Based";
+
+}
+
+
+/* =====================================================
+   RAIN FORECAST
+===================================================== */
+
+function renderForecast(
+    forecast
+) {
 
     const container =
         document.getElementById(
@@ -871,11 +1028,23 @@ function renderForecast(forecast) {
     if (!forecast.length) {
 
         container.innerHTML = `
+
             <div class="rain-day">
-                <strong>Forecast unavailable</strong>
-                <div class="rain-mm">--</div>
-                <small>Try again later</small>
+
+                <strong>
+                    Forecast unavailable
+                </strong>
+
+                <div class="rain-mm">
+                    --
+                </div>
+
+                <small>
+                    Try again later
+                </small>
+
             </div>
+
         `;
 
         return;
@@ -917,6 +1086,43 @@ function renderForecast(forecast) {
                 );
 
 
+            const temperatureMin =
+                day.temperature_min !== undefined
+                    ? Number(
+                        day.temperature_min
+                    )
+                    : null;
+
+
+            const temperatureMax =
+                day.temperature_max !== undefined
+                    ? Number(
+                        day.temperature_max
+                    )
+                    : null;
+
+
+            let temperatureText = "";
+
+
+            if (
+                temperatureMin !== null &&
+                temperatureMax !== null
+            ) {
+
+                temperatureText = `
+
+                    <small>
+                        ${temperatureMin.toFixed(1)}°C
+                        –
+                        ${temperatureMax.toFixed(1)}°C
+                    </small>
+
+                `;
+
+            }
+
+
             card.innerHTML = `
 
                 <strong>
@@ -931,6 +1137,8 @@ function renderForecast(forecast) {
                     ${probability}% rain chance
                 </small>
 
+                ${temperatureText}
+
             `;
 
 
@@ -944,15 +1152,15 @@ function renderForecast(forecast) {
 
 
 /* =====================================================
-   DATE
+   DATE FORMAT
 ===================================================== */
 
-function formatDate(value) {
+function formatDate(
+    value
+) {
 
     if (!value) {
-
         return "--";
-
     }
 
 
@@ -962,11 +1170,25 @@ function formatDate(value) {
         );
 
 
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return value;
+
+    }
+
+
     return date.toLocaleDateString(
         "en-IN",
         {
+
             day: "2-digit",
+
             month: "short"
+
         }
     );
 
@@ -977,7 +1199,9 @@ function formatDate(value) {
    LOADING
 ===================================================== */
 
-function setLoading(loading) {
+function setLoading(
+    loading
+) {
 
     const button =
         document.getElementById(
@@ -997,8 +1221,14 @@ function setLoading(loading) {
         );
 
 
-    if (!button || !text || !loader) {
+    if (
+        !button ||
+        !text ||
+        !loader
+    ) {
+
         return;
+
     }
 
 
@@ -1035,7 +1265,9 @@ function setLoading(loading) {
    ERROR
 ===================================================== */
 
-function showError(message) {
+function showError(
+    message
+) {
 
     const error =
         document.getElementById(
@@ -1069,6 +1301,10 @@ function hideError() {
     if (!error) {
         return;
     }
+
+
+    error.textContent =
+        "";
 
 
     error.style.display =
@@ -1114,11 +1350,17 @@ function setupButtons() {
                 hideError();
 
 
-                document.getElementById(
-                    "irrigationResult"
-                ).classList.add(
-                    "hidden"
-                );
+                const form =
+                    document.getElementById(
+                        "irrigationForm"
+                    );
+
+
+                if (form) {
+
+                    form.reset();
+
+                }
 
 
                 const district =
@@ -1129,8 +1371,43 @@ function setupButtons() {
 
                 if (district) {
 
+                    district.innerHTML =
+                        '<option value="">Select District</option>';
+
                     district.disabled =
                         true;
+
+                }
+
+
+                const result =
+                    document.getElementById(
+                        "irrigationResult"
+                    );
+
+
+                if (result) {
+
+                    result.classList.add(
+                        "hidden"
+                    );
+
+                }
+
+
+                const statusCard =
+                    document.getElementById(
+                        "statusCard"
+                    );
+
+
+                if (statusCard) {
+
+                    statusCard.classList.remove(
+                        "wait",
+                        "stop",
+                        "recommended"
+                    );
 
                 }
 
@@ -1141,7 +1418,7 @@ function setupButtons() {
 
 
     /* =================================================
-       CHECK ANOTHER
+       CHECK ANOTHER FARM
     ================================================= */
 
     if (anotherBtn) {
@@ -1150,18 +1427,41 @@ function setupButtons() {
             "click",
             function () {
 
-                document.getElementById(
-                    "irrigationResult"
-                ).classList.add(
-                    "hidden"
-                );
+                const result =
+                    document.getElementById(
+                        "irrigationResult"
+                    );
 
 
-                document.getElementById(
-                    "irrigationForm"
-                ).scrollIntoView({
-                    behavior: "smooth"
-                });
+                if (result) {
+
+                    result.classList.add(
+                        "hidden"
+                    );
+
+                }
+
+
+                hideError();
+
+
+                const form =
+                    document.getElementById(
+                        "irrigationForm"
+                    );
+
+
+                if (form) {
+
+                    form.scrollIntoView({
+
+                        behavior: "smooth",
+
+                        block: "start"
+
+                    });
+
+                }
 
             }
         );
@@ -1183,6 +1483,38 @@ function setupButtons() {
 
             }
         );
+
+    }
+
+}
+
+
+/* =====================================================
+   SAFE TEXT HELPER
+===================================================== */
+
+function setText(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if (element) {
+
+        element.textContent =
+
+            value !== undefined &&
+            value !== null &&
+            value !== ""
+
+                ? value
+
+                : "--";
 
     }
 

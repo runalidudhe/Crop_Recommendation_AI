@@ -186,22 +186,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             if (data.most_predicted_crop) {
-
+                console.log("Dashboard API data:", data);
+console.log("Most predicted crop:", data.most_predicted_crop);
+console.log("Most predicted count:", data.most_crop_count);
                 mostCrop =
                     data.most_predicted_crop;
 
             }
 
 
-            if (
-                data.most_predicted_count !==
-                undefined
-            ) {
-
-                mostCount =
-                    data.most_predicted_count;
-
-            }
+            if (data.most_crop_count !== undefined) {
+    mostCount = data.most_crop_count;
+}
 
 
             if (mostPredictedCrop) {
@@ -458,52 +454,55 @@ document.addEventListener("DOMContentLoaded", function () {
        GET DATE
     ===================================================== */
 
-    function getDate(item) {
 
-        if (!item) {
+function getDate(item) {
+    if (!item) return "";
 
-            return "";
+    const rawDate =
+        item.date ||
+        item.datetime ||
+        item.dateTime ||
+        item.created_at ||
+        "";
 
-        }
+    if (!rawDate) return "";
 
+    const parsedDate = new Date(rawDate);
 
-        return (
-
-            item.date ||
-
-            item.datetime ||
-
-            item.dateTime ||
-
-            ""
-
-        );
-
+    if (Number.isNaN(parsedDate.getTime())) {
+        return String(rawDate);
     }
 
-
-    /* =====================================================
-       GET TIME
-    ===================================================== */
-
-    function getTime(item) {
-
-        if (!item) {
-
-            return "";
-
-        }
+    return parsedDate.toLocaleDateString("en-IN");
+}
 
 
-        return (
 
-            item.time ||
+function getTime(item) {
+    if (!item) return "";
 
-            ""
+    if (item.time) return item.time;
 
-        );
+    const rawDate =
+        item.datetime ||
+        item.dateTime ||
+        item.created_at ||
+        "";
 
+    if (!rawDate) return "";
+
+    const parsedDate = new Date(rawDate);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+        return "";
     }
+
+    return parsedDate.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    });
+}
 
 
     /* =====================================================
@@ -560,22 +559,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     getTime(item);
 
 
-                const N =
-                    item.N ??
-                    item.n ??
-                    "-";
 
-
-                const P =
-                    item.P ??
-                    item.p ??
-                    "-";
-
-
-                const K =
-                    item.K ??
-                    item.k ??
-                    "-";
+const N = item.nitrogen ?? item.N ?? item.n ?? "-";
+const P = item.phosphorus ?? item.P ?? item.p ?? "-";
+const K = item.potassium ?? item.K ?? item.k ?? "-";
 
 
                 const temperature =
@@ -721,9 +708,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     </td>
 
                     <td>
-                        N: ${item.N ?? "-"}<br>
-                        P: ${item.P ?? "-"}<br>
-                        K: ${item.K ?? "-"}
+
+N: ${item.nitrogen ?? item.N ?? item.n ?? "-"}<br>
+P: ${item.phosphorus ?? item.P ?? item.p ?? "-"}<br>
+K: ${item.potassium ?? item.K ?? item.k ?? "-"}
+
                     </td>
 
                     <td>
@@ -1495,35 +1484,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        crops.forEach(function (crop) {
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+crops.forEach(function (crop) {
+    const cropName =
+        typeof crop === "string"
+            ? crop
+            : crop.crop_name;
 
+    if (!cropName) return;
 
-            item.className =
-                "crop-list-item";
+    const item = document.createElement("div");
+    item.className = "crop-list-item";
 
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = `🌾 ${cropName}`;
 
-            item.innerHTML = `
-                <span>
-                    🌾 ${crop}
-                </span>
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.textContent = "🗑 Delete";
+    deleteButton.addEventListener("click", function () {
+        window.deleteCrop(cropName);
+    });
 
-                <button
-                    type="button"
-                    onclick="deleteCrop('${escapeQuotes(crop)}')"
-                >
-                    🗑 Delete
-                </button>
-            `;
+    item.appendChild(nameSpan);
+    item.appendChild(deleteButton);
+    cropList.appendChild(item);
+});
 
-
-            cropList.appendChild(item);
-
-        });
 
     }
 
@@ -1591,12 +1578,12 @@ document.addEventListener("DOMContentLoaded", function () {
                                     "application/json"
                             },
 
-                            body: JSON.stringify({
 
-                                crop:
-                                    cropName
 
-                            })
+body: JSON.stringify({
+    name: cropName
+})
+
 
                         }
                     );

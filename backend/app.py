@@ -11,7 +11,7 @@ import os
 import requests
 from dotenv import load_dotenv
 from backend.gemini_chatbot import generate_response
-
+from backend.db import get_db_connection
 # =========================================================
 # ENVIRONMENT
 # =========================================================
@@ -283,13 +283,11 @@ def home():
         "status": "online"
     }
 
-
 # =========================================================
-# SIGNUP
+# SIGNUP - MYSQL
 # =========================================================
 
 class SignupInput(BaseModel):
-
     name: str
     email: str
     password: str
@@ -297,264 +295,257 @@ class SignupInput(BaseModel):
 
 @app.post("/signup")
 def signup(user: SignupInput):
-
     name = user.name.strip()
     email = user.email.strip().lower()
     password = user.password
 
-
-    if name == "":
-
+    if not name:
         raise HTTPException(
             status_code=400,
             detail="Name is required"
         )
 
-
-    if email == "":
-
+    if not email:
         raise HTTPException(
             status_code=400,
             detail="Email is required"
         )
 
-
-    if password == "":
-
+    if not password:
         raise HTTPException(
             status_code=400,
             detail="Password is required"
         )
 
+    conn = None
+    cursor = None
 
-    data = load_data()
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
+        cursor.execute(
+            "SELECT id FROM users WHERE email = %s",
+            (email,)
+        )
 
-    # -----------------------------------------------------
-    # CHECK DUPLICATE EMAIL
-    # -----------------------------------------------------
-
-    for existing_user in data["users"]:
-
-        if existing_user["email"].lower() == email:
-
+        if cursor.fetchone():
             raise HTTPException(
                 status_code=400,
                 detail="An account with this email already exists."
             )
 
-
-    # -----------------------------------------------------
-    # CREATE USER
-    # -----------------------------------------------------
-
-    new_user = {
-
-        "id": len(data["users"]) + 1,
-
-        "name": name,
-
-        "email": email,
-
-        "password": password,
-
-        "created_at": datetime.now().strftime(
-            "%d-%m-%Y %I:%M:%S %p"
+        cursor.execute(
+            """
+            INSERT INTO users (name, email, password, created_at)
+            VALUES (%s, %s, %s, %s)
+            """,
+            (name, email, password, datetime.now())
         )
 
-    }
+        user_id = cursor.lastrowid
+        conn.commit()
+        print("Prediction saved to MySQL:", cursor.lastrowid)
 
-
-    data["users"].append(new_user)
-
-    save_data(data)
-
-
-    return {
-
-        "success": True,
-
-        "message": "Account created successfully",
-
-        "user": {
-
-            "id": new_user["id"],
-
-            "name": new_user["name"],
-
-            "email": new_user["email"]
-
+        return {
+            "success": True,
+            "message": "Account created successfully",
+            "user": {
+                "id": user_id,
+                "name": name,
+                "email": email
+            }
         }
 
-    }
+    except HTTPException:
+        raise
+
+    except Exception as error:
+        if conn and conn.is_connected():
+            conn.rollback()
+
+        print("SIGNUP MYSQL ERROR:", error)
+
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to create account. Please try again."
+        )
+
+    finally:
+        if cursor:
+            cursor.close()
+
+        if conn and conn.is_connected():
+            conn.close()
 
 
 # =========================================================
-# LOGIN
+# LOGIN - MYSQL
+# =========================================================
+
+
+
+# =========================================================
+# LOGIN - MYSQL
 # =========================================================
 
 class LoginInput(BaseModel):
-
     email: str
     password: str
 
 
 @app.post("/login")
 def login(user: LoginInput):
-
     email = user.email.strip().lower()
-
     password = user.password
 
-
-    # =====================================================
-    # ADMIN LOGIN
-    # =====================================================
-
-    if (
-        email == "admin@agroai.com"
-        and password == "Admin@123"
-    ):
-
+    # Existing admin credentials are preserved.
+    if email == "admin@agroai.com" and password == "Admin@123":
         return {
-
             "success": True,
-
             "message": "Admin login successful",
-
             "role": "admin",
-
             "redirect": "admin.html"
-
         }
 
+    conn = None
+    cursor = None
 
-    # =====================================================
-    # USER LOGIN
-    # =====================================================
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
-    data = load_data()
-
-
-    for existing_user in data["users"]:
+        cursor.execute(
+            """
+            SELECT id, name, email, password, created_at
+            FROM users
+            WHERE email = %s
+            LIMIT 1
+            """,
+            (email,)
+        )
+        existing_user = cursor.fetchone()
 
         if (
-            existing_user["email"].lower() == email
+            existing_user
             and existing_user["password"] == password
         ):
+            created_at = existing_user.get("created_at")
 
             return {
-
                 "success": True,
-
                 "message": "Login successful",
-
                 "role": "user",
-
                 "redirect": "index.html",
-
                 "user": {
-
                     "id": existing_user["id"],
-
                     "name": existing_user["name"],
-
-                    "email": existing_user["email"]
-
+                    "email": existing_user["email"],
+                    "created_at": (
+                        created_at.strftime("%d-%m-%Y %I:%M:%S %p")
+                        if isinstance(created_at, datetime)
+                        else str(created_at or "")
+                    )
                 }
-
             }
 
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+        )
 
-    raise HTTPException(
-        status_code=401,
-        detail="Invalid email or password"
-    )
+    except HTTPException:
+        raise
+    except Exception as error:
+        print("LOGIN MYSQL ERROR:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to log in. Please try again."
+        )
+    finally:
+        if cursor:
+            cursor.close()
+        if conn and conn.is_connected():
+            conn.close()
 
 
 # =========================================================
-# FORGOT PASSWORD
+# FORGOT PASSWORD - MYSQL
 # =========================================================
 
 class ForgotPasswordInput(BaseModel):
-
     email: str
     new_password: str
 
 
 @app.post("/forgot-password")
 def forgot_password(data_input: ForgotPasswordInput):
-
     email = data_input.email.strip().lower()
     new_password = data_input.new_password
 
-
-    # -----------------------------------------------------
-    # BASIC VALIDATION
-    # -----------------------------------------------------
-
-    if email == "":
-
+    if not email:
         raise HTTPException(
             status_code=400,
             detail="Email is required"
         )
 
-
-    if new_password == "":
-
+    if not new_password:
         raise HTTPException(
             status_code=400,
             detail="New password is required"
         )
 
-
-    # -----------------------------------------------------
-    # ADMIN PASSWORD RESET
-    # -----------------------------------------------------
-
     if email == "admin@agroai.com":
-
         raise HTTPException(
             status_code=400,
             detail="Admin password cannot be changed here."
         )
 
+    conn = None
+    cursor = None
 
-    # -----------------------------------------------------
-    # FIND USER
-    # -----------------------------------------------------
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
-    data = load_data()
+        cursor.execute(
+            "SELECT id FROM users WHERE email = %s LIMIT 1",
+            (email,)
+        )
 
+        if cursor.fetchone() is None:
+            raise HTTPException(
+                status_code=404,
+                detail="No account found with this email."
+            )
 
-    for existing_user in data["users"]:
+        cursor.execute(
+            "UPDATE users SET password = %s WHERE email = %s",
+            (new_password, email)
+        )
+        conn.commit()
 
-        if existing_user["email"].lower() == email:
+        return {
+            "success": True,
+            "message": "Password reset successfully."
+        }
 
-            existing_user["password"] = new_password
+    except HTTPException:
+        raise
+    except Exception as error:
+        if conn and conn.is_connected():
+            conn.rollback()
+        print("FORGOT PASSWORD MYSQL ERROR:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to reset password. Please try again."
+        )
+    finally:
+        if cursor:
+            cursor.close()
+        if conn and conn.is_connected():
+            conn.close()
 
-            save_data(data)
-
-
-            return {
-
-                "success": True,
-
-                "message":
-                    "Password reset successfully."
-
-            }
-
-
-    # -----------------------------------------------------
-    # EMAIL NOT FOUND
-    # -----------------------------------------------------
-
-    raise HTTPException(
-        status_code=404,
-        detail="No account found with this email."
-    )
 
 
 # =========================================================
@@ -573,6 +564,10 @@ class ContactMessageInput(BaseModel):
 # CONTACT MESSAGE - SAVE
 # =========================================================
 
+# =========================================================
+# CONTACT MESSAGE - SAVE
+# =========================================================
+
 @app.post("/contact")
 def submit_contact_message(data_input: ContactMessageInput):
 
@@ -581,124 +576,112 @@ def submit_contact_message(data_input: ContactMessageInput):
     subject = data_input.subject.strip()
     message = data_input.message.strip()
 
-
     # -----------------------------------------------------
     # VALIDATION
     # -----------------------------------------------------
 
     if name == "":
-
         raise HTTPException(
             status_code=400,
             detail="Name is required"
         )
 
-
     if email == "":
-
         raise HTTPException(
             status_code=400,
             detail="Email is required"
         )
 
-
     if subject == "":
-
         raise HTTPException(
             status_code=400,
             detail="Subject is required"
         )
 
-
     if message == "":
-
         raise HTTPException(
             status_code=400,
             detail="Message is required"
         )
 
-
     # -----------------------------------------------------
-    # LOAD DATABASE
-    # -----------------------------------------------------
-
-    data = load_data()
-
-
-    # -----------------------------------------------------
-    # CREATE MESSAGE
+    # SAVE MESSAGE IN MYSQL
     # -----------------------------------------------------
 
-    new_message = {
+    connection = get_db_connection()
 
-        "id":
-            len(data["contact_messages"]) + 1,
+    if connection is None:
+        raise HTTPException(
+            status_code=500,
+            detail="Database connection failed"
+        )
 
-        "name":
-            name,
+    cursor = None
 
-        "email":
-            email,
+    try:
+        cursor = connection.cursor()
 
-        "subject":
-            subject,
+        current_time = datetime.now()
 
-        "message":
-            message,
+        cursor.execute(
+            """
+            INSERT INTO contact_messages
+            (name, email, subject, message, created_at, status)
+            VALUES (%s, %s, %s, %s, %s, %s)
+            """,
+            (
+                name,
+                email,
+                subject,
+                message,
+                current_time,
+                "unread"
+            )
+        )
 
-        "date":
-            datetime.now().strftime(
+        connection.commit()
+
+        message_id = cursor.lastrowid
+
+        new_message = {
+            "id": message_id,
+            "name": name,
+            "email": email,
+            "subject": subject,
+            "message": message,
+            "date": current_time.strftime(
                 "%d-%m-%Y %I:%M:%S %p"
             ),
-
-        "status":
-            "unread"
-
-    }
-
-
-    # -----------------------------------------------------
-    # SAVE MESSAGE
-    # -----------------------------------------------------
-
-    data["contact_messages"].append(
-        new_message
-    )
-
-    save_data(data)
-
-
-    print(
-        "NEW CONTACT MESSAGE:",
-        new_message
-    )
-
-
-    return {
-
-        "success": True,
-
-        "message":
-            "Your message has been submitted successfully.",
-
-        "contact_message": {
-
-            "id":
-                new_message["id"],
-
-            "name":
-                new_message["name"],
-
-            "subject":
-                new_message["subject"],
-
-            "date":
-                new_message["date"]
-
+            "status": "unread"
         }
 
-    }
+        print("NEW CONTACT MESSAGE:", new_message)
 
+        return {
+            "success": True,
+            "message": "Your message has been submitted successfully.",
+            "contact_message": {
+                "id": new_message["id"],
+                "name": new_message["name"],
+                "subject": new_message["subject"],
+                "date": new_message["date"]
+            }
+        }
+
+    except Exception as error:
+        connection.rollback()
+        print("CONTACT MESSAGE DATABASE ERROR:", error)
+
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to save contact message"
+        )
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+
+        connection.close()
 
 # =========================================================
 # CROP INPUT
@@ -996,13 +979,23 @@ def get_top_predictions(input_data):
 # CROP PREDICTION
 # =========================================================
 
+
 @app.post("/predict")
 def predict_crop(data: CropInput):
+    conn = None
+    cursor = None
+
     try:
+        # 1. Existing ML model: keep all 7 parameters
         input_data = pd.DataFrame(
             [[
-                data.N, data.P, data.K, data.temperature,
-                data.humidity, data.ph, data.rainfall
+                data.N,
+                data.P,
+                data.K,
+                data.temperature,
+                data.humidity,
+                data.ph,
+                data.rainfall
             ]],
             columns=[
                 "N", "P", "K", "temperature",
@@ -1011,36 +1004,57 @@ def predict_crop(data: CropInput):
         )
 
         crop, top_predictions = get_top_predictions(input_data)
-        confidence = top_predictions[0].get("probability") if top_predictions else None
+
+        confidence = (
+            top_predictions[0].get("probability")
+            if top_predictions else None
+        )
+
         crop_details = get_crop_details(crop)
         district_details = get_district_info(data.district)
 
-        database = load_data()
+        # 2. Save prediction directly to MySQL
+        from backend.db import get_db_connection
 
-        history_item = {
-            "id": len(database["history"]) + 1,
-            "date": datetime.now().strftime("%d-%m-%Y %I:%M:%S %p"),
-            "state": data.state,
-            "district": data.district,
-            "N": data.N,
-            "P": data.P,
-            "K": data.K,
-            "temperature": data.temperature,
-            "humidity": data.humidity,
-            "ph": data.ph,
-            "rainfall": data.rainfall,
-            "crop": crop,
-            "confidence": confidence
-        }
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
-        database["history"].append(history_item)
-        save_data(database)
+        cursor.execute(
+            """
+            INSERT INTO crop_recommendations (
+                user_id, state, district,
+                nitrogen, phosphorus, potassium,
+                temperature, humidity, ph, rainfall,
+                recommended_crop, confidence, created_at
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """,
+            (
+                None,
+                data.state,
+                data.district,
+                data.N,
+                data.P,
+                data.K,
+                data.temperature,
+                data.humidity,
+                data.ph,
+                data.rainfall,
+                crop,
+                confidence,
+                datetime.now()
+            )
+        )
 
+        conn.commit()
+
+        # 3. Keep the existing API response format
         return {
             "success": True,
             "recommended_crop": crop,
             "confidence": confidence,
             "top_recommendations": top_predictions,
+
             "farm_data": {
                 "state": data.state,
                 "district": data.district,
@@ -1052,6 +1066,7 @@ def predict_crop(data: CropInput):
                 "ph": data.ph,
                 "rainfall": data.rainfall
             },
+
             "crop_information": {
                 "season": crop_details["season"],
                 "soil": crop_details["soil"],
@@ -1064,6 +1079,7 @@ def predict_crop(data: CropInput):
                 "tips": crop_details["tips"],
                 "precautions": crop_details["precautions"]
             },
+
             "district_intelligence": {
                 "district": data.district,
                 "overview": district_details["overview"],
@@ -1076,7 +1092,21 @@ def predict_crop(data: CropInput):
         }
 
     except Exception as error:
-        raise HTTPException(status_code=500, detail=str(error))
+        if conn is not None:
+            conn.rollback()
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(error)
+        )
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+
+        if conn is not None:
+            conn.close()
+
 
 
 # =========================================================
@@ -1134,185 +1164,245 @@ def agroai_chat(data: ChatInput):
 # ADMIN DASHBOARD
 # =========================================================
 
+
+
 @app.get("/admin/dashboard")
 def admin_dashboard():
 
-    data = load_data()
+    conn = None
+    cursor = None
 
-    history = data["history"]
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
-    users = data["users"]
+        # Total crop predictions from MySQL
+        cursor.execute("""
+            SELECT COUNT(*) AS total_predictions
+            FROM crop_recommendations
+            WHERE recommended_crop IS NOT NULL
+              AND TRIM(recommended_crop) != ''
+        """)
+        prediction_result = cursor.fetchone()
+        total_predictions = prediction_result["total_predictions"]
 
+        # Total registered users from MySQL
+        cursor.execute("""
+            SELECT COUNT(*) AS total_users
+            FROM users
+        """)
+        user_result = cursor.fetchone()
+        total_users = user_result["total_users"]
 
-    crop_count = {}
+        # Most predicted crop from MySQL
+        cursor.execute("""
+            SELECT recommended_crop, COUNT(*) AS crop_count
+            FROM crop_recommendations
+            WHERE recommended_crop IS NOT NULL
+              AND TRIM(recommended_crop) != ''
+            GROUP BY recommended_crop
+            ORDER BY crop_count DESC, recommended_crop ASC
+            LIMIT 1
+        """)
+        crop_result = cursor.fetchone()
 
+        if crop_result:
+            most_predicted_crop = crop_result["recommended_crop"]
+            most_crop_count = crop_result["crop_count"]
+        else:
+            most_predicted_crop = "--"
+            most_crop_count = 0
 
-    for item in history:
+        # Number of different crops predicted
+        cursor.execute("""
+            SELECT COUNT(DISTINCT recommended_crop) AS unique_crops
+            FROM crop_recommendations
+            WHERE recommended_crop IS NOT NULL
+              AND TRIM(recommended_crop) != ''
+        """)
+        unique_result = cursor.fetchone()
+        unique_crops = unique_result["unique_crops"]
 
-        crop = item.get("crop")
+        return {
+            "success": True,
+            "total_predictions": total_predictions,
+            "total_users": total_users,
+            "most_predicted_crop": most_predicted_crop,
+            "most_crop_count": most_crop_count,
+            "unique_crops": unique_crops,
+            "ai_status": "Online"
+        }
 
+    except Exception as e:
+        print("ADMIN DASHBOARD ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to load admin dashboard data"
+        )
 
-        if crop:
-
-            crop_count[crop] = (
-                crop_count.get(crop, 0) + 1
-            )
-
-
-    most_predicted_crop = "--"
-
-    most_crop_count = 0
-
-
-    for crop, count in crop_count.items():
-
-        if count > most_crop_count:
-
-            most_crop_count = count
-
-            most_predicted_crop = crop
-
-
-    return {
-
-        "success": True,
-
-        "total_predictions":
-            len(history),
-
-        "total_users":
-            len(users),
-
-        "most_predicted_crop":
-            most_predicted_crop,
-
-        "most_crop_count":
-            most_crop_count,
-
-        "unique_crops":
-            len(crop_count),
-
-        "ai_status":
-            "Online"
-
-    }
-
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 # =========================================================
 # ADMIN HISTORY - GET
 # =========================================================
 
+
 @app.get("/admin/history")
 def admin_history():
 
-    data = load_data()
+    conn = None
+    cursor = None
 
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
-    return {
+        cursor.execute("""
+            SELECT *
+            FROM crop_recommendations
+            ORDER BY id DESC
+        """)
 
-        "success": True,
+        history = cursor.fetchall()
 
-        "history":
-            data["history"],
+        return {
+            "success": True,
+            "history": history,
+            "total": len(history)
+        }
 
-        "total":
-            len(data["history"])
+    except Exception as e:
+        print("ADMIN HISTORY ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to load prediction history"
+        )
 
-    }
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 
 # =========================================================
-# ADMIN HISTORY - DELETE
+# ADMIN HISTORY - DELETE (TEMPORARILY DISABLED)
+# =========================================================
+
+
+# =========================================================
+# ADMIN HISTORY - DELETE (TEMPORARILY DISABLED)
 # =========================================================
 
 @app.delete("/admin/history")
 def delete_history():
-
-    data = load_data()
-
-
-    data["history"] = []
-
-
-    save_data(data)
+    raise HTTPException(
+        status_code=403,
+        detail="Clear Prediction History is temporarily disabled"
+    )
 
 
-    return {
 
-        "success": True,
-
-        "message":
-            "Prediction history cleared successfully"
-
-    }
-
+# =========================================================
 
 # =========================================================
 # ADMIN USERS
 # =========================================================
 
+
 @app.get("/admin/users")
 def admin_users():
+    conn = None
+    cursor = None
 
-    data = load_data()
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
+        cursor.execute("""
+            SELECT id, name, email, created_at
+            FROM users
+            ORDER BY id DESC
+        """)
 
-    safe_users = []
+        users = cursor.fetchall()
 
+        for user in users:
+            created_at = user.get("created_at")
+            if created_at is not None:
+                user["created_at"] = created_at.isoformat(
+                    sep=" ", timespec="seconds"
+                )
 
-    for user in data["users"]:
+        return {
+            "success": True,
+            "users": users,
+            "total_users": len(users)
+        }
 
-        safe_users.append({
+    except Exception as error:
+        print("ADMIN USERS MYSQL ERROR:", error)
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to load registered users"
+        )
 
-            "id":
-                user.get("id"),
-
-            "name":
-                user.get("name"),
-
-            "email":
-                user.get("email"),
-
-            "created_at":
-                user.get("created_at")
-
-        })
-
-
-    return {
-
-        "success": True,
-
-        "users":
-            safe_users,
-
-        "total_users":
-            len(safe_users)
-
-    }
-
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 # =========================================================
 # ADMIN CROPS - GET
 # =========================================================
 
+
 @app.get("/admin/crops")
 def get_crops():
+    conn = None
+    cursor = None
 
-    data = load_data()
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
+        cursor.execute("""
+            SELECT id, crop_name, created_at
+            FROM crops
+            ORDER BY crop_name ASC
+        """)
 
-    return {
+        crops = cursor.fetchall()
 
-        "success": True,
+        for crop in crops:
+            if crop.get("created_at") is not None:
+                crop["created_at"] = crop["created_at"].isoformat(
+                    sep=" ", timespec="seconds"
+                )
 
-        "crops":
-            data["crops"],
+        return {
+            "success": True,
+            "crops": crops,
+            "total_crops": len(crops)
+        }
 
-        "total_crops":
-            len(data["crops"])
+    except Exception as e:
+        print("ADMIN GET CROPS ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to load crops"
+        )
 
-    }
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 
 # =========================================================
@@ -1328,250 +1418,340 @@ class CropName(BaseModel):
 # ADMIN CROPS - ADD
 # =========================================================
 
+
 @app.post("/admin/crops")
 def add_crop(crop: CropName):
-
     name = crop.name.strip()
 
-
     if name == "":
-
         raise HTTPException(
             status_code=400,
             detail="Crop name is required"
         )
 
+    conn = None
+    cursor = None
 
-    data = load_data()
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
+        # Check whether crop already exists
+        cursor.execute(
+            "SELECT id FROM crops WHERE LOWER(crop_name) = LOWER(%s)",
+            (name,)
+        )
 
-    for existing_crop in data["crops"]:
+        existing_crop = cursor.fetchone()
 
-        if existing_crop.lower() == name.lower():
-
+        if existing_crop:
             raise HTTPException(
                 status_code=400,
                 detail="Crop already exists"
             )
 
+        # Add crop to MySQL
+        cursor.execute(
+            "INSERT INTO crops (crop_name) VALUES (%s)",
+            (name,)
+        )
 
-    data["crops"].append(name)
+        conn.commit()
 
+        return {
+            "success": True,
+            "message": "Crop added successfully",
+            "crop": name
+        }
 
-    save_data(data)
+    except HTTPException:
+        if conn is not None:
+            conn.rollback()
+        raise
 
+    except Exception as e:
+        if conn is not None:
+            conn.rollback()
 
-    return {
+        # Handle duplicate names safely
+        if getattr(e, "errno", None) == 1062:
+            raise HTTPException(
+                status_code=400,
+                detail="Crop already exists"
+            )
 
-        "success": True,
+        print("ADMIN ADD CROP ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to add crop"
+        )
 
-        "message":
-            "Crop added successfully",
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
-        "crop":
-            name
-
-    }
 
 
 # =========================================================
 # ADMIN CROPS - DELETE
 # =========================================================
 
+
 @app.delete("/admin/crops/{crop_name}")
 def delete_crop(crop_name: str):
+    name = crop_name.strip()
 
-    data = load_data()
-
-
-    original_count = len(
-        data["crops"]
-    )
-
-
-    data["crops"] = [
-
-        crop
-
-        for crop in data["crops"]
-
-        if crop.lower() != crop_name.lower()
-
-    ]
-
-
-    if len(data["crops"]) == original_count:
-
+    if name == "":
         raise HTTPException(
-            status_code=404,
-            detail="Crop not found"
+            status_code=400,
+            detail="Crop name is required"
         )
 
+    conn = None
+    cursor = None
 
-    save_data(data)
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
+        cursor.execute(
+            "DELETE FROM crops WHERE LOWER(crop_name) = LOWER(%s)",
+            (name,)
+        )
 
-    return {
+        if cursor.rowcount == 0:
+            raise HTTPException(
+                status_code=404,
+                detail="Crop not found"
+            )
 
-        "success": True,
+        conn.commit()
 
-        "message":
-            "Crop deleted successfully"
+        return {
+            "success": True,
+            "message": "Crop deleted successfully"
+        }
 
-    }
+    except HTTPException:
+        if conn is not None:
+            conn.rollback()
+        raise
+
+    except Exception as e:
+        if conn is not None:
+            conn.rollback()
+
+        print("ADMIN DELETE CROP ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to delete crop"
+        )
+
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 
 # =========================================================
 # ADMIN CONTACT MESSAGES - GET
 # =========================================================
 
+
 @app.get("/admin/contact-messages")
 def get_contact_messages():
+    conn = None
+    cursor = None
 
-    data = load_data()
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
 
-    messages = data["contact_messages"]
+        cursor.execute("""
+            SELECT
+                id,
+                json_id,
+                name,
+                email,
+                subject,
+                message,
+                created_at,
+                status
+            FROM contact_messages
+            ORDER BY id DESC
+        """)
 
+        messages = cursor.fetchall()
 
-    # Newest messages first
-    messages = list(
-        reversed(messages)
-    )
+        unread_count = sum(
+            1 for item in messages
+            if (item.get("status") or "unread").lower() == "unread"
+        )
 
+        # Datetime values ko JSON response ke liye string mein convert karo
+        for item in messages:
+            if item.get("created_at") is not None:
+                item["created_at"] = item["created_at"].isoformat(
+                    sep=" ", timespec="seconds"
+                )
 
-    unread_count = 0
+            if not item.get("status"):
+                item["status"] = "unread"
 
+        return {
+            "success": True,
+            "messages": messages,
+            "total": len(messages),
+            "unread": unread_count
+        }
 
-    for item in messages:
+    except Exception as e:
+        print("ADMIN CONTACT MESSAGES ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to load contact messages"
+        )
 
-        if item.get("status") == "unread":
-
-            unread_count += 1
-
-
-    return {
-
-        "success": True,
-
-        "messages":
-            messages,
-
-        "total":
-            len(messages),
-
-        "unread":
-            unread_count
-
-    }
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 
 # =========================================================
 # ADMIN CONTACT MESSAGE - MARK AS READ
 # =========================================================
 
+
 @app.put("/admin/contact-messages/{message_id}/read")
 def mark_contact_message_read(message_id: int):
+    conn = None
+    cursor = None
 
-    data = load_data()
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
+        cursor.execute(
+            """
+            UPDATE contact_messages
+            SET status = 'read'
+            WHERE id = %s
+            """,
+            (message_id,)
+        )
 
-    for message in data["contact_messages"]:
+        if cursor.rowcount == 0:
+            # Check whether the message exists but was already read
+            cursor.execute(
+                "SELECT id FROM contact_messages WHERE id = %s",
+                (message_id,)
+            )
 
-        if message.get("id") == message_id:
+            if cursor.fetchone() is None:
+                raise HTTPException(
+                    status_code=404,
+                    detail="Contact message not found"
+                )
 
-            message["status"] = "read"
+        conn.commit()
 
-            save_data(data)
+        return {
+            "success": True,
+            "message": "Contact message marked as read."
+        }
 
+    except HTTPException:
+        if conn is not None:
+            conn.rollback()
+        raise
 
-            return {
+    except Exception as e:
+        if conn is not None:
+            conn.rollback()
 
-                "success": True,
+        print("MARK CONTACT MESSAGE READ ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to mark contact message as read"
+        )
 
-                "message":
-                    "Contact message marked as read."
-
-            }
-
-
-    raise HTTPException(
-        status_code=404,
-        detail="Contact message not found"
-    )
-
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 # =========================================================
 # ADMIN CONTACT MESSAGE - DELETE
 # =========================================================
 
+
 @app.delete("/admin/contact-messages/{message_id}")
 def delete_contact_message(message_id: int):
+    conn = None
+    cursor = None
 
-    data = load_data()
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
 
-
-    original_count = len(
-        data["contact_messages"]
-    )
-
-
-    data["contact_messages"] = [
-
-        message
-
-        for message in data["contact_messages"]
-
-        if message.get("id") != message_id
-
-    ]
-
-
-    if len(data["contact_messages"]) == original_count:
-
-        raise HTTPException(
-            status_code=404,
-            detail="Contact message not found"
+        cursor.execute(
+            "DELETE FROM contact_messages WHERE id = %s",
+            (message_id,)
         )
 
+        if cursor.rowcount == 0:
+            raise HTTPException(
+                status_code=404,
+                detail="Contact message not found"
+            )
 
-    save_data(data)
+        conn.commit()
 
+        return {
+            "success": True,
+            "message": "Contact message deleted successfully"
+        }
 
-    return {
+    except HTTPException:
+        if conn is not None:
+            conn.rollback()
+        raise
 
-        "success": True,
+    except Exception as e:
+        if conn is not None:
+            conn.rollback()
 
-        "message":
-            "Contact message deleted successfully"
+        print("DELETE CONTACT MESSAGE ERROR:", str(e))
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to delete contact message"
+        )
 
-    }
-
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
 
 # =========================================================
 # ADMIN CONTACT MESSAGES - CLEAR ALL
 # =========================================================
 
+
+
+
 @app.delete("/admin/contact-messages")
 def delete_all_contact_messages():
-
-    data = load_data()
-
-
-    data["contact_messages"] = []
-
-
-    save_data(data)
-
-
-    return {
-
-        "success": True,
-
-        "message":
-            "All contact messages cleared successfully"
-
-    }
-
+    raise HTTPException(
+        status_code=403,
+        detail="Clear All is disabled to protect contact messages."
+    )
 
 # =========================================================
 # SERVER READY MESSAGE

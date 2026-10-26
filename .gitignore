@@ -1,9 +1,22 @@
 /.vscode
 /venv
+.venv/
+venv/
 /database
 
-__pycache__/
-*.pyc
+# Environment secrets
 .env
 *.env
+
+# Local databases and backups
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Logs
 *.log
